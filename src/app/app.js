@@ -4,21 +4,19 @@ export class GameApp {
 
     constructor(parent, width, height) {
 
-        this.app = new PIXI.Application({width, height, backgroundColor : 0xFFFFFF});
+        this.app = new PIXI.Application({width, height, backgroundColor : 0xE8D6D6});
         parent.replaceChild(this.app.view, parent.lastElementChild); // Hack for parcel HMR
 
-        // init Pixi loader
-        let loader = new PIXI.Loader();
-
-        // loader.add(playerFrames[key]);
-
-        // Load assets
-        // loader.load(this.onAssetsLoaded.bind(this))
+        // // init Pixi loader
+        // let loader = new PIXI.Loader();
     }
 
-    onAssetsLoaded() {
-
-        // this.app.stage.addChild(playerIdle);
+    createCursor() {
+        const cursor  = new PIXI.Graphics();
+        cursor.beginFill(0x000000);
+        cursor.drawCircle(this.app.view.width / 2, this.app.view.height / 2, 10);
+        cursor.endFill();
+        this.app.stage.addChild(cursor);
+        return cursor;
     }
-
 }
