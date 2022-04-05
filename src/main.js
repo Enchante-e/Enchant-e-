@@ -1,8 +1,10 @@
 import {io} from "socket.io-client";
 const socket = io('http://localhost:3000')
 import {GameApp} from "./app/app";
+import {Parallax} from "./js/background";
 
 const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
+
 
 socket.on('init', function(id) {
     let p = document.createElement('p')

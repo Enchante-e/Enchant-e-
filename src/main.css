@@ -8,14 +8,14 @@ canvas {
     display:block;
 }
 
-#users {
+/* #users {
     position: absolute;
     top: 0;
     left: 0;
     width: 500px;
     height: 800px;
     overflow: scroll;
-}
+} */
 
 #users p {
     color: black;
