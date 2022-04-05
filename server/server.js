@@ -5,5 +5,10 @@ const io = require('socket.io')(3000, {
 });
 
 io.on('connection', socket => {
-    console.log(socket.id)
+    console.log("Nouvel user ! ID :", socket.id)
+    io.emit('init', socket.id);
+
+    io.on('disconnect', socket => {
+        console.log("User déconnecté : ID", socket.id)
+    })
 })

@@ -4,7 +4,7 @@ export class GameApp {
 
     constructor(parent, width, height) {
 
-        this.app = new PIXI.Application({width, height, backgroundColor : 0x000000});
+        this.app = new PIXI.Application({width, height, backgroundColor : 0xFFFFFF});
         parent.replaceChild(this.app.view, parent.lastElementChild); // Hack for parcel HMR
 
         // init Pixi loader
