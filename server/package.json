@@ -1,0 +1,14 @@
+{
+    "name": "pixitest",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "serverStart": "nodemon server.js"
+    },
+    "author": "Llorenç Pujol Ferriol",
+    "license": "MIT",
+    "dependencies": {
+        "nodemon": "^2.0.15",
+        "socket.io": "^4.4.1"
+    }
+}

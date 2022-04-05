@@ -12,7 +12,8 @@
   "author": "Llorenç Pujol Ferriol",
   "license": "MIT",
   "dependencies": {
-    "pixi.js": "~5.3.3"
+    "pixi.js": "~5.3.3",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@types/jest": "~26.0.15",
