@@ -28,18 +28,21 @@ let cameraVector = {
     //     brightness: 2
     // });
 
-    
+  
 
 document.body.appendChild(app.view);
 
 document.addEventListener("mousemove", function (e) {
-    const {a, l} = cameraVector;
+    console.log('hello');
+
+    console.log(cameraVector)
+
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
     cameraVector.a = center.x - e.x;
     cameraVector.l = center.y - e.y;
     cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(a * a);
+    cameraVector.l = Math.sqrt(cameraVector.a * cameraVector.a);
 })
 
 app.stage.addChild(container);
