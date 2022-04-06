@@ -1,61 +1,78 @@
-let users =  []
-const codeLetters = ["A", "W", "S", "E", "D", "F", "T", "G", "Y", "H", "U", "J", "K", "O", "L", "P", "M"]
-let existingCodes = []
-
 const io = require('socket.io')(3000, {
     cors: {
         origin: ['http://localhost:1234']
     }
 });
 
+
+// CONST ------------------------------------------------------------------------------------------------------------------------------------
+
+let users =  []
+const codeLetters = ["A", "W", "S", "E", "D", "F", "T", "G", "Y", "H", "U", "J", "K", "O", "L", "P", "M"]
+let existingCodes = []
+
+
+// SOCKET ------------------------------------------------------------------------------------------------------------------------------------
+
 io.on('connection', socket => {
-    let user = {id: socket.id, name : "", coordX: 0, coordY: 0};
+    let user = {id: socket.id, name : "", partnerId : "", coordX: 0, coordY: 0};
     users.push(user)
-    socket.emit('init', user.id);
-    socket.broadcast.emit('hello-world', user.id);
+    socket.emit('init', user);
 
     socket.on('coord', (coord, myId) => {
         if (user.id == myId) {
             user.coordX = coord[0]
             user.coordY = coord[1]
         }
-        io.emit('userUpdate', users);
+        io.sockets.to(user.partnerId).emit('cursor-update',user.partnerId, user.coordX, user.coordY);
     });
 
     socket.on('change-name', (name, id) => {
-        const oldName = user.name
         if (user.id == id) {
             user.name = name;
         }
-        io.emit('name-notification', name, id, oldName)
+        io.emit('name-notification', name, id)
     });
 
-    socket.on('generate-code', () => {
-        let code = generateCode()
+    socket.on('generate-room', () => {
+        let code = [...generateCode()]
         while(checkCode(code) == true) { 
             code = generateCode()
         }
         existingCodes.push(code)
-        // socket.join(code)
-        socket.emit('friendcode-generated', code)
+        socket.join(code.toString())
+        socket.emit('room-notification', code, user.id)
     });
 
-    socket.on('join-partner', (code, id) => {
-        console.log(io)
-        // if(code !== "") {    
-        socket.join(code)
-        io.to(code).emit('room-notification', code, id,user.name)
-        // }
-    });
-
-    socket.on('message', (msg,code, id) => {
-        // console.log(msg)
-        if(code === "") {
-            io.emit('messsage-emit', msg, code, id)
-        } else {
-            
-            io.to(code).emit('messsage-emit', msg, code, id)
-        }    
+    socket.on('join-room', (code, id) => {  
+        const roomNames = Array.from(io.sockets.adapter.rooms)
+        let roomMembers = []
+        for (let member of io.sockets.adapter.rooms.values()) {
+            roomMembers.push(Array.from(member))
+        }
+        
+        roomNames.map((room, i) => {
+            if (room[0] == code) {
+                if (roomMembers[i].length >= 2) {
+                    io.emit('room-fail', code)
+                } else {
+                    socket.join(code)
+                    let membersId = [id]
+                    roomMembers[i].map((member)=> {
+                        membersId.push(member)
+                        io.sockets.to(member).emit('cursor-create', id);
+                        socket.emit('cursor-create', member);
+                        user.partnerId = member.toString()
+                        users.map((u) => {
+                            if (u.id == member) {
+                                u.partnerId = id
+                            }
+                        })
+                    })
+                    socket.emit('room-notification', code, id);
+                }
+            }
+        })
     });
 
     socket.on('disconnect', () => {
@@ -67,6 +84,9 @@ io.on('connection', socket => {
         })
     })
 })
+
+
+// LOCAL ------------------------------------------------------------------------------------------------------------------------------------
 
 const generateCode = () => {
     let code = []
@@ -80,7 +100,6 @@ const checkCode = (code) => {
     let status = false
     for(let i = 0; i < existingCodes.length; i++) {
         if (JSON.stringify(existingCodes[i]) === JSON.stringify(code)) {
-            console.log("idem")
             status = true
         }
     }
