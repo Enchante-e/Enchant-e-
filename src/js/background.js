@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js';
 console.log('test on load');
 
 let cameraVector = {
-        a: 0,
+        a: 3,
         l: 0
     };
 
@@ -33,16 +33,26 @@ let cameraVector = {
 document.body.appendChild(app.view);
 
 document.addEventListener("mousemove", function (e) {
-    console.log('hello');
 
-    console.log(cameraVector)
+    // center.x = app.screen.width / 2;
+    // center.y = app.screen.height / 2;
+    // a = center.x - e.x;
+    // b = center.y - e.y;
+    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+    // cameraVector.l = Math.sqrt(a * a);
+
+    console.log(cameraVector.l)
 
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
     cameraVector.a = center.x - e.x;
     cameraVector.l = center.y - e.y;
-    cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(cameraVector.a * cameraVector.a);
+    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+    // cameraVector.l = Math.sqrt(cameraVector.a * cameraVector.a);
+
+    
+    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+    // cameraVector.l = Math.sqrt(a * a);
 })
 
 app.stage.addChild(container);
