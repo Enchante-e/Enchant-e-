@@ -3,7 +3,7 @@ const socket = io('http://localhost:3000')
 import {GameApp} from "./app/app";
 import {Parallax} from "./js/background";
 
-const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
+// const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 
 
 socket.on('init', function(id) {
@@ -11,3 +11,5 @@ socket.on('init', function(id) {
     p.innerHTML = "Nouvel invité " + id;
     document.getElementById("users").appendChild(p)
 });
+
+

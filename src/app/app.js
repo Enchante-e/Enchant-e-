@@ -1,19 +1,25 @@
 import * as PIXI from 'pixi.js';
 
-export class GameApp {
+class GameApp {
+    constructor(parent = document.body, width = window.innerWidth, height = window.innerHeight) {
+        this.parent = parent
+        this.width = width
+        this.height = height
 
-    constructor(parent, width, height) {
-
-        app = new PIXI.Application({width, height, backgroundColor : 0xFFFFFF});
+        this.app = new PIXI.Application({
+            width,
+            height,
+            backgroundColor: 0xFFFF00
+        });
         parent.replaceChild(this.app.view, parent.lastElementChild); // Hack for parcel HMR
 
         // init Pixi loader
-        let loader = new PIXI.Loader(); 
+        let loader = new PIXI.Loader();
         // loader.add(playerFrames[key]);
-        
-        console.log ('test constructor')
 
-        // Load assets
+        console.log('test constructor')
+
+        // Load assets 
         // loader.load(this.onAssetsLoaded.bind(this))
     }
 
@@ -21,7 +27,11 @@ export class GameApp {
 
         // this.app.stage.addChild(playerIdle);
 
-  
+
     }
 
 }
+
+const GAMEAPP = new GameApp;
+
+export default GAMEAPP;
