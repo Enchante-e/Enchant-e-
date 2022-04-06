@@ -7,9 +7,6 @@ let cameraVector = {
         l: 0
     };
 
-
-
-
     // sound = PIXI.sound.Sound.from('key.mp3'),
     // bgSound = PIXI.sound.Sound.from('audio.mp3'),
 
@@ -31,15 +28,18 @@ let cameraVector = {
     //     brightness: 2
     // });
 
+    
+
 document.body.appendChild(app.view);
 
 document.addEventListener("mousemove", function (e) {
+    const {a, l} = cameraVector;
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
-    a = center.x - e.x;
-    b = center.y - e.y;
+    cameraVector.a = center.x - e.x;
+    cameraVector.l = center.y - e.y;
     cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(a * a + b * b);
+    cameraVector.l = Math.sqrt(a * a);
 })
 
 app.stage.addChild(container);
@@ -47,6 +47,7 @@ app.stage.addChild(container);
 // container.filters = [AdvancedBloom];
 
 for (let i = 0; i < 10000; i++) {
+    
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
     star.id = i;
@@ -83,6 +84,7 @@ for (let i = 0; i < 10000; i++) {
             this.y += Math.sin(cameraVector.a) * cameraVector.l * (scale / 10);
         }
     }
+    
     container.addChild(star);
 }
 
@@ -91,8 +93,8 @@ container.y = app.screen.height / 8;
 container.pivot.x = container.width / 8;
 container.pivot.y = container.height / 8;
 
-app.ticker.add((delta) => {
-    for (const star of container.children) {
-        star.update();
-    }
-});
+// app.ticker.add((delta) => {
+//     for (const star of container.children) {
+//         star.update();
+//     }
+// });
