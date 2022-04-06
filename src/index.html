@@ -12,13 +12,25 @@
 <body class="test">
     <div id="users">
         <div id="room-form">
-            <label for="room-input">Trouve ton code secret et partage le à ton invité(e)</label>
-            <input type="text" id="room-input"/>
+            <button id="room-generate">J'invite</button>
+            <!-- <label for="room-input">Trouve ton code secret et partage le à ton invité(e)</label> -->
+            <p id="room-input"></p>
+            <button id="copy-code">Copier le code</button>
+        </div>
+        <div id="code-form">
+            <label for="room-codeInput">Je suis invité(e)</label>
+            <input type="text" id="room-codeInput" autocomplete="off" value=""/>
+            <button id="join-code">Rejoindre mon cop1</button>
         </div>
         <div id="name-form">
             <label for="name-input">Sous quel nom souhaites-tu apparaitre durant l'expérience ?</label>
-            <input type="text" id="name-input"/>
+            <input type="text" id="name-input" />
         </div>
+        <input type="text" id="message-test" />
+    </div>
+    <div class="bulle-ami hidden">
+        <img src="assets/images/Smiley.png">
+        <p id="bulle-name">Unknown</p>
     </div>
     <script src="main.js"></script>
 </body>

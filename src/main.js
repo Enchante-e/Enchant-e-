@@ -54,12 +54,12 @@ socket.on('userUpdate', function(users) {
                 userDiv.innerHTML = "Vous êtes " + user.id + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY;
             } else {
                 let userName = document.getElementById(user.id + "name")
+                userName.innerHTML = user.name
                 userDiv.innerHTML = "User " + user.id + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY;
                 usersCursors.map((cursor) => {
                     if (user.id == cursor.id) {
                         cursor.obj.transform.position.x = user.coordX - window.innerWidth / 2;
                         cursor.obj.transform.position.y = user.coordY - window.innerHeight / 2;
-                        userName.innerHTML = user.name
                         userName.style.top =  user.coordY + "px";
                         userName.style.left =  user.coordX + "px";
                     }
@@ -87,7 +87,6 @@ nameInput.addEventListener('keyup', function (e) {
             const name = myName;
             
             socket.emit('change-name', name, myId)
-            nameInput.value = ""
         }
     }
 });
@@ -99,22 +98,89 @@ socket.on('name-notification', function(name, id, oldName) {
     document.getElementById("users").appendChild(p)
 });
 
+// [EMIT] JOIN & CREATE ROOM todo
+let roomInput = document.getElementById("room-input")
+let roomBttn = document.getElementById("room-generate")
+let copyBttn = document.getElementById("copy-code")
+let codeInput = document.getElementById("room-codeInput")
+let joinBttn = document.getElementById("join-code")
+
+roomBttn.addEventListener('click', function (e) {
+    socket.emit('generate-code')
+    roomBttn.disabled = true
+})
+socket.on('friendcode-generated', function(code) {
+    roomInput.innerHTML = code
+})
+copyBttn.addEventListener('click', function (e) {
+    if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(roomInput.innerHTML);
+        return;
+      }
+      navigator.clipboard.writeText(roomInput.innerHTML).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function(err) {
+        alert('Async: Could not copy text: ', err);
+      });
+
+      const fallbackCopyTextToClipboard = (code) => {
+        var textArea = document.createElement("textarea");
+        textArea.value = ""
+        code.map((letter) => {
+            textArea.value = textArea.value + letter
+        })
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        document.body.removeChild(textArea);
+    }
+})
+joinBttn.addEventListener('click', function (e) {
+    let code = codeInput.value
+    socket.emit('join-partner', code, myId)
+})
+
+socket.on('room-notification', function(code, id, name) {
+    let p = document.createElement('p')
+    p.innerHTML = code + " joined by " + id + name;
+    document.getElementById("users").appendChild(p)
+})
+
+//test
+let messageInput = document.getElementById("message-test")
+messageInput.addEventListener('keyup', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault()
+        const msg = messageInput.value
+        const code = codeInput.value
+        socket.emit('message', msg, code, myId)
+    }
+})
+socket.on('messsage-emit', function(msg, code,id) {
+    let p = document.createElement('p')
+    p.innerHTML = code + " " + id + " dit  : " + msg;
+    document.getElementById("users").appendChild(p)
+})
+
 
 // [RECEIVED - ALL] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
     let p = document.createElement('p')
     p.innerHTML = id + " " + name + " a été déconnecté ";
     document.getElementById("users").appendChild(p)
+
+    let userName = document.getElementById(id + "name")
+    userName ? userName.remove() : null
+    
+    usersCursors.map((cursor, i) => {
+        if (id == cursor.id) {
+            myGame.app.stage.removeChild(cursor.obj)
+            usersCursors.splice(i, 1)
+        }
+    })
 });
-
-
-
-// [EMIT] JOIN & CREATE ROOM todo
-let roomInput = document.getElementById("room-input")
-roomInput.addEventListener('keyup', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault()
-        const room = roomInput.value
-        socket.emit('join-room', room)
-    }
-})
