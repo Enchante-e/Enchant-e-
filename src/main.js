@@ -1,8 +1,11 @@
 import {io} from "socket.io-client";
 const socket = io('http://localhost:3000')
 import {GameApp} from "./app/app";
+import {Parallax} from "./app/app";
 
 const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
+
+
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -177,50 +180,4 @@ document.addEventListener('mousemove', function(e) {
     }
 });
 
-
-// DRAFT ------------------------------------------------------------------------------------------------------------------------------------
-
-// [RECEIVED - YOU] Your Name and coords values changed 
-// socket.on('userUpdate', function(users) {
-//     users.map((user) => {
-//         let userDiv = document.getElementById(user.id)
-//         if(userDiv) {
-//             if (user.id == myId) {
-//                 userDiv.innerHTML = "Vous êtes " + user.id + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY;
-//             } else {
-//                 let userName = document.getElementById(user.id + "name")
-//                 if(userName) {
-//                     userName.innerHTML = user.name
-//                 }
-//                 userDiv.innerHTML = "User " + user.id + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY;
-//                 usersCursors.map((cursor) => {
-//                     if (user.id == cursor.id) {
-//                         cursor.obj.transform.position.x = user.coordX - window.innerWidth / 2;
-//                         cursor.obj.transform.position.y = user.coordY - window.innerHeight / 2;
-//                         userName.style.top =  user.coordY + "px";
-//                         userName.style.left =  user.coordX + "px";
-//                     }
-//                 })
-//             }
-//         // } else {
-//         //     let p = document.createElement('p')
-//         //     p.id = user.id
-//         //     p.innerHTML = "User " + user.id + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY;
-//         //     document.getElementById("users").appendChild(p)
-//         //     usersCursors.push({id: user.id, obj : myGame.createCursor()})
-//         }
-//     })
-// });
-
-// [EMIT] Get mouse position and emit
-// document.addEventListener('mousemove', function(e) {
-//     e.preventDefault()
-    
-//     if (myCoord && myRoom !== "" && myName !== "") {
-//       myCoord = []
-//       myCoord.push(e.clientX, e.clientY)
-
-//       socket.emit('coord', myCoord, myId)
-//     }
-// });
 
