@@ -38,13 +38,11 @@ document.addEventListener("mousemove", function (e) {
     center.y = app.screen.height / 2;
     cameraVector.a = center.x - e.x;
     cameraVector.l = center.y - e.y;
-    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(a * a);
+    cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+    cameraVector.l = Math.sqrt(a * a + b * b);
 
     console.log(cameraVector.a);
 
-    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    // cameraVector.l = Math.sqrt(a * a);
 })
 
 app.stage.addChild(container);
