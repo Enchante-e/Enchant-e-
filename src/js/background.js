@@ -14,12 +14,12 @@ let cameraVector = {
     app = new PIXI.Application({
         width: window.innerWidth,
         height: window.innerHeight,
-        backgroundColor: 0x000000,
+        backgroundColor: 0xffffff,
         resolution: window.devicePixelRatio || 1,
         resizeTo: window
     }),
     play = false,
-    container = new PIXI.Container(50000),
+    container = new PIXI.Container(5000),
     texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     img = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
@@ -34,23 +34,15 @@ document.body.appendChild(app.view);
 
 document.addEventListener("mousemove", function (e) {
 
-    // center.x = app.screen.width / 2;
-    // center.y = app.screen.height / 2;
-    // a = center.x - e.x;
-    // b = center.y - e.y;
-    // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    // cameraVector.l = Math.sqrt(a * a);
-
-    console.log(cameraVector.l)
-
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
     cameraVector.a = center.x - e.x;
     cameraVector.l = center.y - e.y;
     // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    // cameraVector.l = Math.sqrt(cameraVector.a * cameraVector.a);
+    cameraVector.l = Math.sqrt(a * a);
 
-    
+    console.log(cameraVector.a);
+
     // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
     // cameraVector.l = Math.sqrt(a * a);
 })
@@ -106,8 +98,8 @@ container.y = app.screen.height / 8;
 container.pivot.x = container.width / 8;
 container.pivot.y = container.height / 8;
 
-// app.ticker.add((delta) => {
-//     for (const star of container.children) {
-//         star.update();
-//     }
-// });
+app.ticker.add((delta) => {
+    for (const star of container.children) {
+        star.update();
+    }
+});
