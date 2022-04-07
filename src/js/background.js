@@ -3,32 +3,32 @@ import * as PIXI from 'pixi.js';
 console.log('test on load');
 
 let cameraVector = {
-        a: 3,
-        l: 0
-    };
+    a: 3,
+    l: 0
+};
 
-    // sound = PIXI.sound.Sound.from('key.mp3'),
-    // bgSound = PIXI.sound.Sound.from('audio.mp3'),
+// sound = PIXI.sound.Sound.from('key.mp3'),
+// backgroundSound = PIXI.sound.Sound.from('../assets/sound/background.mp3');
 
     var center = {},
     app = new PIXI.Application({
         width: window.innerWidth,
         height: window.innerHeight,
-        backgroundColor: 0xffffff,
+        backgroundColor: 0x000000,
         resolution: window.devicePixelRatio || 1,
         resizeTo: window
     }),
     play = false,
     container = new PIXI.Container(5000),
-    texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
+    texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/11/25/18/46/leaf-6824367_960_720.png'),
     img = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
-    // AdvancedBloom = new PIXI.filters.AdvancedBloomFilter({
-    //     bloomScale: 6,
-    //     brightness: 2
-    // });
+// AdvancedBloom = new PIXI.filters.AdvancedBloomFilter({
+//     bloomScale: 6,
+//     brightness: 2
+// });
 
-  
+
 
 document.body.appendChild(app.view);
 
@@ -50,22 +50,22 @@ app.stage.addChild(container);
 // container.filters = [AdvancedBloom];
 
 for (let i = 0; i < 10000; i++) {
-    
+
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
     star.id = i;
-    let scale = (Math.random()) / 4
-    star.anchor.set(0.5);
+    let scale = (Math.random()) / 2
+    star.anchor.set(2);
     star.interactive = luck;
     star.buttonMode = luck;
-    star.on("pointerdown", function () {
-        sound.filters = [new PIXI.sound.filters.ReverbFilter()];
-        sound.play();
-        this.texture = texture;
-        this.scale.set(Math.random() / 4);
-        this.interactive = false;
-        this.buttonMode = false;
-    })
+    // star.on("pointerdown", function () {
+    //     // sound.filters = [new PIXI.sound.filters.ReverbFilter()];
+    //     // sound.play();
+    //     this.texture = texture;
+    //     this.scale.set(Math.random() / 4);
+    //     this.interactive = false;
+    //     this.buttonMode = false;
+    // })
     star.scale.set((luck) ? 0.3 + Math.random() * 0.7 : scale);
     star.tint = 0xfa0000 * Math.random();
     star.x = rnd(-4 * window.innerWidth, 4 * window.innerWidth);
@@ -87,7 +87,7 @@ for (let i = 0; i < 10000; i++) {
             this.y += Math.sin(cameraVector.a) * cameraVector.l * (scale / 10);
         }
     }
-    
+
     container.addChild(star);
 }
 
