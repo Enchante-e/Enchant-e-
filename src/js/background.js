@@ -19,7 +19,7 @@ let cameraVector = {
         resizeTo: window
     }),
     play = false,
-    container = new PIXI.Container(1080),
+    container = new PIXI.Container(5000),
     texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/11/25/18/46/leaf-6824367_960_720.png'),
     img = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
@@ -78,12 +78,11 @@ for (let i = 0; i < 10000; i++) {
     star.l = Math.random() * 4;
     star.zIndex = scale;
 
-    // 
-    star.on("click", function () {
-        console.log('this is a click');
-        this.scale.set(Math.random() / 10);
-        this.interactive = true;
-    })
+    // star.on("click", function () {
+    //     console.log('this is a click');
+    //     this.scale.set(Math.random() / 10);
+    //     this.interactive = true;
+    // })
 
     star.update = function () {
         if (this.goBack) {
