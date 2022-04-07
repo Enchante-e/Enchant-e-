@@ -19,7 +19,7 @@ let cameraVector = {
         resizeTo: window
     }),
     play = false,
-    container = new PIXI.Container(5000),
+    container = new PIXI.Container(1080),
     texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/11/25/18/46/leaf-6824367_960_720.png'),
     img = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
@@ -54,9 +54,9 @@ for (let i = 0; i < 10000; i++) {
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
     star.id = i;
-    let scale = (Math.random()) / 2
+    let scale = (Math.random() / 2) ;
     star.anchor.set(2);
-    star.interactive = luck;
+    star.interactive = true;
     star.buttonMode = luck;
     // star.on("pointerdown", function () {
     //     // sound.filters = [new PIXI.sound.filters.ReverbFilter()];
@@ -77,6 +77,14 @@ for (let i = 0; i < 10000; i++) {
     star.goBack = false;
     star.l = Math.random() * 4;
     star.zIndex = scale;
+
+    // 
+    star.on("click", function () {
+        console.log('this is a click');
+        this.scale.set(Math.random() / 10);
+        this.interactive = true;
+    })
+
     star.update = function () {
         if (this.goBack) {
             this.x = lerp(this.x, this.initialPos.x, 0.5);
@@ -90,6 +98,7 @@ for (let i = 0; i < 10000; i++) {
 
     container.addChild(star);
 }
+
 
 container.x = app.screen.width / 8;
 container.y = app.screen.height / 8;
