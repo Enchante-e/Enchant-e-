@@ -15,14 +15,6 @@ class GameApp {
      }
 
 
-    createCursor() {
-        const cursor  = new PIXI.Graphics();
-        cursor.beginFill(0xFFFFFF);
-        cursor.drawCircle(this.app.view.width / 2, this.app.view.height / 2, 10);
-        cursor.endFill();
-        this.app.stage.addChild(cursor);
-        return cursor;
-    }
 
 }
 

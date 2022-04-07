@@ -3,9 +3,10 @@ import * as PIXI from 'pixi.js';
 console.log('test on load');
 
 let cameraVector = {
-    a: 3,
+    a: 0,
     l: 0
 };
+
 
 // sound = PIXI.sound.Sound.from('key.mp3'),
 // backgroundSound = PIXI.sound.Sound.from('../assets/sound/background.mp3');
@@ -29,6 +30,11 @@ let cameraVector = {
 // });
 
 
+const cursor  = new PIXI.Graphics();
+cursor.beginFill(0xFFFF00);
+cursor.drawCircle(app.view.width / 2, app.view.height / 2, 10);
+cursor.endFill();
+
 
 document.body.appendChild(app.view);
 
@@ -41,7 +47,7 @@ document.addEventListener("mousemove", function (e) {
     cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
     cameraVector.l = Math.sqrt(a * a + b * b);
 
-    console.log(cameraVector.a);
+    // console.log(cameraVector.a);
 
 })
 
@@ -105,8 +111,26 @@ container.y = app.screen.height / 8;
 container.pivot.x = container.width / 8;
 container.pivot.y = container.height / 8;
 
+
 app.ticker.add((delta) => {
     for (const star of container.children) {
         star.update();
     }
+
+   
 });
+
+ const createCursor = () => {
+    app.stage.addChild(cursor);
+    console.log(app.stage, cursor)
+    return cursor;
+}
+
+createCursor()
+
+//  export const updateCursor = (cursor, coordX, coordY) => {
+//     cursor.transform.position.x = coordX - window.innerWidth / 2;
+//     cursor.transform.position.y = coordY - window.innerHeight / 2;
+// }
+
+

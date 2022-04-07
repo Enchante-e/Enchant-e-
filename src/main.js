@@ -1,10 +1,9 @@
 import {io} from "socket.io-client";
 const socket = io('http://localhost:3000')
-import {GameApp} from "./app/app";
-import {Parallax} from "./app/app";
+// import {GameApp} from "./app/app";
+import { createCursor, updateCursor } from "./js/background"
 
-const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
-
+// const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
@@ -81,6 +80,7 @@ nameInput.addEventListener('keyup', (e) => {
             socket.emit('change-name', name, myId)
         }
         nameForm.classList.add("hidden")   
+        document.getElementById("users").classList.add("hidden")   
     }
 });
 
@@ -100,8 +100,7 @@ socket.on('cursor-create', (memberId) => {
 
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
-    partnerCursor[0].obj.transform.position.x = coordX - window.innerWidth / 2;
-    partnerCursor[0].obj.transform.position.y = coordY - window.innerHeight / 2;
+    // updateCursor(partnerCursor[0].obj, coordX, coordY)
     nameTag.style.top =  coordY + "px";
     nameTag.style.left =  coordX + "px";
 });
@@ -159,7 +158,7 @@ copyBttn.addEventListener('click', () => {
 
 // [LOCAL] Creating Partner Cursor
 const generateCursor = (id) => {
-    partnerCursor.push({id: id, obj : myGame.createCursor()})
+    // partnerCursor.push({id: id, obj : createCursor()})
 
     nameTag = document.createElement('p')
     nameTag.innerHTML = "";
