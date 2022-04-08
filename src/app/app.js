@@ -1,24 +1,23 @@
 import * as PIXI from 'pixi.js';
 
-export class GameApp {
+class GameApp {
+     constructor(parent = document.body, width = window.innerWidth, height = window.innerHeight) {
+         this.parent = parent
+         this.width = width
+         this.height = height
 
-    constructor(parent, width, height) {
+         this.app = new PIXI.Application({
+             width,
+             height,
+            backgroundColor: 0xFF0000
+        });
+  
+     }
 
-        this.app = new PIXI.Application({width, height, backgroundColor : 0xFFFFFF});
-        parent.replaceChild(this.app.view, parent.lastElementChild); // Hack for parcel HMR
 
-        // init Pixi loader
-        let loader = new PIXI.Loader();
-
-        // loader.add(playerFrames[key]);
-
-        // Load assets
-        // loader.load(this.onAssetsLoaded.bind(this))
-    }
-
-    onAssetsLoaded() {
-
-        // this.app.stage.addChild(playerIdle);
-    }
 
 }
+
+const GAMEAPP = new GameApp;
+
+export default GAMEAPP;

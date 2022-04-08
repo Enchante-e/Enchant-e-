@@ -13,7 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "pixi.js": "~5.3.3",
-    "socket.io-client": "^4.4.1"
+    "socket.io-client": "^4.4.1",
+    "src": "^1.1.2"
   },
   "devDependencies": {
     "@types/jest": "~26.0.15",

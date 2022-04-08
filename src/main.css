@@ -2,6 +2,9 @@ body {
     margin:0;
     padding:0;
     overflow:hidden;
+    font-family: 'Sen', sans-serif;
+    text-align: center;
+    color: #1A1D5C;
 }
 
 canvas {
@@ -12,11 +15,115 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
-    width: 500px;
-    height: 800px;
-    overflow: scroll;
+    width: 100vw;
+    height: 100vh;
+    background: #FFFAF3;
 }
 
-#users p {
-    color: black;
+.tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #1A1D5C;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.cursor {
+    background: #1A1D5C;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+#code-form, 
+#room-form, 
+#name-form {
+    margin: 1rem auto;
+    text-align: center;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#name-form {
+    /* margin: 5rem auto; */
+    flex-direction: column;
+}
+
+/* #room-input, */
+#room-codeInput,
+#name-input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #707070;
+    text-align: center;
+    height: 50px;
+    color: inherit;
+}
+
+#name-input {
+    min-width: 250px;
+}
+
+#room-menu {
+    display: flex;
+    width: 100vw;
+}
+
+#room-input {
+    min-width: 150px;
+}
+
+#bulle-ami {
+    position: fixed;
+    top: -20px;
+    height: 160px;
+    width: 160px;
+    background: #A8B7DE;
+    border-radius: 50%;
+    right: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#bulle-ami img {
+    width: 60px;
+    height: 60px;
+}
+
+#bulle-name {
+    margin: 0;
+    font-size: 0.9em;
+    margin-top: 5px;
+    color: white;
+    font-weight: 700;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    background: transparent;
+    border: none;
+    padding: 15px;
+    width: 200px;
+    display: block;
+    text-align: center;
+    margin: 15px;
+    border-radius: 50px;
+    font: inherit;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1A1D5C;
+    cursor: pointer;
 }
