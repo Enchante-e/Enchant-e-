@@ -1,7 +1,7 @@
 import {io} from "socket.io-client";
 const socket = io('http://localhost:3000')
 // import {GameApp} from "./app/app";
-import { createCursor, updateCursor } from "./js/background"
+import * as background from "./js/background"
 
 // const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 
@@ -87,7 +87,9 @@ nameInput.addEventListener('keyup', (e) => {
 // [RECEIVED] Name changed notification
 socket.on('name-notification', (name, id) => {
     if (id == partnerId) { 
-        partnerName.innerHTML = nameTag.innerHTML = name 
+        partnerName.innerHTML = name 
+        nameTag.innerHTML = name
+        background.activeMovement()
     }
 });
 
@@ -100,7 +102,7 @@ socket.on('cursor-create', (memberId) => {
 
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
-    // updateCursor(partnerCursor[0].obj, coordX, coordY)
+    background.updateCursor(partnerCursor[0].obj, coordX, coordY)
     nameTag.style.top =  coordY + "px";
     nameTag.style.left =  coordX + "px";
 });
@@ -113,7 +115,7 @@ socket.on('disconnect-notification', function(id, name) {
     userName ? userName.remove() : null
 
     if (partnerCursor[0]) {
-        myGame.app.stage.removeChild(partnerCursor[0].obj)
+        background.deleteCursor(partnerCursor[0].obj)
         partnerCursor = []
     }
 });
@@ -158,7 +160,7 @@ copyBttn.addEventListener('click', () => {
 
 // [LOCAL] Creating Partner Cursor
 const generateCursor = (id) => {
-    // partnerCursor.push({id: id, obj : createCursor()})
+    partnerCursor.push({id: id, obj : background.createCursor()})
 
     nameTag = document.createElement('p')
     nameTag.innerHTML = "";

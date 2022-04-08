@@ -7,6 +7,7 @@ let cameraVector = {
     l: 0
 };
 
+let move = false
 
 // sound = PIXI.sound.Sound.from('key.mp3'),
 // backgroundSound = PIXI.sound.Sound.from('../assets/sound/background.mp3');
@@ -15,7 +16,7 @@ let cameraVector = {
     app = new PIXI.Application({
         width: window.innerWidth,
         height: window.innerHeight,
-        backgroundColor: 0x000000,
+        backgroundColor: 0xFFFAF3,
         resolution: window.devicePixelRatio || 1,
         resizeTo: window
     }),
@@ -31,8 +32,8 @@ let cameraVector = {
 
 
 const cursor  = new PIXI.Graphics();
-cursor.beginFill(0xFFFF00);
-cursor.drawCircle(app.view.width / 2, app.view.height / 2, 10);
+cursor.beginFill(0x1A1D5C);
+cursor.drawCircle(app.view.width / 2, app.view.height / 2, 8);
 cursor.endFill();
 
 
@@ -42,13 +43,14 @@ document.addEventListener("mousemove", function (e) {
 
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
-    cameraVector.a = center.x - e.x;
-    cameraVector.l = center.y - e.y;
-    cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(a * a + b * b);
+    if(move == true) {
+        cameraVector.a = center.x - e.x;
+        cameraVector.l = center.y - e.y;
+        cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+        cameraVector.l = Math.sqrt(a * a + b * b);
+    }
 
     // console.log(cameraVector.a);
-
 })
 
 app.stage.addChild(container);
@@ -120,17 +122,20 @@ app.ticker.add((delta) => {
    
 });
 
- const createCursor = () => {
+export const createCursor = () => {
     app.stage.addChild(cursor);
-    console.log(app.stage, cursor)
     return cursor;
 }
 
-createCursor()
+export const updateCursor = (cursor, coordX, coordY) => {
+    cursor.transform.position.x = coordX - window.innerWidth / 2;
+    cursor.transform.position.y = coordY - window.innerHeight / 2;
+}
 
-//  export const updateCursor = (cursor, coordX, coordY) => {
-//     cursor.transform.position.x = coordX - window.innerWidth / 2;
-//     cursor.transform.position.y = coordY - window.innerHeight / 2;
-// }
+export const deleteCursor = (cursor) => {
+    app.stage.removeChild(cursor)
+}
 
-
+export const activeMovement = () => {
+    return move = true
+}
