@@ -55,17 +55,22 @@ joinBttn.addEventListener('click', () => {
 })
 
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
-socket.on('room-notification', (code, id, name) => {
+socket.on('room-notification', (code, userStatus) => {
     myRoom = code.toString()
-    pianoDiv.classList.remove("hidden") 
-    musicCode.init(code)
-
     roomInput.innerHTML = myRoom
-    document.getElementById("code-form").classList.add("hidden")   
     roomBttn.classList.add("hidden")
-    // copyBttn.classList.remove("hidden") 
+    document.getElementById("code-form").classList.add("hidden")   
+    
+    if (userStatus == "creator") {
+        pianoDiv.classList.remove("hidden") 
+        musicCode.init(code)
+    } else if(userStatus == "invited") {
+        roomInput.classList.remove("hidden") 
+        copyBttn.classList.remove("hidden") 
+        joinBttn.classList.add("hidden")   
+        nameForm.classList.remove("hidden")   
+    }
 
-    // nameForm.classList.remove("hidden")   
 })
 
 // [RECEIVED] Room full or issue with room

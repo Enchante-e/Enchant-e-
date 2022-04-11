@@ -111,11 +111,13 @@ const playNote = (note) => {
 
 const checkCode = () => {
     if(JSON.stringify(code) === JSON.stringify(keysPressed)) {
-        alert("Oui oui oui")
         document.getElementById("guess-piano").classList.add("hidden")
         document.getElementById("copy-code").classList.remove("hidden") 
         document.getElementById("room-input").classList.remove("hidden") 
         document.getElementById("name-form").classList.remove("hidden")  
+
+        document.removeEventListener("keydown", keyDown)
+        document.removeEventListener("keyup", keyUp)
     } else {
         alert("C'est non")
     }

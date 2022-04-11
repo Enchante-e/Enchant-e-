@@ -41,7 +41,7 @@ io.on('connection', socket => {
         }
         existingCodes.push(code)
         socket.join(code.toString())
-        socket.emit('room-notification', code, user.id)
+        socket.emit('room-notification', code, "creator")
     });
 
     socket.on('join-room', (code, id) => {  
@@ -54,7 +54,7 @@ io.on('connection', socket => {
         roomNames.map((room, i) => {
             if (room[0] == code) {
                 if (roomMembers[i].length >= 2) {
-                    io.emit('room-fail', code)
+                    socket.emit('room-fail', code)
                 } else {
                     socket.join(code)
                     let membersId = [id]
@@ -69,7 +69,7 @@ io.on('connection', socket => {
                             }
                         })
                     })
-                    socket.emit('room-notification', code, id);
+                    socket.emit('room-notification', code, "invited");
                 }
             }
         })
