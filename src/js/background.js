@@ -10,7 +10,7 @@ let cameraVector = {
 // sound = PIXI.sound.Sound.from('key.mp3'),
 // backgroundSound = PIXI.sound.Sound.from('../assets/sound/background.mp3');
 
-    var center = {},
+var center = {},
     app = new PIXI.Application({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -19,7 +19,7 @@ let cameraVector = {
         resizeTo: window
     }),
     play = false,
-    container = new PIXI.Container(5000),
+    container = new PIXI.Container(app),
     texture = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/11/25/18/46/leaf-6824367_960_720.png'),
     img = PIXI.Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png'),
     rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
@@ -32,18 +32,18 @@ let cameraVector = {
 
 document.body.appendChild(app.view);
 
-document.addEventListener("mousemove", function (e) {
+// document.addEventListener("mousemove", function (e) {
 
-    center.x = app.screen.width / 2;
-    center.y = app.screen.height / 2;
-    cameraVector.a = center.x - e.x;
-    cameraVector.l = center.y - e.y;
-    cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-    cameraVector.l = Math.sqrt(a * a + b * b);
+//     center.x = app.screen.width / 2;
+//     center.y = app.screen.height / 2;
+//     cameraVector.a = center.x - e.x;
+//     cameraVector.l = center.y - e.y;
+//     cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+//     cameraVector.l = Math.sqrt(a * a + b * b);
 
-    console.log(cameraVector.a);
+//     console.log(cameraVector.a);
 
-})
+// })
 
 app.stage.addChild(container);
 
@@ -54,7 +54,7 @@ for (let i = 0; i < 10000; i++) {
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
     star.id = i;
-    let scale = (Math.random() / 2) ;
+    let scale = (Math.random() / 2);
     star.anchor.set(2);
     star.interactive = true;
     star.buttonMode = luck;
@@ -83,6 +83,31 @@ for (let i = 0; i < 10000; i++) {
     //     this.scale.set(Math.random() / 10);
     //     this.interactive = true;
     // })
+
+    star
+        .on('pointerdown', onDragStart)
+        .on('pointerup', onDragEnd)
+        .on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove);
+
+    function onDragStart(event) {
+        this.data = event.data;
+        this.dragging = true;
+    }
+
+    function onDragEnd() {
+        this.alpha = 1;
+        this.dragging = false;
+        this.data = null;
+    }
+
+    function onDragMove() {
+        if (this.dragging) {
+            const newPosition = this.data.getLocalPosition(this.parent);
+            this.x = newPosition.x;
+            this.y = newPosition.y;
+        }
+    }
 
     star.update = function () {
         if (this.goBack) {
