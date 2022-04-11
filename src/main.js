@@ -75,7 +75,7 @@ socket.on('room-notification', (code, userStatus) => {
 
 // [RECEIVED] Room full or issue with room
 socket.on('room-fail', (code) => {
-    alert("Couldn't join " + code + ". Room full or there is an issue, please retry or change code.") 
+    alert("Couldn't join " + code + ". The room is already full or doesn't exist, please retry or change code.") 
 })
 
 // [EMIT] Change Name Input And emit

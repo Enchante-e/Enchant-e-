@@ -10,7 +10,7 @@ const io = require('socket.io')(3000, {
 let users =  []
 const codeLetters = ["A", "W", "S", "E", "D", "F", "T", "G", "Y", "H", "U", "J", "K", "O", "L", "P", "M"]
 let existingCodes = []
-
+let foundCodeMatch = false
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,6 +55,7 @@ io.on('connection', socket => {
             if (room[0] == code) {
                 if (roomMembers[i].length >= 2) {
                     socket.emit('room-fail', code)
+                    foundCodeMatch = true
                 } else {
                     socket.join(code)
                     let membersId = [id]
@@ -70,9 +71,14 @@ io.on('connection', socket => {
                         })
                     })
                     socket.emit('room-notification', code, "invited");
+                    foundCodeMatch = true
                 }
             }
         })
+
+        if(foundCodeMatch == false) {
+            socket.emit('room-fail', code)
+        }
     });
 
     socket.on('disconnect', () => {
