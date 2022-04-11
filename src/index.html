@@ -15,7 +15,7 @@
         <div id="room-menu">
             <div id="room-form">
                 <button id="room-generate">J'invite</button>
-                <p id="room-input"></p>
+                <p id="room-input" class="hidden"></p>
                 <button id="copy-code" class="hidden">Copier le code</button>
             </div>
             <div id="code-form">
@@ -27,6 +27,81 @@
         <div id="name-form" class="hidden">
             <label for="name-input">Sous quel nom souhaites-tu apparaitre durant l'expérience ?</label>
             <input type="text" id="name-input" />
+        </div>
+        <div id="guess-piano" class="hidden">
+            <h1>Trouve ton code secret et partage le à ton invité.e</h1>
+            <div class="notes">
+                <div class="note">
+                    <div class="noteBg"></div>
+                    <span class="noteLabel"></span>
+                </div>
+                <div class="note">
+                    <div class="noteBg"></div>
+                    <span class="noteLabel"></span>
+                </div>
+                <div class="note">
+                    <div class="noteBg"></div>
+                    <span class="noteLabel"></span>
+                </div>
+                <div class="note">
+                    <div class="noteBg"></div>
+                    <span class="noteLabel"></span>
+                </div>
+            </div>
+            <div class="piano" >
+                <div class="pianoKey" id="C4">
+                    <span class="keyLabel">A</span>
+                </div>
+                <div class="pianoKey black" id="Db4">
+                    <span class="keyLabel">W</span>
+                </div>
+                <div class="pianoKey" id="D4">
+                    <span class="keyLabel">S</span>
+                </div>
+                <div class="pianoKey black" id="Eb4">
+                    <span class="keyLabel">E</span>
+                </div>
+                <div class="pianoKey" id="E4">
+                    <span class="keyLabel">D</span>
+                </div>
+                <div class="pianoKey" id="F4">
+                    <span class="keyLabel">F</span>
+                </div>
+                <div class="pianoKey black" id="Gb4">
+                    <span class="keyLabel">T</span>
+                </div>
+                <div class="pianoKey" id="G4">
+                    <span class="keyLabel">G</span>
+                </div>
+                <div class="pianoKey black" id="Ab4">
+                    <span class="keyLabel">Y</span>
+                </div>
+                <div class="pianoKey" id="A4">
+                    <span class="keyLabel">H</span>
+                </div>
+                <div class="pianoKey black" id="Bb4">
+                    <span class="keyLabel">U</span>
+                </div>
+                <div class="pianoKey" id="B4">
+                    <span class="keyLabel">J</span>
+                </div>
+                <div class="pianoKey" id="C5">
+                    <span class="keyLabel">K</span>
+                </div>
+                <div class="pianoKey black" id="A#4">
+                    <span class="keyLabel">O</span>
+                </div>
+                <div class="pianoKey" id="F#4">
+                    <span class="keyLabel">L</span>
+                </div>
+                <div class="pianoKey black" id="D#4">
+                    <span class="keyLabel">P</span>
+                </div>
+                <div class="pianoKey" id="C#4">
+                    <span class="keyLabel">M</span>
+                </div>
+            </div>
+            <p id="keysPressed"></p>
         </div>
     </div>
     <div id="bulle-ami" class="hidden">

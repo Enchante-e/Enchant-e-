@@ -127,3 +127,78 @@ button {
     color: #1A1D5C;
     cursor: pointer;
 }
+
+.notes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.notes .note {
+    position: relative;
+}
+  
+.notes .note .noteBg {
+    margin: 1rem 0.5rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #000;
+}
+
+.notes .note .noteLabel {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 8px;
+    width: 15px;
+    height: 20px;
+}
+
+.piano {
+    display: flex;
+    justify-content: center;
+}
+  
+.pianoKey {
+    height: 300px;
+    width: 80px;
+    border: 1px solid #707070;
+    text-align: center;
+    font-size: 0.8em;
+    position: relative;
+    margin: 0 1px;
+}
+
+.pianoKey.activeKey {
+    background: #978686;
+}
+
+
+.pianoKey .keyLabel {
+    position: absolute;
+    bottom: 1em;
+    color: #707070;
+    left: 0;
+    width: 100%;
+}
+
+.pianoKey.black {
+    background: #707070;
+    margin-left: -20px; 
+    margin-right: -20px; 
+    width: 40px;
+    height: 150px;
+    z-index: 1;
+}
+
+.pianoKey.black.activeKey {
+    background: rgb(88, 78, 78);
+}
+
+.pianoKey.activeKey .keyLabel,
+.pianoKey.black .keyLabel {
+    color: #ffffff;
+}
+

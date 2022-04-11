@@ -2,6 +2,7 @@ import {io} from "socket.io-client";
 const socket = io('http://localhost:3000')
 // import {GameApp} from "./app/app";
 import * as background from "./js/background"
+import * as musicCode from "./js/code"
 
 // const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 
@@ -17,6 +18,7 @@ let partnerCursor = []
 let nameTag = null
 
 // BUTTONS & INPUTS ROOMS
+let pianoDiv = document.getElementById("guess-piano")
 let roomInput = document.getElementById("room-input")
 let roomBttn = document.getElementById("room-generate")
 let copyBttn = document.getElementById("copy-code")
@@ -55,13 +57,15 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, id, name) => {
     myRoom = code.toString()
+    pianoDiv.classList.remove("hidden") 
+    musicCode.init(code)
 
     roomInput.innerHTML = myRoom
     document.getElementById("code-form").classList.add("hidden")   
     roomBttn.classList.add("hidden")
-    copyBttn.classList.remove("hidden") 
+    // copyBttn.classList.remove("hidden") 
 
-    nameForm.classList.remove("hidden")   
+    // nameForm.classList.remove("hidden")   
 })
 
 // [RECEIVED] Room full or issue with room
