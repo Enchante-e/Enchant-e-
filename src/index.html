@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Enchantée PIXI quickstarter</title>
+    <title>Enchanté(e)</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
 </head>
-<!-- <body class="test"> -->
-    <body></body>
-    <div id="parallax"></div>
-    <!-- <div id="users"></div> -->
+
+<body class="test">
+    <div id="users">
+        <div id="room-menu">
+            <div id="room-form">
+                <button id="room-generate">J'invite</button>
+                <p id="room-input"></p>
+                <button id="copy-code" class="hidden">Copier le code</button>
+            </div>
+            <div id="code-form">
+                <label for="room-codeInput">Je suis invité(e)</label>
+                <input type="text" id="room-codeInput" autocomplete="off" value=""/>
+                <button id="join-code">Rejoindre</button>
+            </div>
+        </div>
+        <div id="name-form" class="hidden">
+            <label for="name-input">Sous quel nom souhaites-tu apparaitre durant l'expérience ?</label>
+            <input type="text" id="name-input" />
+        </div>
+    </div>
+    <div id="bulle-ami" class="hidden">
+        <img src="assets/images/Smiley.png">
+        <p id="bulle-name">Partenaire</p>
+    </div>
     <script src="main.js"></script>
     <script src="../src/js/background.js"></script>
 </body>
