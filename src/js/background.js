@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import * as objects from "./objects"
 
 console.log('test on load');
 
@@ -57,7 +58,7 @@ app.stage.addChild(container);
 
 // container.filters = [AdvancedBloom];
 
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 10; i++) {
 
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
@@ -76,8 +77,8 @@ for (let i = 0; i < 10000; i++) {
     // })
     star.scale.set((luck) ? 0.3 + Math.random() * 0.7 : scale);
     star.tint = 0xfa0000 * Math.random();
-    star.x = rnd(-4 * window.innerWidth, 4 * window.innerWidth);
-    star.y = rnd(-4 * window.innerHeight, 4 * window.innerHeight);
+    star.x = rnd(window.innerWidth,window.innerWidth);
+    star.y = rnd(window.innerHeight,window.innerHeight);
     star.initialPos = {
         x: star.x,
         y: star.y
@@ -91,6 +92,7 @@ for (let i = 0; i < 10000; i++) {
         console.log('this is a click');
         this.scale.set(Math.random() / 10);
         this.interactive = true;
+        objects.addObject(star.id,app.stage)
     })
 
     star.update = function () {
@@ -117,9 +119,7 @@ container.pivot.y = container.height / 8;
 app.ticker.add((delta) => {
     for (const star of container.children) {
         star.update();
-    }
-
-   
+    } 
 });
 
 export const createCursor = () => {

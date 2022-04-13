@@ -1,0 +1,46 @@
+{
+    "objects": [
+        {
+          "id": 0,
+          "name": "candle",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 1,
+          "name": "beer",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 2,
+          "name": "surf",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 3,
+          "name": "briquet",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 4,
+          "name": "ballon",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 5,
+          "name": "coussin",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 6,
+          "name": "coeur",
+          "src": "candle.png",
+          "sound": "background.mp3"
+        }
+    ]
+}

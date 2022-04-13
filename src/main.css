@@ -148,7 +148,7 @@ button {
 }
 
 .notes .note .noteLabel {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 40px;
     left: 8px;
