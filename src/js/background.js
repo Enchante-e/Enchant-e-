@@ -45,10 +45,10 @@ document.addEventListener("mousemove", function (e) {
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
     if(move == true) {
-        cameraVector.a = center.x - e.x;
-        cameraVector.l = center.y - e.y;
-        cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-        cameraVector.l = Math.sqrt(a * a + b * b);
+        // cameraVector.a = center.x - e.x;
+        // cameraVector.l = center.y - e.y;
+        // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+        // cameraVector.l = Math.sqrt(a * a + b * b);
     }
 
     // console.log(cameraVector.a);
@@ -92,7 +92,7 @@ for (let i = 0; i < 10; i++) {
         console.log('this is a click');
         this.scale.set(Math.random() / 10);
         this.interactive = true;
-        objects.addObject(star.id,app.stage)
+        objects.addObject(star.id)
     })
 
     star.update = function () {
@@ -121,6 +121,8 @@ app.ticker.add((delta) => {
         star.update();
     } 
 });
+
+objects.setStage(app.stage)
 
 export const createCursor = () => {
     app.stage.addChild(cursor);

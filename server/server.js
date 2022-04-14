@@ -81,6 +81,10 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('set-objects', (objects) => {
+        io.sockets.to(user.partnerId).emit('partner-objects',objects);
+    })
+
     socket.on('disconnect', () => {
         io.emit('disconnect-notification', user.id, user.name)
         users.map((knownUser, i) => {

@@ -3,6 +3,8 @@ const socket = io('http://localhost:3000')
 // import {GameApp} from "./app/app";
 import * as background from "./js/background"
 import * as musicCode from "./js/code"
+import * as objects from "./js/objects"
+
 
 // const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 
@@ -116,6 +118,10 @@ socket.on('cursor-update', (partnerId, coordX, coordY) => {
     nameTag.style.left =  coordX + "px";
 });
 
+socket.on('partner-objects', function(partnerObjects) {
+    objects.partnerObjects(partnerObjects)
+})
+
 // [RECEIVED] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
    console.log(id + " " + name + " a été déconnecté ")
@@ -189,5 +195,10 @@ document.addEventListener('mousemove', function(e) {
       socket.emit('coord', myCoord, myId)
     }
 });
+
+export const getSocket = () => {
+    return socket
+}
+
 
 

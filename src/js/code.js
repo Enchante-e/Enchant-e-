@@ -1,4 +1,4 @@
-import * as Tone from 'tone'
+import {PolySynth} from 'tone'
 
 let code = []
 let keysPressed = []
@@ -104,7 +104,7 @@ const keyUp = () => {
 }
 
 const playNote = (note) => {
-    const synth = new Tone.PolySynth().toDestination()
+    const synth = new PolySynth().toDestination()
     synth.triggerAttackRelease(note,"8n");
     document.getElementById(note)?.classList.add("activeKey")
 }
