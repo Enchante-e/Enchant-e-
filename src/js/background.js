@@ -45,10 +45,10 @@ document.addEventListener("mousemove", function (e) {
     center.x = app.screen.width / 2;
     center.y = app.screen.height / 2;
     if(move == true) {
-        // cameraVector.a = center.x - e.x;
-        // cameraVector.l = center.y - e.y;
-        // cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-        // cameraVector.l = Math.sqrt(a * a + b * b);
+        cameraVector.a = center.x - e.x;
+        cameraVector.l = center.y - e.y;
+        cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
+        cameraVector.l = Math.sqrt(a * a + b * b);
     }
 
     // console.log(cameraVector.a);
@@ -58,7 +58,7 @@ app.stage.addChild(container);
 
 // container.filters = [AdvancedBloom];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
 
     let luck = (Math.random() * 10) == 5;
     const star = (luck) ? new PIXI.Sprite(img) : new PIXI.Sprite(texture);
@@ -77,8 +77,8 @@ for (let i = 0; i < 10; i++) {
     // })
     star.scale.set((luck) ? 0.3 + Math.random() * 0.7 : scale);
     star.tint = 0xfa0000 * Math.random();
-    star.x = rnd(window.innerWidth,window.innerWidth);
-    star.y = rnd(window.innerHeight,window.innerHeight);
+    star.x = rnd(-2 * window.innerWidth, 2 * window.innerWidth);
+    star.y = rnd(-2 * window.innerHeight, 2 * window.innerHeight);
     star.initialPos = {
         x: star.x,
         y: star.y
@@ -91,6 +91,11 @@ for (let i = 0; i < 10; i++) {
     star.on("click", function () {
         console.log('this is a click');
         this.scale.set(Math.random() / 10);
+        this.interactive = true;
+        objects.addObject(star.id)
+    })
+
+    star.on("rightup", function () {
         this.interactive = true;
         objects.addObject(star.id)
     })
