@@ -2,6 +2,9 @@
   "name": "pixitest",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "test": "jest",
     "start": "npm run clean && parcel src/index.html",
