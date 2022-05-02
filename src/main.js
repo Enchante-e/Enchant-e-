@@ -1,5 +1,5 @@
 import {io} from "socket.io-client";
-const socket = io('https://enchante-e.herokuapp.com/')
+const socket = io('https://enchante-e.herokuapp.com:80')
 // import {GameApp} from "./app/app";
 import * as background from "./js/background"
 

@@ -1,6 +1,6 @@
 const io = require('socket.io')(process.env.PORT || 3000, {
     cors: {
-        origin: ['https://enchante-e.herokuapp.com/']
+        origin: ['https://enchante-e.herokuapp.com']
     }
 });
 
