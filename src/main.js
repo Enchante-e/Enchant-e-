@@ -1,7 +1,10 @@
 import {io} from "socket.io-client";
-const socket = io('https://warm-chamber-97929.herokuapp.com/')
 // import {GameApp} from "./app/app";
 import * as background from "./js/background"
+import dotenv from "dotenv";
+dotenv.config();
+
+const socket = io(process.env.IO_URL)
 
 // const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
 

@@ -8,6 +8,7 @@
     "author": "Llorenç Pujol Ferriol",
     "license": "MIT",
     "dependencies": {
+        "dotenv": "^16.0.0",
         "nodemon": "^2.0.15",
         "socket.io": "^4.4.1"
     }

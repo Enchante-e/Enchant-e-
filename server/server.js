@@ -1,9 +1,11 @@
+const dotenv = require('dotenv')
+dotenv.config();
+
 const io = require('socket.io')(process.env.PORT || 3000, {
     cors: {
-        origin: ['https://enchante-e.netlify.app']
+        origin: [process.env.SERVER_URL]
     }
 });
-
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
