@@ -1,6 +1,6 @@
 import {io} from "socket.io-client";
-const socket = io('https://enchante-e.herokuapp.com:80')
-// import {GameApp} from "./app/app"
+const socket = io('http://localhost:3000')
+// import {GameApp} from "./app/app";
 import * as background from "./js/background"
 
 // const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
