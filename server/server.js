@@ -1,6 +1,6 @@
 const io = require('socket.io')(process.env.PORT || 3000, {
     cors: {
-        origin: ['http://localhost:1234']
+        origin: ['https://enchante-e.netlify.app']
     }
 });
 
