@@ -1,5 +1,5 @@
 import {io} from "socket.io-client";
-// import {GameApp} from "./app/app";
+/// import {GameApp} from "./app/app";
 import * as background from "./js/background"
 import dotenv from "dotenv";
 dotenv.config();
