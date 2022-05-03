@@ -1,7 +1,10 @@
 {
-  "name": "pixitest",
+  "name": "enchante-e",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "test": "jest",
     "start": "npm run clean && parcel src/index.html",
@@ -24,7 +27,7 @@
     "jest": "~26.6.3",
     "parcel-bundler": "~1.12.4",
     "parcel-plugin-static-files-copy": "^2.6.0",
-    "rimraf": "~2.6.2"
+    "rimraf": "~2.6.3"
   },
   "staticFiles": {
     "staticPath": ["static"],

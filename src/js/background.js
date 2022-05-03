@@ -29,7 +29,7 @@ let move = false
 // AdvancedBloom = new PIXI.filters.AdvancedBloomFilter({
 //     bloomScale: 6,
 //     brightness: 2
-// });
+/// });
 
 
 const cursor  = new PIXI.Graphics();

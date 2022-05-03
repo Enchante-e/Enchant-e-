@@ -1,9 +1,11 @@
-const io = require('socket.io')(3000, {
+const dotenv = require('dotenv')
+dotenv.config();
+
+const io = require('socket.io')(process.env.PORT || 3000, {
     cors: {
-        origin: ['http://localhost:1234']
+        origin: [process.env.SERVER_URL]
     }
 });
-
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
