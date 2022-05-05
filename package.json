@@ -30,7 +30,9 @@
     "rimraf": "~2.6.3"
   },
   "staticFiles": {
-    "staticPath": ["static"],
+    "staticPath": [
+      "static"
+    ],
     "watcherGlob": "**"
- }
+  }
 }
