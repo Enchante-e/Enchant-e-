@@ -1,15 +1,16 @@
 import {io} from "socket.io-client";
-/// import {GameApp} from "./app/app";
+import * as homepage from "./homepage/home"
 import * as background from "./js/background"
-import * as musicCode from "./js/code"
+import * as musicCode from "./code/code"
+import * as name from "./name/name"
+import * as join from "./code/join"
 import * as objects from "./js/objects"
 
 import dotenv from "dotenv";
 dotenv.config();
 
 const socket = io(process.env.IO_URL)
-
-// const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
+homepage.initHome()
 
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
@@ -23,16 +24,17 @@ let partnerCursor = []
 let nameTag = null
 
 // BUTTONS & INPUTS ROOMS
-let pianoDiv = document.getElementById("guess-piano")
-let roomInput = document.getElementById("room-input")
-let roomBttn = document.getElementById("room-generate")
-let copyBttn = document.getElementById("copy-code")
-let codeInput = document.getElementById("room-codeInput")
-let joinBttn = document.getElementById("join-code")
+let roomBttn = document.getElementById("roomGenerate")
+let joinBttn = document.getElementById("roomJoin")
+let pianoDiv = [...document.getElementsByClassName("pianoCode")]
+let roomInput = document.getElementById("roomInput")
+let copyBttn = document.getElementById("copyCode")
+let codeInput = document.getElementById("codeInput")
+let startExperience = document.getElementById("startExperience")
 
 // BUTTONS & INPUTS NAME
-let nameInput = document.getElementById("name-input")
-let nameForm = document.getElementById("name-form")
+let nameInput = document.getElementById("nameInput")
+let nameForm = document.getElementById("nameForm")
 let partnerDiv = document.getElementById("bulle-ami")
 let partnerName = document.getElementById("bulle-name")
 
@@ -53,7 +55,7 @@ roomBttn.addEventListener('click', () => {
 
 // [EMIT] Join room with code
 joinBttn.addEventListener('click', () => {
-    let code = codeInput.value
+    let code = codeInput.value.toUpperCase()
     if (code !== "") {
         socket.emit('join-room', code, myId)
     } 
@@ -61,19 +63,20 @@ joinBttn.addEventListener('click', () => {
 
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
-    myRoom = code.toString()
+    myRoom = code
     roomInput.innerHTML = myRoom
     roomBttn.classList.add("hidden")
-    document.getElementById("code-form").classList.add("hidden")   
+    // document.getElementById("code-form").classList.add("hidden")   
     
     if (userStatus == "creator") {
-        pianoDiv.classList.remove("hidden") 
-        musicCode.init(code)
+        pianoDiv[0].classList.remove("hidden") 
+        musicCode.init(homepage, code)
     } else if(userStatus == "invited") {
-        roomInput.classList.remove("hidden") 
-        copyBttn.classList.remove("hidden") 
-        joinBttn.classList.add("hidden")   
-        nameForm.classList.remove("hidden")   
+        // roomInput.classList.remove("hidden") 
+        // copyBttn.classList.remove("hidden") 
+        // joinBttn.classList.add("hidden")   
+        // nameForm.classList.remove("hidden")  
+        join.closeJoin() 
     }
 
 })
@@ -93,9 +96,23 @@ nameInput.addEventListener('keyup', (e) => {
             const name = myName;
             socket.emit('change-name', name, myId)
         }
-        nameForm.classList.add("hidden")   
-        document.getElementById("users").classList.add("hidden")   
+        // nameForm.classList.add("hidden")   
+        // document.getElementById("users").classList.add("hidden")   
+        name.closeName()
     }
+});
+
+// [EMIT] Change Name Input And emit
+startExperience.addEventListener('click', (e) => {
+        e.preventDefault()
+        myName = nameInput.value
+
+        if (myName !== "") {
+            const name = myName;
+            socket.emit('change-name', name, myId)
+        }
+
+        name.closeName()
 });
 
 // [RECEIVED] Name changed notification
@@ -110,6 +127,7 @@ socket.on('name-notification', (name, id) => {
 // [RECEIVED] Create cursor of partner
 socket.on('cursor-create', (memberId) => {
     partnerId = memberId
+    background.initCanvas()
     partnerDiv.classList.remove("hidden") 
     generateCursor(partnerId)
 });

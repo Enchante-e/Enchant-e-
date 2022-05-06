@@ -42,7 +42,7 @@ io.on('connection', socket => {
             code = generateCode()
         }
         existingCodes.push(code)
-        socket.join(code.toString())
+        socket.join(code.join(''))
         socket.emit('room-notification', code, "creator")
     });
 
