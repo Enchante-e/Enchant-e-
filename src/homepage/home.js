@@ -1,6 +1,7 @@
 
+let logo = [...document.getElementsByClassName("logo")]
 let homeDiv = [...document.getElementsByClassName("homepage")]
-let interfaceDiv = [...document.getElementsByClassName("interface")]
+let musicBttn = [...document.getElementsByClassName("musicBttn")]
 
 
 export const initHome = () => {
@@ -9,5 +10,6 @@ export const initHome = () => {
 
 export const closeHome = () => {
     homeDiv[0].classList.add("hidden")
-    interfaceDiv[0].classList.remove("hidden")
+    logo[0].classList.remove("hidden")
+    musicBttn[0].classList.remove("whiteTint")
 }
