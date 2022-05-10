@@ -1,16 +1,27 @@
 import {PolySynth} from 'tone'
+import * as nameForm from "../name/name"
+import * as loading from "../loading/loading"
 
 let code = []
 let keysPressed = []
 let keysPressedContainer = document.getElementById("keysPressed")
+let checkBttn = document.getElementById("checkCode")
 let notes = [...document.getElementsByClassName("noteBg")]
 let noteLabels = [...document.getElementsByClassName("noteLabel")]
 
-export const init = (roomCode) => {
+export const init = (homepage, roomCode) => {
+    const bodyClass = document.body.classList
+    for(let i = 0; i  < bodyClass.length; i++){
+      document.body.classList.remove(bodyClass[i])
+    }
+    document.body.classList.add("introStyle")
+    homepage.closeHome()
+
     code = roomCode
     assignNotes()
     document.addEventListener("keydown", keyDown)
     document.addEventListener("keyup", keyUp)
+    checkBttn.addEventListener("click", checkCode)
 }
 
 const assignNotes = () => {
@@ -111,13 +122,11 @@ const playNote = (note) => {
 
 const checkCode = () => {
     if(JSON.stringify(code) === JSON.stringify(keysPressed)) {
-        document.getElementById("guess-piano").classList.add("hidden")
-        document.getElementById("copy-code").classList.remove("hidden") 
-        document.getElementById("room-input").classList.remove("hidden") 
-        document.getElementById("name-form").classList.remove("hidden")  
+        nameForm.initName()  
 
         document.removeEventListener("keydown", keyDown)
         document.removeEventListener("keyup", keyUp)
+
     } else {
         alert("C'est non")
     }

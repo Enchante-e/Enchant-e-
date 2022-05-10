@@ -40,8 +40,8 @@ export const partnerObjects = (objects) => {
             let text = new Text(OBJECTS[object].name ,{fontFamily : 'Arial', fontSize: 100, fill : 0x00fa00, align : 'center'});
             // text.interactive = true;
 
-            const img = Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png')
-            // const img = Texture.from("img/" + OBJECTS[object].src);
+            // const img = Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png')
+            const img = Texture.from("img/" + OBJECTS[object].src);
             const star = new Sprite(img) ;
             star.id = OBJECTS[object].id;
 
@@ -91,8 +91,8 @@ const finished = () => {
             let text = new Text(OBJECTS[object].name ,{fontFamily : 'Arial', fontSize: 20, fill : 0xfa0000, align : 'center'});
             // text.interactive = true;
             
-            const img = Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png')
-            // const img = Texture.from("img/" + OBJECTS[object].src);
+            // const img = Texture.from('https://cdn.pixabay.com/photo/2021/09/06/10/07/leaves-6601325_960_720.png')
+            const img = Texture.from("img/" + OBJECTS[object].src);
             const star = new Sprite(img) ;
             star.id = OBJECTS[object].id;
             

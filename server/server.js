@@ -33,7 +33,8 @@ io.on('connection', socket => {
         if (user.id == id) {
             user.name = name;
         }
-        io.emit('name-notification', name, id)
+        // io.emit('name-notification', name, id)
+        io.sockets.to(user.partnerId).emit('name-notification', name, id)
     });
 
     socket.on('generate-room', () => {
@@ -42,7 +43,7 @@ io.on('connection', socket => {
             code = generateCode()
         }
         existingCodes.push(code)
-        socket.join(code.toString())
+        socket.join(code.join(''))
         socket.emit('room-notification', code, "creator")
     });
 
@@ -72,7 +73,7 @@ io.on('connection', socket => {
                             }
                         })
                     })
-                    socket.emit('room-notification', code, "invited");
+                    socket.emit('room-notification', code, "invited")
                     foundCodeMatch = true
                 }
             }

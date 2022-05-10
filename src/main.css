@@ -1,23 +1,85 @@
+@font-face {
+    font-family: "Futura";
+    src: url("../static/font/Futura.ttc");
+}
+
 body {
     margin:0;
     padding:0;
     overflow:hidden;
-    font-family: 'Sen', sans-serif;
+    font-family: 'Futura', sans-serif;
     text-align: center;
-    color: #1A1D5C;
+}
+
+body.homeStyle {
+    color: #ffffff;
+    background: url("../static/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.introStyle {
+    color: #0a0d42;
+    background: #ffffff url("../static/img/bg-white.svg");
+    background-repeat: no-repeat;
+    background-size: 102%;
+    background-position: 250px -550px ;
 }
 
 canvas {
     display:block;
 }
 
-#users {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
+input{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+    color: #0a0d42;
+    border: none;
+}
+
+.fullpage {
+    width: 100%;
     height: 100vh;
-    background: #FFFAF3;
+}
+
+.whiteTint {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(104deg) brightness(102%) contrast(101%);;
+}
+
+.interface .logo{
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    z-index: 2;
+    width: 200px;
+}
+
+.interface .musicBttn{
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    z-index: 2;
+    width: 60px;
+}
+
+.loadingPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.codeMemo {
+    position: absolute;
+    bottom: 110px;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.codeMemo #codeMemoValue {
+    border-bottom: none;
+    margin: 25px auto;
 }
 
 .tag {
@@ -27,13 +89,13 @@ canvas {
     z-index: 3;
     font-weight: bold;
     font-size: 1.2em;
-    color: #1A1D5C;
+    color: #0a0d42;
     display: flex;
     flex-direction: column-reverse;
 }
 
 .cursor {
-    background: #1A1D5C;
+    background: #0a0d42;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -41,71 +103,74 @@ canvas {
     margin: auto;
 }
 
-#code-form, 
-#room-form, 
-#name-form {
+.codeForm, 
+.roomForm, 
+.nameForm {
     margin: 1rem auto;
     text-align: center;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-#name-form {
+#nameForm {
     /* margin: 5rem auto; */
     flex-direction: column;
 }
 
 /* #room-input, */
 #room-codeInput,
-#name-input{
+#nameInput{
     background: transparent;
     border: none;
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid #0a0d42;
     text-align: center;
     height: 50px;
     color: inherit;
 }
 
-#name-input {
+#nameInput {
     min-width: 250px;
 }
 
-#room-menu {
+#roomMenu {
     display: flex;
     width: 100vw;
 }
 
-#room-input {
-    min-width: 150px;
+#bulleAmi{
+    position: absolute;
+    top: 30px;
+    right:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#bulle-ami {
-    position: fixed;
-    top: -20px;
-    height: 160px;
-    width: 160px;
-    background: #A8B7DE;
+#bulleBg{
+    height: 95px;
+    width: 95px;
+    background: #0a0d42;
     border-radius: 50%;
-    right: -20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-#bulle-ami img {
-    width: 60px;
-    height: 60px;
-}
-
-#bulle-name {
+#bulleName {
     margin: 0;
-    font-size: 0.9em;
-    margin-top: 5px;
-    color: white;
+    font-size: 1.2em;
+    margin-top: 10px;
     font-weight: 700;
+}
+
+#bulleSymbol {
+    font-size: 4em;
+    color: #ffffff;
+    font-family: pentz-regular, serif;
 }
 
 .hidden {
@@ -114,18 +179,28 @@ canvas {
 
 button {
     background: transparent;
-    border: none;
-    padding: 15px;
-    width: 200px;
+    border: 2px solid;
+    padding: 15px 30px;
+    width: auto;
     display: block;
     text-align: center;
     margin: 15px;
     border-radius: 50px;
     font: inherit;
     font-size: 1.2em;
-    font-weight: bold;
-    color: #1A1D5C;
+    font-weight: 400;
     cursor: pointer;
+    color: inherit;
+}
+
+
+.whiteBttn {
+    margin: 15px auto;
+}
+
+.whiteBttn:hover {
+    background: #0a0d42;
+    color: #ffffff;
 }
 
 .notes {
@@ -141,17 +216,19 @@ button {
   
 .notes .note .noteBg {
     margin: 1rem 0.5rem;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #000;
+    height: 40px;
+    width: 40px;
+    background: url("../static/img/musicNote.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position:  center;
 }
 
 .notes .note .noteLabel {
     display: none;
     position: absolute;
-    top: 40px;
-    left: 8px;
+    top: 70px;
+    left: 20px;
     width: 15px;
     height: 20px;
 }
@@ -162,39 +239,51 @@ button {
 }
   
 .pianoKey {
-    height: 300px;
-    width: 80px;
-    border: 1px solid #707070;
+    height: 220px;
+    width: 70px;
+    border: 1px solid #0a0d42;
     text-align: center;
     font-size: 0.8em;
     position: relative;
     margin: 0 1px;
 }
 
+.roundedKey.l {
+    border-radius: 12px 0 0 12px ;
+}
+.roundedKey.r {
+    border-radius: 0 12px 12px 0;
+}
+
 .pianoKey.activeKey {
-    background: #978686;
+    background: rgb(2,17,162);
+    background: linear-gradient(187deg, rgba(2,17,162,1) 0%, rgba(10,13,66,1) 100%);
 }
 
 
 .pianoKey .keyLabel {
     position: absolute;
     bottom: 1em;
-    color: #707070;
+    color: #0a0d42;
     left: 0;
     width: 100%;
+    font-size: 1.5em;
+    font-weight: 700;
 }
 
 .pianoKey.black {
-    background: #707070;
+    background: #0a0d42;
     margin-left: -20px; 
     margin-right: -20px; 
     width: 40px;
-    height: 150px;
+    height: 140px;
     z-index: 1;
+    border-radius: 0 0 12px 12px;
 }
 
 .pianoKey.black.activeKey {
-    background: rgb(88, 78, 78);
+    background: rgb(2,17,162);
+    background: linear-gradient(187deg, rgba(2,17,162,1) 0%, rgba(10,13,66,1) 100%);
 }
 
 .pianoKey.activeKey .keyLabel,
@@ -202,3 +291,59 @@ button {
     color: #ffffff;
 }
 
+#keysPressed, #codeInput, #codeMemoValue {
+    border-bottom: 1px solid #0a0d42;
+    width: 350px;
+    text-align: center;
+    margin: 40px auto 25px auto;
+    padding-bottom: 25px;
+    letter-spacing: 10px;
+}
+
+
+.homepage {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+.homeTitle {
+    width: 891px;
+}
+
+.homeNav { 
+    display: flex;   
+    margin: auto;
+    justify-content: center;
+    align-items: center; 
+    margin: 75px 0;
+}
+
+.homeBttn:hover { 
+    background: #ffffff;
+    color: #0a0d42;
+}
+
+.codeForm label,
+.nameForm label,
+.pianoCode h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color:#0a0d42
+}
+
+.pianoCode {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nameForm label {
+    margin-bottom: 140px;
+}
+
+.odeForm label {
+    margin-bottom: 100px;
+}

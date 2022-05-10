@@ -5,31 +5,45 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Enchanté(e)</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.typekit.net/vzb7pjf.css">
 </head>
 
-<body class="test">
-    <div id="users">
-        <div id="room-menu">
-            <div id="room-form">
-                <button id="room-generate">J'invite</button>
-                <p id="room-input" class="hidden"></p>
-                <button id="copy-code" class="hidden">Copier le code</button>
-            </div>
-            <div id="code-form">
-                <label for="room-codeInput">Je suis invité(e)</label>
-                <input type="text" id="room-codeInput" autocomplete="off" value=""/>
-                <button id="join-code">Rejoindre</button>
-            </div>
+<body>
+
+    <div class="interface">
+        <div class="logo hidden">
+            <img src="../static/img/logo.svg"/>
         </div>
-        <div id="name-form" class="hidden">
-            <label for="name-input">Sous quel nom souhaites-tu apparaitre durant l'expérience ?</label>
-            <input type="text" id="name-input" />
+
+        <div class="musicBttn whiteTint" >
+            <img src="../static/img/musicBttn.svg"/>
         </div>
-        <div id="guess-piano" class="hidden">
-            <h1>Trouve ton code secret et partage le à ton invité.e</h1>
+    </div>
+
+    <div class="fullpage loadingPage hidden">
+        <div class="">
+            <img src="../static/img/hourglassLoad.svg" width="53px" width="95px"/>
+            <p>En attente de ton proche,<br>merci de patienter.</p>
+        </div>
+        <div class="codeMemo">
+            <p>Pour rappel, votre code secret est :</p>
+            <p id="codeMemoValue"></p>
+        </div>
+    </div>
+
+    <div class="fullpage homepage">
+        <div class="homeTitle">
+            <img src="../static/img/logoBaseline.svg"/>
+        </div>
+
+        <div class="homeNav">
+            <button class="homeBttn" id="roomGenerate">J'invite</button>
+            <button class="homeBttn" id="roomConnect">Je suis invité(e)</button>
+        </div>
+    </div>
+
+    <div class="fullpage pianoCode hidden">
+        <h1>Trouve ton code secret <br>et partage le à ton invité(e)</h1>
             <div class="notes">
                 <div class="note">
                     <div class="noteBg"></div>
@@ -49,7 +63,7 @@
                 </div>
             </div>
             <div class="piano" >
-                <div class="pianoKey" id="C4">
+                <div class="pianoKey roundedKey l" id="C4">
                     <span class="keyLabel">A</span>
                 </div>
                 <div class="pianoKey black" id="Db4">
@@ -97,17 +111,38 @@
                 <div class="pianoKey black" id="D#4">
                     <span class="keyLabel">P</span>
                 </div>
-                <div class="pianoKey" id="C#4">
+                <div class="pianoKey roundedKey r" id="C#4">
                     <span class="keyLabel">M</span>
                 </div>
             </div>
             <p id="keysPressed"></p>
+            <button id="checkCode" class="whiteBttn">Entrer</button>
         </div>
     </div>
-    <div id="bulle-ami" class="hidden">
-        <img src="../static/img/Smiley.png"/>
-        <p id="bulle-name">Partenaire</p>
+    
+    <div class="fullpage codeForm hidden">
+        <label for="codeInput">Rentre le code partagé <br>par ton proche</label>
+        <input type="text" id="codeInput" />
+        <button id="roomJoin" class="whiteBttn">Entrer</button>
     </div>
+
+    <div class="fullpage nameForm hidden">
+        <label for="nameInput">Sous quel nom souhaites-tu <br>apparaître durant l’expérience ?</label>
+        <input type="text" id="nameInput" />
+        <button id="startExperience" class="whiteBttn">Entrer</button>
+    </div>
+    
+    <div id="bulleAmi" class="hidden">
+        <div id="bulleBg">
+            <p id="bulleSymbol"></p>
+        </div>
+        <p id="bulleName"></p>
+    </div>
+    
+    <!-- A VOIR SI ON GARDE OU NON -->
+    <p id="roomInput" class="hidden"></p>
+    <button id="copyCode" class="hidden">Copier le code</button> 
+
     <script src="main.js"></script>
 </body>
 </html>
