@@ -17,7 +17,7 @@ let foundCodeMatch = false
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
 
 io.on('connection', socket => {
-    let user = {id: socket.id, name : "", partnerId : "", coordX: 0, coordY: 0};
+    let user = {id: socket.id, name : "", isReady : false, partnerId : "", coordX: 0, coordY: 0};
     users.push(user)
     socket.emit('init', user);
 
@@ -32,9 +32,21 @@ io.on('connection', socket => {
     socket.on('change-name', (name, id) => {
         if (user.id == id) {
             user.name = name;
+            user.isReady = true
         }
-        // io.emit('name-notification', name, id)
-        io.sockets.to(user.partnerId).emit('name-notification', name, id)
+
+        if (user.partnerId !== "") {
+            users.map((u) => {
+                if (u.id == user.partnerId && u.isReady == true) {
+                    io.sockets.to(user.partnerId).emit('name-notification', name, id)
+                    socket.emit('name-notification', u.name, u.id)
+                } else {
+                    socket.emit('waiting-for-partner')
+                }
+            })
+        } else {
+            socket.emit('waiting-for-partner')
+        }
     });
 
     socket.on('generate-room', () => {

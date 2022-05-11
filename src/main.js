@@ -22,7 +22,6 @@ let myCoord = []
 let partnerId, partnerName = ""
 let partnerCursor = []
 let nameTag = null
-let partnerIsReady = false
 
 // BUTTONS & INPUTS ROOMS
 let roomBttn = document.getElementById("roomGenerate")
@@ -92,14 +91,17 @@ startExperience.addEventListener('click', (e) => {
             const name = myName;
             socket.emit('change-name', name, myId)
         }
-        (partnerIsReady == false) ? loading.initLoad(myRoom) : null
         name.closeName()
+});
+
+// [RECEIVED] Waiting for partner
+socket.on('waiting-for-partner', () => {
+    loading.initLoad(myRoom)
 });
 
 // [RECEIVED] Name changed notification
 socket.on('name-notification', (name, id) => {
         partnerName = name
-        partnerIsReady = true
         loading.closeLoad()
         
         partnerNameDiv.innerHTML = partnerName 
@@ -145,7 +147,7 @@ socket.on('disconnect-notification', function(id, name) {
 // LOCAL ------------------------------------------------------------------------------------------------------------------------------------
 
 socket.on('test', function(test) {
-    console.log(test)
+    alert(test)
  })
 
 
