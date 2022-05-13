@@ -83,6 +83,150 @@
           "name": "Thé",
           "src": "Thé.png",
           "sound": "background.mp3"
+        },
+        {
+          "id": 15,
+          "name": "Bague",
+          "src": "Bague.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 16,
+          "name": "Boule à facettes",
+          "src": "Boule-à-facettes.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 17,
+          "name": "Brosse",
+          "src": "Brosse.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 18,
+          "name": "Carottes",
+          "src": "Carottes.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 19,
+          "name": "Casque son",
+          "src": "Casque-son.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 20,
+          "name": "Chocolat",
+          "src": "Chocolat.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 21,
+          "name": "Clap-ciné",
+          "src": "Clap-ciné.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 22,
+          "name": "Coca",
+          "src": "Coca.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 23,
+          "name": "Cocktail",
+          "src": "Cocktail.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 24,
+          "name": "Coeur",
+          "src": "Coeur.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 25,
+          "name": "Collier",
+          "src": "Collier.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 26,
+          "name": "Eau",
+          "src": "Eau.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 27,
+          "name": "Enceinte",
+          "src": "Enceinte.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 28,
+          "name": "Fer à cheval",
+          "src": "Fer-à-cheval.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 29,
+          "name": "Fil",
+          "src": "Fil.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 30,
+          "name": "Gâteau",
+          "src": "Gâteau.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 31,
+          "name": "Map monde",
+          "src": "Map-monde.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 32,
+          "name": "Micro",
+          "src": "Micro.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 33,
+          "name": "Photo",
+          "src": "Photo.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 34,
+          "name": "Roller",
+          "src": "Roller.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 35,
+          "name": "Rose",
+          "src": "Rose.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 36,
+          "name": "Surf",
+          "src": "Surf.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 37,
+          "name": "Sushi",
+          "src": "Sushi.png",
+          "sound": "background.mp3"
+        },
+        {
+          "id": 38,
+          "name": "Tétine",
+          "src": "Tétine.png",
+          "sound": "background.mp3"
         }
     ]
 }

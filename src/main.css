@@ -26,6 +26,10 @@ body.introStyle {
     background-position: 250px -550px ;
 }
 
+audio {
+    display: none;
+}
+
 canvas {
     display:block;
 }
