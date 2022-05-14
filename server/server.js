@@ -96,6 +96,10 @@ io.on('connection', socket => {
         }
     });
 
+    socket.on('partner-notification', (type) => {
+        io.sockets.to(user.partnerId).emit('partner-notification',type);
+    })
+
     socket.on('set-objects', (objects) => {
         io.sockets.to(user.partnerId).emit('partner-objects',objects);
     })

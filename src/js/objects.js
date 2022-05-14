@@ -5,9 +5,8 @@ import {Player} from 'tone'
 
 
 const OBJECTS = objectsData.objects
-let stage = null
+let stage, socketObj = null
 let chosenObjectsId = []
-let socketObj = null
 
 
 export const setStage = (pixiStage) => {

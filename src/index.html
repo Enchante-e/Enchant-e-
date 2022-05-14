@@ -17,7 +17,20 @@
 
         <div class="musicBttn whiteTint" >
             <img src="../static/img/musicBttn.svg"/>
-            <audio id="ambientPlayer" src="../static/sound/background.mp3" loop="loop" autoplay="autoplay"></audio>
+            <audio id="ambientPlayer" src="../static/sound/background.mp3" loop="loop"></audio>
+        </div>
+
+        <div id="bulleAmi" class="hidden">
+            <div id="bulleBg">
+                <p id="bulleSymbol"></p>
+            </div>
+            <p id="bulleName"></p>
+        </div>
+
+        <div id="notifications" class="hidden"></div>
+        <div class="moods hidden">
+            <p>Un souvenir...</p>
+            <div id="moodsList"></div>
         </div>
     </div>
 
@@ -132,17 +145,6 @@
         <input type="text" id="nameInput" />
         <button id="startExperience" class="whiteBttn">Entrer</button>
     </div>
-    
-    <div id="bulleAmi" class="hidden">
-        <div id="bulleBg">
-            <p id="bulleSymbol"></p>
-        </div>
-        <p id="bulleName"></p>
-    </div>
-    
-    <!-- A VOIR SI ON GARDE OU NON -->
-    <p id="roomInput" class="hidden"></p>
-    <button id="copyCode" class="hidden">Copier le code</button> 
 
     <script src="main.js"></script>
 </body>

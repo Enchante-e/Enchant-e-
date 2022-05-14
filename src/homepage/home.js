@@ -4,7 +4,7 @@ let homeDiv = [...document.getElementsByClassName("homepage")]
 let musicBttn = [...document.getElementsByClassName("musicBttn")]
 let ambientPlayerHTML = document.getElementById("ambientPlayer")
 ambientPlayerHTML.volume = 0.4
-ambientPlayerHTML.play()
+// ambientPlayerHTML.play()
 
 musicBttn[0].addEventListener("click", () => {
     if (ambientPlayerHTML.paused) {

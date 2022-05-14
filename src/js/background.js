@@ -1,16 +1,19 @@
 import * as PIXI from 'pixi.js';
 import objectsData from "../data/objects.json"
 import * as objects from "./objects"
-import {Player} from 'tone'
+import * as socket from "../main"
 
+let socketObj = null
 let cameraVector = {
     a: 0,
     l: 0
 };
-
 let move = false
 
 const OBJECTS = objectsData.objects
+const MOODS = ["heureux", "triste", "mémorable", "douloureux", "joyeux", "unique", "nostalgique", "magique", "inoubliable", "effrayant", "drôle", "humiliant", "stressant", "relaxant", "amusant"]
+let moodsDiv = [...document.getElementsByClassName('moods')]
+let moodsList = document.getElementById('moodsList')
 
 
 // sound = PIXI.sound.Sound.from('key.mp3'),
@@ -100,21 +103,30 @@ export const initCanvas = () => {
         star.zIndex = scale;
 
         // 
-        star.on("click", function () {
-            
-            console.log('this is a click');
-            this.scale.set(Math.random() / 10);
+        star.on("click", function (e) {
             this.interactive = true;
 
-            const url = "sound/" + OBJECTS[i].sound 
-            const player = new Player(url).toDestination();
-            player.autostart = true;
+            // const url = "sound/" + OBJECTS[i].sound 
+            // const player = new Player(url).toDestination();
+            // player.autostart = true;
             objects.addObject(star.id)
-        })
+ 
+            if(socketObj == null) {
+                socketObj = socket.getSocket()
+            }
 
+            socketObj.emit('partner-notification', "treasureAdded")
+
+            moodsDiv[0].classList.remove('hidden')
+            // moodsDiv[0].style.tranform =  'translate(' + -e.data.global.y + '%,' + -e.data.global.x + '%)';
+
+            // socketObj.emit('partner-notification', "treasureTagged")
+        })
+        
         // star.on("rightup", function () {
-        //     this.interactive = true;
-        //     objects.addObject(star.id)
+        //     alert("click droit, supp objet")
+        //     // this.interactive = true;
+        //     // objects.deleteObject(star.id)
         // })
 
         star.update = function () {
@@ -145,6 +157,7 @@ export const initCanvas = () => {
     });
 
     objects.setStage(app.stage)
+    initMoods()
 }
 
 export const createCursor = () => {
@@ -164,3 +177,12 @@ export const deleteCursor = (cursor) => {
 export const activeMovement = () => {
     return move = true
 }
+
+const initMoods = () => {
+    MOODS.map((mood) => {
+        let p = document.createElement('p')
+        p.innerHTML = mood
+        moodsList.appendChild(p);
+    })
+}
+

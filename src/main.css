@@ -1,13 +1,10 @@
-@font-face {
-    font-family: "Futura";
-    src: url("../static/font/Futura.ttc");
-}
-
 body {
     margin:0;
     padding:0;
     overflow:hidden;
-    font-family: 'Futura', sans-serif;
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
+    font-style: normal;
     text-align: center;
 }
 
@@ -144,6 +141,32 @@ input{
     width: 100vw;
 }
 
+#notifications{
+    position: absolute;
+    top: 180px;
+    right:30px;
+    width: 300px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+    mask-image: -webkit-gradient(linear, left bottom, left top, 
+    color-stop(0.60,  rgba(0,0,0,1)),
+    color-stop(1.10,  rgba(0,0,0,0)));
+}
+
+.moods {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#notifications p, #moodsList p{
+    margin: 2px 0;
+}
+
 #bulleAmi{
     position: absolute;
     top: 30px;
@@ -192,7 +215,7 @@ button {
     border-radius: 50px;
     font: inherit;
     font-size: 1.2em;
-    font-weight: 400;
+    font-weight: inherit;
     cursor: pointer;
     color: inherit;
 }
@@ -323,6 +346,10 @@ button {
     justify-content: center;
     align-items: center; 
     margin: 75px 0;
+}
+
+.homeBttn {
+    width: 200px;
 }
 
 .homeBttn:hover { 
