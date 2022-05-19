@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js';
 import objectsData from "../data/objects.json"
-import * as objects from "./objects"
-import * as socket from "../main"
+import * as finalScene from "../finalScene/finalScene"
 
 let socketObj = null
 let cameraVector = {
@@ -11,9 +10,6 @@ let cameraVector = {
 let move = false
 
 const OBJECTS = objectsData.objects
-const MOODS = ["heureux", "triste", "mémorable", "douloureux", "joyeux", "unique", "nostalgique", "magique", "inoubliable", "effrayant", "drôle", "humiliant", "stressant", "relaxant", "amusant"]
-let moodsDiv = [...document.getElementsByClassName('moods')]
-let moodsList = document.getElementById('moodsList')
 
 
 // sound = PIXI.sound.Sound.from('key.mp3'),
@@ -70,7 +66,7 @@ export const initCanvas = () => {
     // container.filters = [AdvancedBloom];
 
     for (let i = 0; i < OBJECTS.length; i++) {
-
+    
         const img = PIXI.Texture.from("img/" + OBJECTS[i].src);
         const star = new PIXI.Sprite(img) ;
         star.id = OBJECTS[i].id;
@@ -100,7 +96,21 @@ export const initCanvas = () => {
         }
         star.goBack = false;
         star.l = Math.random() * 4;
-        star.zIndex = scale;
+        
+        switch(OBJECTS[i].timeOfDay) {
+            case "Aube":
+              star.zIndex = 6;
+              break;
+            case "Aurore":
+              star.zIndex = 4;
+              break;
+            case "Jour":
+              star.zIndex = 2;
+              break;
+            case "Crépuscule":
+              star.zIndex = 0;
+              break;
+        }
 
         // 
         star.on("click", function (e) {
@@ -109,25 +119,8 @@ export const initCanvas = () => {
             // const url = "sound/" + OBJECTS[i].sound 
             // const player = new Player(url).toDestination();
             // player.autostart = true;
-            objects.addObject(star.id)
- 
-            if(socketObj == null) {
-                socketObj = socket.getSocket()
-            }
-
-            socketObj.emit('partner-notification', "treasureAdded")
-
-            moodsDiv[0].classList.remove('hidden')
-            // moodsDiv[0].style.tranform =  'translate(' + -e.data.global.y + '%,' + -e.data.global.x + '%)';
-
-            // socketObj.emit('partner-notification', "treasureTagged")
+            finalScene.addObject(star.id)
         })
-        
-        // star.on("rightup", function () {
-        //     alert("click droit, supp objet")
-        //     // this.interactive = true;
-        //     // objects.deleteObject(star.id)
-        // })
 
         star.update = function () {
             if (this.goBack) {
@@ -156,8 +149,7 @@ export const initCanvas = () => {
         } 
     });
 
-    objects.setStage(app.stage)
-    initMoods()
+    finalScene.setStage(app.stage)
 }
 
 export const createCursor = () => {
@@ -177,12 +169,3 @@ export const deleteCursor = (cursor) => {
 export const activeMovement = () => {
     return move = true
 }
-
-const initMoods = () => {
-    MOODS.map((mood) => {
-        let p = document.createElement('p')
-        p.innerHTML = mood
-        moodsList.appendChild(p);
-    })
-}
-

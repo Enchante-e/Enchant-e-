@@ -157,16 +157,6 @@ input{
     color-stop(1.10,  rgba(0,0,0,0)));
 }
 
-.moods {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#notifications p, #moodsList p{
-    margin: 2px 0;
-}
-
 #bulleAmi{
     position: absolute;
     top: 30px;
@@ -220,6 +210,14 @@ button {
     color: inherit;
 }
 
+#finishObjectsChoice {
+    position: absolute;
+    bottom: 30px;
+    right: 150px;
+    z-index: 3;
+    color: #0a0d42;
+    border-color: #0a0d42;;
+}
 
 .whiteBttn {
     margin: 15px auto;
@@ -375,6 +373,41 @@ button {
     margin-bottom: 140px;
 }
 
-.odeForm label {
+.codeForm label {
     margin-bottom: 100px;
+}
+
+.finalMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 30px;
+    right: 150px;
+    z-index: 3;
+}
+
+.colorLegend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+}
+
+.legendColor {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.legendItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px;
 }

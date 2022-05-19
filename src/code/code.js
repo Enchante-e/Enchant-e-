@@ -8,6 +8,8 @@ let keysPressedContainer = document.getElementById("keysPressed")
 let checkBttn = document.getElementById("checkCode")
 let notes = [...document.getElementsByClassName("noteBg")]
 let noteLabels = [...document.getElementsByClassName("noteLabel")]
+let pianoDiv = [...document.getElementsByClassName("pianoCode")]
+
 
 export const init = (homepage, roomCode) => {
     const bodyClass = document.body.classList
@@ -126,7 +128,7 @@ const checkCode = () => {
 
         document.removeEventListener("keydown", keyDown)
         document.removeEventListener("keyup", keyUp)
-
+        pianoDiv[0].classList.add("hidden")
     } else {
         alert("C'est non")
     }

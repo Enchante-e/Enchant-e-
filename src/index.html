@@ -28,9 +28,29 @@
         </div>
 
         <div id="notifications" class="hidden"></div>
-        <div class="moods hidden">
-            <p>Un souvenir...</p>
-            <div id="moodsList"></div>
+
+        <button class="hidden" id="finishObjectsChoice">Valider</button>
+
+        <div class="finalScene hidden">
+            <div class="colorLegend">
+                <div class="legendItem">
+                    <div class="legendColor" style="background-color: #9B7593;"></div>
+                    <p>Objets choisis par <span id="partnerName"></span></p>
+                </div>
+                <div class="legendItem">
+                    <div class="legendColor" style="background-color: #EE7E3C;"></div>
+                    <p>Objets que j'ai choisi</p>
+                </div>
+                <div class="legendItem">
+                    <div class="legendColor" style="background-color: #C57A68;"></div>
+                    <p>Objets choisis par nous deux</p>
+                </div>
+            </div>
+    
+            <div class="finalMenu">
+                <button id="shareBttn">Partager</button>
+                <button id="finishExperienceBttn">Terminer</button>
+            </div>
         </div>
     </div>
 
@@ -136,7 +156,7 @@
     
     <div class="fullpage codeForm hidden">
         <label for="codeInput">Rentre le code partagé <br>par ton proche</label>
-        <input type="text" id="codeInput" />
+        <input type="text" id="codeInput" autocomplete="off"/>
         <button id="roomJoin" class="whiteBttn">Entrer</button>
     </div>
 

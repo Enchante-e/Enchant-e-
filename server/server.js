@@ -37,11 +37,13 @@ io.on('connection', socket => {
 
         if (user.partnerId !== "") {
             users.map((u) => {
-                if (u.id == user.partnerId && u.isReady == true) {
-                    io.sockets.to(user.partnerId).emit('name-notification', name, id)
-                    socket.emit('name-notification', u.name, u.id)
-                } else {
-                    socket.emit('waiting-for-partner')
+                if (u.id == user.partnerId ) {
+                    if (u.isReady == true) {
+                        io.sockets.to(user.partnerId).emit('name-notification', name, id)
+                        socket.emit('name-notification', u.name, u.id)
+                    } else {
+                        socket.emit('waiting-for-partner')
+                    }
                 }
             })
         } else {
@@ -95,10 +97,6 @@ io.on('connection', socket => {
             socket.emit('room-fail', code)
         }
     });
-
-    socket.on('partner-notification', (type) => {
-        io.sockets.to(user.partnerId).emit('partner-notification',type);
-    })
 
     socket.on('set-objects', (objects) => {
         io.sockets.to(user.partnerId).emit('partner-objects',objects);

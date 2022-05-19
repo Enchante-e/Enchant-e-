@@ -2,11 +2,10 @@ import {io} from "socket.io-client";
 import * as homepage from "./homepage/home"
 import * as background from "./js/background"
 import * as musicCode from "./code/code"
-import * as name from "./name/name"
+import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as objects from "./js/objects"
+import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
-import * as hashtags from "./hashtags/hashtags"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -35,6 +34,7 @@ let nameInput = document.getElementById("nameInput")
 let partnerDiv = document.getElementById("bulleAmi")
 let partnerNameDiv = document.getElementById("bulleName")
 let partnerSymbol = document.getElementById("bulleSymbol")
+let partnerNameLengend = document.getElementById("partnerName")
 
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
@@ -68,7 +68,8 @@ socket.on('room-notification', (code, userStatus) => {
         pianoDiv[0].classList.remove("hidden")
         musicCode.init(homepage, code)
     } else if(userStatus == "invited") {
-        join.closeJoin() 
+        join.closeJoin()
+        nameForm.initName() 
     }
 
 })
@@ -87,7 +88,7 @@ startExperience.addEventListener('click', (e) => {
             const name = myName;
             socket.emit('change-name', name, myId)
         }
-        name.closeName()
+        nameForm.closeName()
 });
 
 // [RECEIVED] Waiting for partner
@@ -102,9 +103,9 @@ socket.on('name-notification', (name, id) => {
         
         partnerNameDiv.innerHTML = partnerName 
         nameTag.innerHTML = partnerName
+        partnerNameLengend.innerHTML = partnerName
         partnerSymbol.innerHTML = partnerName.charAt(0)
         partnerDiv.classList.remove("hidden")
-        hashtags.initHashtag()
 
         background.activeMovement()
 });
@@ -123,12 +124,8 @@ socket.on('cursor-update', (partnerId, coordX, coordY) => {
     nameTag.style.left =  coordX + "px";
 });
 
-socket.on('partner-notification', function(type) {
-    hashtags.createNotification(partnerName, type)
-})
-
 socket.on('partner-objects', function(partnerObjects) {
-    objects.partnerObjects(partnerObjects)
+    finalScene.partnerObjects(partnerObjects)
 })
 
 // [RECEIVED] Disconnect notification

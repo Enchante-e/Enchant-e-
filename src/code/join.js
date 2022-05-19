@@ -1,6 +1,4 @@
 import * as homepage from "../homepage/home"
-import * as nameForm from "../name/name"
-
 
 let joinDiv = [...document.getElementsByClassName("codeForm")]
 let roomConnect = document.getElementById("roomConnect")
@@ -21,5 +19,5 @@ export const initJoin = () => {
 }
 
 export const closeJoin = () => {
-    nameForm.initName()  
+  joinDiv[0].classList.add("hidden")
 }
