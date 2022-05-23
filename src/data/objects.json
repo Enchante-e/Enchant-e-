@@ -356,6 +356,48 @@
           "src": "Gâteau.png",
           "sound": "background.mp3",
           "timeOfDay": "Crépuscule"
+        },
+        {
+          "id": 52,
+          "name": "Snow",
+          "src": "Snow.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Jour"
+        },
+        {
+          "id": 53,
+          "name": "Téléphone",
+          "src": "Téléphone.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Aurore"
+        },
+        {
+          "id": 54,
+          "name": "Pièces",
+          "src": "Pièces.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Aurore"
+        },
+        {
+          "id": 55,
+          "name": "Ski",
+          "src": "Ski.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Aube"
+        },
+        {
+          "id": 56,
+          "name": "Lit",
+          "src": "Lit.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Crépuscule"
+        },
+        {
+          "id": 57,
+          "name": "Camera",
+          "src": "Camera.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Crépuscule"
         }
     ]
 }
