@@ -1,8 +1,10 @@
 import {Texture, Sprite, Graphics} from 'pixi.js';
 import objectsData from "../data/objects.json"
-import * as finalScene from "../finalScene/finalScene"
 import {Player} from 'tone'
+import * as finalScene from "../finalScene/finalScene"
+import * as socket from "../main"
 
+let socketObj = null
 let cameraVector = {
     a: 0,
     l: 0
@@ -40,6 +42,12 @@ export const initCrépuscule = (globalApp, globalContainer) => {
             object.on("click", function (e) {
                 this.interactive = true;
                 finalScene.addObject(object.id)
+
+                if(socketObj == null) {
+                    socketObj = socket.getSocket()
+                }
+    
+                socketObj.emit('partner-notification', "treasureAdded")
             })
     
             object.update = function () {

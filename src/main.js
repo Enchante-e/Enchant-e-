@@ -6,6 +6,7 @@ import * as nameForm from "./name/name"
 import * as join from "./code/join"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
+import * as hashtags from "./hashtags/hashtags"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -108,6 +109,7 @@ socket.on('name-notification', (name, id) => {
         partnerSymbol.innerHTML = partnerName.charAt(0)
         partnerDiv.classList.remove("hidden")
 
+        hashtags.initHashtag()
         background.activeMovement()
         logo[0].classList.add("whiteTint")
 });
@@ -129,6 +131,10 @@ socket.on('cursor-update', (partnerId, coordX, coordY) => {
     nameTag.style.top =  coordY + "px";
     nameTag.style.left =  coordX + "px";
 });
+
+socket.on('partner-notification', function(type) {
+    hashtags.createNotification(partnerName, type)
+})
 
 socket.on('partner-objects', function(partnerObjects) {
     finalScene.partnerObjects(partnerObjects)

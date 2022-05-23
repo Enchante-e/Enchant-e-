@@ -92,7 +92,7 @@ input{
     z-index: 3;
     font-weight: bold;
     font-size: 1.2em;
-    color: #0a0d42;
+    color: #FFFFFF;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -157,7 +157,13 @@ input{
     mask-image: -webkit-gradient(linear, left bottom, left top, 
     color-stop(0.60,  rgba(0,0,0,1)),
     color-stop(1.10,  rgba(0,0,0,0)));
+    color: #ffffff;
 }
+
+#notifications p, #moodsList p{
+    margin: 2px 0;
+}
+
 
 #bulleAmi{
     position: absolute;
@@ -217,8 +223,8 @@ button {
     bottom: 30px;
     right: 150px;
     z-index: 3;
-    color: #0a0d42;
-    border-color: #0a0d42;;
+    color: #FFFFFF;
+    border-color: #FFFFFF;;
 }
 
 .whiteBttn {
@@ -390,6 +396,11 @@ button {
     z-index: 3;
 }
 
+.finalMenu button {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
 .colorLegend {
     display: flex;
     justify-content: center;
@@ -398,6 +409,7 @@ button {
     position: absolute;
     bottom: 30px;
     left: 15px;
+    color: #ffffff;
 }
 
 .legendColor {
