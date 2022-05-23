@@ -35,6 +35,8 @@ let partnerDiv = document.getElementById("bulleAmi")
 let partnerNameDiv = document.getElementById("bulleName")
 let partnerSymbol = document.getElementById("bulleSymbol")
 let partnerNameLengend = document.getElementById("partnerName")
+let logo = [...document.getElementsByClassName('logo')]
+
 
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
@@ -102,24 +104,28 @@ socket.on('name-notification', (name, id) => {
         loading.closeLoad()
         
         partnerNameDiv.innerHTML = partnerName 
-        nameTag.innerHTML = partnerName
         partnerNameLengend.innerHTML = partnerName
         partnerSymbol.innerHTML = partnerName.charAt(0)
         partnerDiv.classList.remove("hidden")
 
         background.activeMovement()
+        logo[0].classList.add("whiteTint")
+});
+
+// [RECEIVED] Generate Canvas
+socket.on('canvas-create', (memberId) => {
+    partnerId = memberId
+    background.initCanvas()
 });
 
 // [RECEIVED] Create cursor of partner
-socket.on('cursor-create', (memberId) => {
-    partnerId = memberId
-    background.initCanvas()
-    generateCursor(partnerId)
+socket.on('cursor-create', () => {
+    generateCursor()
 });
 
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
-    background.updateCursor(partnerCursor[0].obj, coordX, coordY)
+    finalScene.updateCursor(partnerCursor[0], coordX, coordY)
     nameTag.style.top =  coordY + "px";
     nameTag.style.left =  coordX + "px";
 });
@@ -136,7 +142,7 @@ socket.on('disconnect-notification', function(id, name) {
     userName ? userName.remove() : null
 
     if (partnerCursor[0]) {
-        background.deleteCursor(partnerCursor[0].obj)
+        finalScene.deleteCursor(partnerCursor[0])
         partnerCursor = []
     }
 });
@@ -149,12 +155,12 @@ socket.on('test', function(test) {
  })
 
 // [LOCAL] Creating Partner Cursor
-const generateCursor = (id) => {
-    partnerCursor.push({id: id, obj : background.createCursor()})
+const generateCursor = () => {
+    partnerCursor.push(finalScene.createCursor())
 
     nameTag = document.createElement('p')
-    nameTag.innerHTML = "";
-    nameTag.id = id
+    nameTag.innerHTML = partnerName
+    nameTag.id = partnerId
     nameTag.classList.add("tag")
     document.body.appendChild(nameTag)
 }

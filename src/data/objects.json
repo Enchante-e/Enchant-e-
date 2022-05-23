@@ -5,399 +5,570 @@
           "name": "Tirelire",
           "src": "Tirelire.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.92,
+          "posY": 0.68,
+          "scale": 0.18
         },
         {
           "id": 1,
           "name": "Manette",
           "src": "Manette.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0,
+          "posY": 0.1,
+          "scale": 0.35
         },
         {
           "id": 2,
           "name": "Peluche",
           "src": "Peluche.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 3,
           "name": "Chaussure",
           "src": "Chaussure.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 4,
           "name": "Bougie",
           "src": "Bougie.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.35,
+          "posY": 0.15,
+          "scale": 0.2
         },
         {
           "id": 5,
           "name": "Seau",
           "src": "Seau.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 7,
           "name": "Canapé",
           "src": "Canapé.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.7,
+          "posY": 0.65,
+          "scale": 0.3
         },
         {
           "id": 8,
           "name": "Toboggan",
           "src": "Toboggan.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.1,
+          "posY": 0.65,
+          "scale": 0.25
         },
         {
           "id": 9,
           "name": "Masque",
           "src": "Masque.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 10,
           "name": "Makeup",
           "src": "Makeup.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.1,
+          "posY": 0.9,
+          "scale": 0.18
         },
         {
           "id": 11,
           "name": "Barque",
           "src": "Barque.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 12,
           "name": "Skateboard",
           "src": "Skateboard.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 13,
           "name": "Bière",
           "src": "Bière.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.55,
+          "posY": 0.5,
+          "scale": 0.12
         },
         {
           "id": 14,
           "name": "Thé",
           "src": "Thé.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.1,
+          "posY": 0.1,
+          "scale": 0.25
         },
         {
           "id": 15,
           "name": "Bague",
           "src": "Bague.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.5,
+          "posY": 0.25,
+          "scale": 0.25
         },
         {
           "id": 16,
           "name": "Boule à facettes",
           "src": "Boule-à-facettes.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.7,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 17,
           "name": "Brosse",
           "src": "Brosse.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.6,
+          "posY": 0.8,
+          "scale": 0.25
         },
         {
           "id": 18,
           "name": "Carottes",
           "src": "Carottes.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 19,
           "name": "Casque son",
           "src": "Casque-son.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 20,
           "name": "Chocolat",
           "src": "Chocolat.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.8,
+          "posY": 0.3,
+          "scale": 0.25
         },
         {
           "id": 21,
           "name": "Clap cinéma",
           "src": "Clap-ciné.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.05,
+          "posY": 0.5,
+          "scale": 0.12
         },
         {
           "id": 22,
           "name": "Coca",
           "src": "Coca.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 23,
           "name": "Cocktail",
           "src": "Cocktail.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.9,
+          "posY": 0.7,
+          "scale": 0.25
         },
         {
           "id": 24,
           "name": "Coeur",
           "src": "Coeur.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.15,
+          "posY": 0.5,
+          "scale": 0.4
         },
         {
           "id": 25,
           "name": "Collier",
           "src": "Collier.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.8,
+          "posY": 0.45,
+          "scale": 0.25
         },
         {
           "id": 26,
           "name": "Eau",
           "src": "Eau.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 27,
           "name": "Enceinte",
           "src": "Enceinte.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 28,
           "name": "Fer à cheval",
           "src": "Fer-à-cheval.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.5,
+          "posY": 0.5,
+          "scale": 0.25
         },
         {
           "id": 29,
           "name": "Fil",
           "src": "Fil.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 30,
           "name": "Gâteau",
           "src": "Gâteau.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.2,
+          "posY": 0.4,
+          "scale": 0.25
         },
         {
           "id": 31,
           "name": "Map monde",
           "src": "Map-monde.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 32,
           "name": "Micro",
           "src": "Micro.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 33,
           "name": "Photo",
           "src": "Photo.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 34,
           "name": "Roller",
           "src": "Roller.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 35,
           "name": "Rose",
           "src": "Rose.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.25,
+          "posY": 0.7,
+          "scale": 0.5
         },
         {
           "id": 36,
           "name": "Surf",
           "src": "Surf.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 37,
           "name": "Sushis",
           "src": "Sushi.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.07,
+          "posY": 0.65,
+          "scale": 0.15
         },
         {
           "id": 38,
           "name": "Tétine",
           "src": "Tétine.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 39,
           "name": "Cartes",
           "src": "Carte.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 40,
           "name": "Ecran",
           "src": "Ecran.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 41,
           "name": "Airpod",
           "src": "Airpod.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.4,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 42,
           "name": "Sac à dos",
           "src": "Sac-a-dos.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 43,
           "name": "Transat",
           "src": "Transat.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 44,
           "name": "Train",
           "src": "Train.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 45,
           "name": "Gamelle",
           "src": "Gamelle.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 46,
           "name": "Pomme",
           "src": "Pomme.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0,
+          "posY": 0.3,
+          "scale": 0.25
         },
         {
           "id": 47,
           "name": "Tube de peinture",
           "src": "Tube-de-peinture.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.7,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 48,
           "name": "Oiseau",
           "src": "Oiseau.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 49,
           "name": "Crayon",
           "src": "Crayon.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 50,
           "name": "Lampe",
           "src": "Lampe.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 51,
           "name": "Gâteau",
-          "src": "Gâteau.png",
+          "src": "Gateau.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.68,
+          "posY": 0.35,
+          "scale": 0.14
         },
         {
           "id": 52,
           "name": "Snow",
           "src": "Snow.png",
           "sound": "background.mp3",
-          "timeOfDay": "Jour"
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 53,
           "name": "Téléphone",
           "src": "Téléphone.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 54,
           "name": "Pièces",
           "src": "Pièces.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aurore"
+          "timeOfDay": "Aurore",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
         },
         {
           "id": 55,
           "name": "Ski",
           "src": "Ski.png",
           "sound": "background.mp3",
-          "timeOfDay": "Aube"
+          "timeOfDay": "Aube",
+          "posX": 0.4,
+          "posY": 0.8,
+          "scale": 0.25
         },
         {
           "id": 56,
           "name": "Lit",
           "src": "Lit.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.92,
+          "posY": 0.45,
+          "scale": 0.11
         },
         {
           "id": 57,
           "name": "Camera",
           "src": "Camera.png",
           "sound": "background.mp3",
-          "timeOfDay": "Crépuscule"
+          "timeOfDay": "Crépuscule",
+          "posX": 0.65,
+          "posY": 0.7,
+          "scale": 0.2
         }
     ]
 }

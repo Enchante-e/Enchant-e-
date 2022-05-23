@@ -21,6 +21,6 @@ export const initHome = () => {
 export const closeHome = () => {
     homeDiv[0].classList.add("hidden")
     logo[0].classList.remove("hidden")
-    musicBttn[0].classList.remove("whiteTint")
+    // musicBttn[0].classList.remove("whiteTint")
 }
 

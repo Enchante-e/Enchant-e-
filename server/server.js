@@ -78,8 +78,8 @@ io.on('connection', socket => {
                     let membersId = [id]
                     roomMembers[i].map((member)=> {
                         membersId.push(member)
-                        io.sockets.to(member).emit('cursor-create', id);
-                        socket.emit('cursor-create', member);
+                        io.sockets.to(member).emit('canvas-create', id);
+                        socket.emit('canvas-create', member);
                         user.partnerId = member.toString()
                         users.map((u) => {
                             if (u.id == member) {
@@ -99,6 +99,7 @@ io.on('connection', socket => {
     });
 
     socket.on('set-objects', (objects) => {
+        io.sockets.to(user.partnerId).emit('cursor-create');
         io.sockets.to(user.partnerId).emit('partner-objects',objects);
     })
 
