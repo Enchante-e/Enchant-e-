@@ -12,12 +12,12 @@ const io = require('socket.io')(process.env.PORT || 3000, {
 let users =  []
 const codeLetters = ["A", "W", "S", "E", "D", "F", "T", "G", "Y", "H", "U", "J", "K", "O", "L", "P", "M"]
 let existingCodes = []
-
+let foundCodeMatch = false
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
 
 io.on('connection', socket => {
-    let user = {id: socket.id, name : "", partnerId : "", coordX: 0, coordY: 0};
+    let user = {id: socket.id, name : "", isReady : false, partnerId : "", coordX: 0, coordY: 0};
     users.push(user)
     socket.emit('init', user);
 
@@ -32,8 +32,23 @@ io.on('connection', socket => {
     socket.on('change-name', (name, id) => {
         if (user.id == id) {
             user.name = name;
+            user.isReady = true
         }
-        io.emit('name-notification', name, id)
+
+        if (user.partnerId !== "") {
+            users.map((u) => {
+                if (u.id == user.partnerId ) {
+                    if (u.isReady == true) {
+                        io.sockets.to(user.partnerId).emit('name-notification', name, id)
+                        socket.emit('name-notification', u.name, u.id)
+                    } else {
+                        socket.emit('waiting-for-partner')
+                    }
+                }
+            })
+        } else {
+            socket.emit('waiting-for-partner')
+        }
     });
 
     socket.on('generate-room', () => {
@@ -42,8 +57,8 @@ io.on('connection', socket => {
             code = generateCode()
         }
         existingCodes.push(code)
-        socket.join(code.toString())
-        socket.emit('room-notification', code, user.id)
+        socket.join(code.join(''))
+        socket.emit('room-notification', code, "creator")
     });
 
     socket.on('join-room', (code, id) => {  
@@ -56,14 +71,15 @@ io.on('connection', socket => {
         roomNames.map((room, i) => {
             if (room[0] == code) {
                 if (roomMembers[i].length >= 2) {
-                    io.emit('room-fail', code)
+                    socket.emit('room-fail', code)
+                    foundCodeMatch = true
                 } else {
                     socket.join(code)
                     let membersId = [id]
                     roomMembers[i].map((member)=> {
                         membersId.push(member)
-                        io.sockets.to(member).emit('cursor-create', id);
-                        socket.emit('cursor-create', member);
+                        io.sockets.to(member).emit('canvas-create', id);
+                        socket.emit('canvas-create', member);
                         user.partnerId = member.toString()
                         users.map((u) => {
                             if (u.id == member) {
@@ -71,11 +87,25 @@ io.on('connection', socket => {
                             }
                         })
                     })
-                    socket.emit('room-notification', code, id);
+                    socket.emit('room-notification', code, "invited")
+                    foundCodeMatch = true
                 }
             }
         })
+
+        if(foundCodeMatch == false) {
+            socket.emit('room-fail', code)
+        }
     });
+
+    socket.on('partner-notification', (type) => {
+        io.sockets.to(user.partnerId).emit('partner-notification',type);
+    })
+
+    socket.on('set-objects', (objects) => {
+        io.sockets.to(user.partnerId).emit('cursor-create');
+        io.sockets.to(user.partnerId).emit('partner-objects',objects);
+    })
 
     socket.on('disconnect', () => {
         io.emit('disconnect-notification', user.id, user.name)

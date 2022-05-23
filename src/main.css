@@ -2,22 +2,88 @@ body {
     margin:0;
     padding:0;
     overflow:hidden;
-    font-family: 'Sen', sans-serif;
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
+    font-style: normal;
     text-align: center;
-    color: #1A1D5C;
+}
+
+body.homeStyle {
+    color: #ffffff;
+    background: url("../static/img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.introStyle {
+    color: #0a0d42;
+    background: #ffffff url("../static/img/bg-white.svg");
+    background-repeat: no-repeat;
+    background-size: 102%;
+    background-position: 250px -550px ;
+}
+
+audio {
+    display: none;
 }
 
 canvas {
     display:block;
+    background: rgb(106,0,143);
+    background: linear-gradient(180deg, rgba(106,0,143,1) 0%, rgba(0,41,157,1) 100%);
 }
 
-#users {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
+input{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+    color: #0a0d42;
+    border: none;
+}
+
+.fullpage {
+    width: 100%;
     height: 100vh;
-    background: #FFFAF3;
+}
+
+.whiteTint {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(104deg) brightness(102%) contrast(101%);;
+}
+
+.interface .logo{
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    z-index: 2;
+    width: 200px;
+}
+
+.interface .musicBttn{
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    z-index: 2;
+    width: 60px;
+}
+
+.loadingPage, .conceptPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.codeMemo {
+    position: absolute;
+    bottom: 110px;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.codeMemo #codeMemoValue {
+    border-bottom: none;
+    margin: 25px auto;
 }
 
 .tag {
@@ -27,13 +93,13 @@ canvas {
     z-index: 3;
     font-weight: bold;
     font-size: 1.2em;
-    color: #1A1D5C;
+    color: #FFFFFF;
     display: flex;
     flex-direction: column-reverse;
 }
 
 .cursor {
-    background: #1A1D5C;
+    background: #0a0d42;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -41,71 +107,96 @@ canvas {
     margin: auto;
 }
 
-#code-form, 
-#room-form, 
-#name-form {
+.codeForm, 
+.roomForm, 
+.nameForm {
     margin: 1rem auto;
     text-align: center;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-#name-form {
+#nameForm {
     /* margin: 5rem auto; */
     flex-direction: column;
 }
 
 /* #room-input, */
 #room-codeInput,
-#name-input{
+#nameInput{
     background: transparent;
     border: none;
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid #0a0d42;
     text-align: center;
     height: 50px;
     color: inherit;
 }
 
-#name-input {
+#nameInput {
     min-width: 250px;
 }
 
-#room-menu {
+#roomMenu {
     display: flex;
     width: 100vw;
 }
 
-#room-input {
-    min-width: 150px;
+#notifications{
+    position: absolute;
+    top: 180px;
+    right:30px;
+    width: 300px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+    mask-image: -webkit-gradient(linear, left bottom, left top, 
+    color-stop(0.60,  rgba(0,0,0,1)),
+    color-stop(1.10,  rgba(0,0,0,0)));
+    color: #ffffff;
 }
 
-#bulle-ami {
-    position: fixed;
-    top: -20px;
-    height: 160px;
-    width: 160px;
-    background: #A8B7DE;
+#notifications p, #moodsList p{
+    margin: 2px 0;
+}
+
+
+#bulleAmi{
+    position: absolute;
+    top: 30px;
+    right:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#bulleBg{
+    height: 95px;
+    width: 95px;
+    background: #0a0d42;
     border-radius: 50%;
-    right: -20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-#bulle-ami img {
-    width: 60px;
-    height: 60px;
-}
-
-#bulle-name {
+#bulleName {
     margin: 0;
-    font-size: 0.9em;
-    margin-top: 5px;
-    color: white;
+    font-size: 1.2em;
+    margin-top: 10px;
     font-weight: 700;
+}
+
+#bulleSymbol {
+    font-size: 4em;
+    color: #ffffff;
+    font-family: pentz-regular, serif;
 }
 
 .hidden {
@@ -114,16 +205,225 @@ canvas {
 
 button {
     background: transparent;
-    border: none;
-    padding: 15px;
-    width: 200px;
+    border: 2px solid;
+    padding: 15px 30px;
+    width: auto;
     display: block;
     text-align: center;
     margin: 15px;
     border-radius: 50px;
     font: inherit;
     font-size: 1.2em;
-    font-weight: bold;
-    color: #1A1D5C;
+    font-weight: inherit;
     cursor: pointer;
+    color: inherit;
+}
+
+#finishObjectsChoice {
+    position: absolute;
+    bottom: 30px;
+    right: 150px;
+    z-index: 3;
+    color: #FFFFFF;
+    border-color: #FFFFFF;;
+}
+
+.whiteBttn {
+    margin: 15px auto;
+}
+
+.whiteBttn:hover {
+    background: #0a0d42;
+    color: #ffffff;
+}
+
+.notes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.notes .note {
+    position: relative;
+}
+  
+.notes .note .noteBg {
+    margin: 1rem 0.5rem;
+    height: 40px;
+    width: 40px;
+    background: url("../static/img/musicNote.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position:  center;
+}
+
+.notes .note .noteLabel {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    width: 15px;
+    height: 20px;
+}
+
+.piano {
+    display: flex;
+    justify-content: center;
+}
+  
+.pianoKey {
+    height: 220px;
+    width: 70px;
+    border: 1px solid #0a0d42;
+    text-align: center;
+    font-size: 0.8em;
+    position: relative;
+    margin: 0 1px;
+}
+
+.roundedKey.l {
+    border-radius: 12px 0 0 12px ;
+}
+.roundedKey.r {
+    border-radius: 0 12px 12px 0;
+}
+
+.pianoKey.activeKey {
+    background: rgb(2,17,162);
+    background: linear-gradient(187deg, rgba(2,17,162,1) 0%, rgba(10,13,66,1) 100%);
+}
+
+
+.pianoKey .keyLabel {
+    position: absolute;
+    bottom: 1em;
+    color: #0a0d42;
+    left: 0;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.pianoKey.black {
+    background: #0a0d42;
+    margin-left: -20px; 
+    margin-right: -20px; 
+    width: 40px;
+    height: 140px;
+    z-index: 1;
+    border-radius: 0 0 12px 12px;
+}
+
+.pianoKey.black.activeKey {
+    background: rgb(2,17,162);
+    background: linear-gradient(187deg, rgba(2,17,162,1) 0%, rgba(10,13,66,1) 100%);
+}
+
+.pianoKey.activeKey .keyLabel,
+.pianoKey.black .keyLabel {
+    color: #ffffff;
+}
+
+#keysPressed, #codeInput, #codeMemoValue {
+    border-bottom: 1px solid #0a0d42;
+    width: 350px;
+    text-align: center;
+    margin: 40px auto 25px auto;
+    padding-bottom: 25px;
+    letter-spacing: 10px;
+}
+
+
+.homepage {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+.homeTitle {
+    width: 891px;
+}
+
+.homeNav { 
+    display: flex;   
+    margin: auto;
+    justify-content: center;
+    align-items: center; 
+    margin: 75px 0;
+}
+
+.homeBttn {
+    width: 200px;
+}
+
+.homeBttn:hover { 
+    background: #ffffff;
+    color: #0a0d42;
+}
+
+.codeForm label,
+.nameForm label,
+.pianoCode h1,
+.conceptPage p {
+    font-size: 2em;
+    font-weight: bold;
+    color:#0a0d42
+}
+
+.pianoCode {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nameForm label {
+    margin-bottom: 140px;
+}
+
+.codeForm label {
+    margin-bottom: 100px;
+}
+
+.finalMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 30px;
+    right: 150px;
+    z-index: 3;
+}
+
+.finalMenu button {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.colorLegend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 30px;
+    left: 15px;
+    color: #ffffff;
+}
+
+.legendColor {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.legendItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px;
 }

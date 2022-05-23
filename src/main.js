@@ -1,36 +1,47 @@
 import {io} from "socket.io-client";
-/// import {GameApp} from "./app/app";
+import * as homepage from "./homepage/home"
 import * as background from "./js/background"
+import * as musicCode from "./code/code"
+import * as nameForm from "./name/name"
+import * as join from "./code/join"
+import * as crépuscule from "./scenes/crépuscule"
+import * as finalScene from "./finalScene/finalScene"
+import * as loading from "./loading/loading"
+import * as hashtags from "./hashtags/hashtags"
+import * as concept from "./conceptPages/concept"
+
 import dotenv from "dotenv";
 dotenv.config();
 
 const socket = io(process.env.IO_URL)
-
-// const myGame = new GameApp(document.body,  window.innerWidth, window.innerHeight);
+homepage.initHome()
 
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
-let myId = ""
-let partnerId = ""
-let myName = "" 
+let myId, myName, myRoom = ""
 let myCoord = []
-let myRoom = ""
+let partnerId, partnerName = ""
 let partnerCursor = []
 let nameTag = null
+let finalSceneStarted = false
 
 // BUTTONS & INPUTS ROOMS
-let roomInput = document.getElementById("room-input")
-let roomBttn = document.getElementById("room-generate")
-let copyBttn = document.getElementById("copy-code")
-let codeInput = document.getElementById("room-codeInput")
-let joinBttn = document.getElementById("join-code")
+let roomBttn = document.getElementById("roomGenerate")
+let joinBttn = document.getElementById("roomJoin")
+let codeInput = document.getElementById("codeInput")
+let pianoDiv = [...document.getElementsByClassName("pianoCode")]
+let startExperience = document.getElementById("startExperience")
+let startTutorial = document.getElementById("startTutorial")
 
 // BUTTONS & INPUTS NAME
-let nameInput = document.getElementById("name-input")
-let nameForm = document.getElementById("name-form")
-let partnerDiv = document.getElementById("bulle-ami")
-let partnerName = document.getElementById("bulle-name")
+let nameInput = document.getElementById("nameInput")
+let partnerDiv = document.getElementById("bulleAmi")
+let partnerSymbol = document.getElementById("bulleSymbol")
+let partnerNameHTML = [...document.getElementsByClassName("partnerName")]
+let userNameHTML = document.getElementById("userName")
+
+let logo = [...document.getElementsByClassName('logo')]
 
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
@@ -49,66 +60,102 @@ roomBttn.addEventListener('click', () => {
 
 // [EMIT] Join room with code
 joinBttn.addEventListener('click', () => {
-    let code = codeInput.value
+    let code = codeInput.value.toUpperCase()
     if (code !== "") {
         socket.emit('join-room', code, myId)
     } 
 })
 
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
-socket.on('room-notification', (code, id, name) => {
-    myRoom = code.toString()
-
-    roomInput.innerHTML = myRoom
-    document.getElementById("code-form").classList.add("hidden")   
+socket.on('room-notification', (code, userStatus) => {
+    myRoom = code
     roomBttn.classList.add("hidden")
-    copyBttn.classList.remove("hidden") 
+    
+    if (userStatus == "creator") {
+        pianoDiv[0].classList.remove("hidden")
+        musicCode.init(homepage, code)
+    } else if(userStatus == "invited") {
+        join.closeJoin()
+        nameForm.initName() 
+    }
 
-    nameForm.classList.remove("hidden")   
 })
 
 // [RECEIVED] Room full or issue with room
 socket.on('room-fail', (code) => {
-    alert("Couldn't join " + code + ". Room full or there is an issue, please retry or change code.") 
+    alert("Couldn't join " + code + ". The room is already full or doesn't exist, please retry or change code.") 
 })
 
 // [EMIT] Change Name Input And emit
-nameInput.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault()
-        myName = nameInput.value
+startExperience.addEventListener('click', (e) => {
+    e.preventDefault()
+    myName = nameInput.value
 
-        if (myName !== "") {
-            const name = myName;
-            socket.emit('change-name', name, myId)
-        }
-        nameForm.classList.add("hidden")   
-        document.getElementById("users").classList.add("hidden")   
+    if (myName !== "") {
+        const name = myName
+        userNameHTML.innerHTML = myName
+        socket.emit('change-name', name, myId)
     }
+    nameForm.closeName()
+});
+    
+// [EMIT] Change Name Input And emit
+startTutorial.addEventListener('click', (e) => {
+    e.preventDefault()
+    concept.closeConcept()
+
+    hashtags.initHashtag()
+    background.activeMovement()
+    logo[0].classList.add("whiteTint")
+    crépuscule.playMusic()
+});
+
+// [RECEIVED] Waiting for partner
+socket.on('waiting-for-partner', () => {
+    loading.initLoad(myRoom)
 });
 
 // [RECEIVED] Name changed notification
 socket.on('name-notification', (name, id) => {
-    if (id == partnerId) { 
-        partnerName.innerHTML = name 
-        nameTag.innerHTML = name
-        background.activeMovement()
-    }
+        partnerName = name
+        concept.initConcept()
+        
+        partnerNameHTML.map((item) => {
+            item.innerHTML = partnerName
+        })
+        
+        partnerSymbol.innerHTML = partnerName.charAt(0)
+        partnerDiv.classList.remove("hidden")
+        
+        loading.closeLoad()
+});
+
+// [RECEIVED] Generate Canvas
+socket.on('canvas-create', (memberId) => {
+    partnerId = memberId
+    background.initCanvas()
 });
 
 // [RECEIVED] Create cursor of partner
-socket.on('cursor-create', (memberId) => {
-    partnerId = memberId
-    partnerDiv.classList.remove("hidden") 
-    generateCursor(partnerId)
+socket.on('cursor-create', () => {
+    generateCursor()
+    finalSceneStarted = true
 });
 
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
-    background.updateCursor(partnerCursor[0].obj, coordX, coordY)
+    finalScene.updateCursor(partnerCursor[0], coordX, coordY)
     nameTag.style.top =  coordY + "px";
     nameTag.style.left =  coordX + "px";
 });
+
+socket.on('partner-notification', function(type) {
+    hashtags.createNotification(partnerName, type)
+})
+
+socket.on('partner-objects', function(partnerObjects) {
+    finalScene.partnerObjects(partnerObjects)
+})
 
 // [RECEIVED] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
@@ -118,7 +165,7 @@ socket.on('disconnect-notification', function(id, name) {
     userName ? userName.remove() : null
 
     if (partnerCursor[0]) {
-        background.deleteCursor(partnerCursor[0].obj)
+        finalScene.deleteCursor(partnerCursor[0])
         partnerCursor = []
     }
 });
@@ -127,47 +174,16 @@ socket.on('disconnect-notification', function(id, name) {
 // LOCAL ------------------------------------------------------------------------------------------------------------------------------------
 
 socket.on('test', function(test) {
-    console.log(test)
+    alert(test)
  })
 
-
-// [LOCAL] Copy Code
-copyBttn.addEventListener('click', () => {
-    if (!navigator.clipboard) {
-        fallbackCopyTextToClipboard(roomInput.innerHTML);
-        return;
-      }
-      navigator.clipboard.writeText(roomInput.innerHTML).then(function() {
-        console.log('Async: Copying to clipboard was successful!');
-      }, function(err) {
-        alert('Async: Could not copy text: ', err);
-      });
-
-      const fallbackCopyTextToClipboard = (code) => {
-        var textArea = document.createElement("textarea");
-        textArea.value = ""
-        code.map((letter) => {
-            textArea.value = textArea.value + letter
-        })
-        textArea.style.top = "0";
-        textArea.style.left = "0";
-        textArea.style.position = "fixed";
-
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-
-        document.body.removeChild(textArea);
-    }
-})
-
 // [LOCAL] Creating Partner Cursor
-const generateCursor = (id) => {
-    partnerCursor.push({id: id, obj : background.createCursor()})
+const generateCursor = () => {
+    partnerCursor.push(finalScene.createCursor())
 
     nameTag = document.createElement('p')
-    nameTag.innerHTML = "";
-    nameTag.id = id
+    nameTag.innerHTML = partnerName
+    nameTag.id = partnerId
     nameTag.classList.add("tag")
     document.body.appendChild(nameTag)
 }
@@ -176,12 +192,17 @@ const generateCursor = (id) => {
 document.addEventListener('mousemove', function(e) {
     e.preventDefault()
     
-    if (myCoord && myRoom !== "" && partnerId !== "") {
+    if (finalSceneStarted == true) {
       myCoord = []
       myCoord.push(e.clientX, e.clientY)
 
       socket.emit('coord', myCoord, myId)
     }
 });
+
+export const getSocket = () => {
+    return socket
+}
+
 
 
