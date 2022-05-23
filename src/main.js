@@ -4,9 +4,11 @@ import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
+import * as crépuscule from "./scenes/crépuscule"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
+import * as concept from "./conceptPages/concept"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -22,22 +24,24 @@ let myCoord = []
 let partnerId, partnerName = ""
 let partnerCursor = []
 let nameTag = null
+let finalSceneStarted = false
 
 // BUTTONS & INPUTS ROOMS
 let roomBttn = document.getElementById("roomGenerate")
 let joinBttn = document.getElementById("roomJoin")
 let codeInput = document.getElementById("codeInput")
-let startExperience = document.getElementById("startExperience")
 let pianoDiv = [...document.getElementsByClassName("pianoCode")]
+let startExperience = document.getElementById("startExperience")
+let startTutorial = document.getElementById("startTutorial")
 
 // BUTTONS & INPUTS NAME
 let nameInput = document.getElementById("nameInput")
 let partnerDiv = document.getElementById("bulleAmi")
-let partnerNameDiv = document.getElementById("bulleName")
 let partnerSymbol = document.getElementById("bulleSymbol")
-let partnerNameLengend = document.getElementById("partnerName")
-let logo = [...document.getElementsByClassName('logo')]
+let partnerNameHTML = [...document.getElementsByClassName("partnerName")]
+let userNameHTML = document.getElementById("userName")
 
+let logo = [...document.getElementsByClassName('logo')]
 
 
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
@@ -84,14 +88,26 @@ socket.on('room-fail', (code) => {
 
 // [EMIT] Change Name Input And emit
 startExperience.addEventListener('click', (e) => {
-        e.preventDefault()
-        myName = nameInput.value
+    e.preventDefault()
+    myName = nameInput.value
 
-        if (myName !== "") {
-            const name = myName;
-            socket.emit('change-name', name, myId)
-        }
-        nameForm.closeName()
+    if (myName !== "") {
+        const name = myName
+        userNameHTML.innerHTML = myName
+        socket.emit('change-name', name, myId)
+    }
+    nameForm.closeName()
+});
+    
+// [EMIT] Change Name Input And emit
+startTutorial.addEventListener('click', (e) => {
+    e.preventDefault()
+    concept.closeConcept()
+
+    hashtags.initHashtag()
+    background.activeMovement()
+    logo[0].classList.add("whiteTint")
+    crépuscule.playMusic()
 });
 
 // [RECEIVED] Waiting for partner
@@ -102,16 +118,16 @@ socket.on('waiting-for-partner', () => {
 // [RECEIVED] Name changed notification
 socket.on('name-notification', (name, id) => {
         partnerName = name
-        loading.closeLoad()
+        concept.initConcept()
         
-        partnerNameDiv.innerHTML = partnerName 
-        partnerNameLengend.innerHTML = partnerName
+        partnerNameHTML.map((item) => {
+            item.innerHTML = partnerName
+        })
+        
         partnerSymbol.innerHTML = partnerName.charAt(0)
         partnerDiv.classList.remove("hidden")
-
-        hashtags.initHashtag()
-        background.activeMovement()
-        logo[0].classList.add("whiteTint")
+        
+        loading.closeLoad()
 });
 
 // [RECEIVED] Generate Canvas
@@ -123,6 +139,7 @@ socket.on('canvas-create', (memberId) => {
 // [RECEIVED] Create cursor of partner
 socket.on('cursor-create', () => {
     generateCursor()
+    finalSceneStarted = true
 });
 
 // [RECEIVED] Cursor update position
@@ -175,7 +192,7 @@ const generateCursor = () => {
 document.addEventListener('mousemove', function(e) {
     e.preventDefault()
     
-    if (myCoord && myRoom !== "" && partnerId !== "") {
+    if (finalSceneStarted == true) {
       myCoord = []
       myCoord.push(e.clientX, e.clientY)
 

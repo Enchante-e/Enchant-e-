@@ -34,6 +34,10 @@ export const initCrépuscule = (globalApp, globalContainer) => {
     
             object.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
             object.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
+            object.initialPos = {
+                x : object.x,
+                y: object.y
+            }
 
             object.goBack = false;
             object.l = Math.random() * 4;
@@ -64,8 +68,10 @@ export const initCrépuscule = (globalApp, globalContainer) => {
             container.addChild(object);
         }
     }
+}
 
-    const url = "sound/Crépuscule.wav"
+export const playMusic = () => {
+    const url = "sound/Aurore.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
 }
@@ -81,15 +87,12 @@ const createEnvironment = () => {
     background.scale.set(0.5);
     app.stage.addChild(background);
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 1; i++) {
         const constraintImg = Texture.from("img/constraints-c-3-"+i+".svg");
         const constraint = new Sprite(constraintImg)
         constraint.scale.set(0.5);
         
-        if (i == 2) { 
-            constraint.x = 0.6;
-            constraint.y = 0.8;
-        }
         app.stage.addChild(constraint);
     }
 }
+

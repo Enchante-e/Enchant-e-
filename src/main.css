@@ -67,10 +67,11 @@ input{
     width: 60px;
 }
 
-.loadingPage {
+.loadingPage, .conceptPage {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .codeMemo {
@@ -365,7 +366,8 @@ button {
 
 .codeForm label,
 .nameForm label,
-.pianoCode h1 {
+.pianoCode h1,
+.conceptPage p {
     font-size: 2em;
     font-weight: bold;
     color:#0a0d42

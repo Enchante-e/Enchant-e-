@@ -24,7 +24,7 @@
             <div id="bulleBg">
                 <p id="bulleSymbol"></p>
             </div>
-            <p id="bulleName"></p>
+            <p id="bulleName" class="partnerName"></p>
         </div>
 
         <div id="notifications" class="hidden"></div>
@@ -35,7 +35,7 @@
             <div class="colorLegend">
                 <div class="legendItem">
                     <div class="legendColor" style="background-color: #9B7593;"></div>
-                    <p>Objets choisis par <span id="partnerName"></span></p>
+                    <p>Objets choisis par <span class="partnerName"></span></p>
                 </div>
                 <div class="legendItem">
                     <div class="legendColor" style="background-color: #EE7E3C;"></div>
@@ -166,6 +166,16 @@
         <button id="startExperience" class="whiteBttn">Entrer</button>
     </div>
     
+    <div class="fullpage conceptPage conceptPageOne hidden">
+            <p>Enchanté(e) <span id="userName"></span>. <br> Vous partez en voyage pour une chasse<br> aux trésors un peu particulière.</p>
+            <p>Chaque relation est unique. <br>Elle est le résultat de deux individus<br> complexes et de trésors communs.</p>
+    </div>
+
+    <div class="fullpage conceptPage conceptPageTwo hidden">
+            <p>Parmi les trésors* que vous allez découvrir,<br> lesquels à vos yeux représentent votre relation avec <span class="partnerName"></span> ?</p>
+            <p>*Votre coffre est limité à six trésors</p>
+            <button id="startTutorial">Entrer</button>
+    </div>
 
     <script src="main.js"></script>
 </body>
