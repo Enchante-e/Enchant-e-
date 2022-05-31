@@ -38,6 +38,12 @@ export const addObject = (objectId) => {
     if (chosenObjectsId.length <= 4) {
         chosenObjectsId.push(objectId)
         console.log(objectId+" added", chosenObjectsId)
+
+        if(socketObj == null) {
+            socketObj = socket.getSocket()
+        }
+
+        socketObj.emit('partner-notification', "treasureAdded")
     } else {
         validateBttn.classList.remove("hidden")
     }
@@ -48,6 +54,12 @@ export const deleteObject = (objectId) => {
         if(object == objectId) {
             chosenObjectsId.splice(i, 1)
             console.log(objectId+" removed", chosenObjectsId)
+
+            if(socketObj == null) {
+                socketObj = socket.getSocket()
+            }
+
+            socketObj.emit('partner-notification', "treasureRemoved")
         }
     })
 }
@@ -126,7 +138,6 @@ const finished = () => {
     })
     validateBttn.classList.add("hidden")
     interfaceFinalScene[0].classList.remove("hidden")
-    socketObj = socket.getSocket()
     socketObj.emit('set-objects', chosenObjectsId)
 }
 

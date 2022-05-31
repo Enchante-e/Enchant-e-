@@ -11,6 +11,7 @@ let cameraVector = {
     l: 0
 };
 let move = false
+let inventoryOpen = false
 
 var center = {},
 app = new Application({
@@ -47,10 +48,7 @@ export const initCanvas = () => {
     
     const inventory = createInventory()
     app.stage.addChild(container);
-    // aube.initAube(app, container)
-    // aurore.initAurore(app, container)
-    jour.initJour(app, container, inventory)
-    // crépuscule.initCrépuscule(app, container)
+    crépuscule.initCrépuscule(app, container, inventory)
     finalScene.setStage(app)
 
     app.ticker.add((delta) => {
@@ -62,17 +60,36 @@ export const initCanvas = () => {
 }
 
 const createInventory = () => {
-    const img = Texture.from("img/Coffre.svg")
-    const coffre = new Sprite(img)
+    const imgCoffre = Texture.from("img/Coffre.svg")
+    const coffre = new Sprite(imgCoffre)
 
     coffre.x = 80;
     coffre.y =  app.view.height - 110;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
-    coffre.zIndex = 0;
+    coffre.zIndex = 5;
     coffre.interactive = true;
 
-    app.stage.addChild(coffre)
+    const imgCoffreBg = Texture.from("img/CoffreBg.svg")
+    const coffreBg = new Sprite(imgCoffreBg)
+
+    coffreBg.x = 0;
+    coffreBg.y = 10;
+    coffreBg.scale.set(0.2);
+    coffreBg.alpha = 0;
+    coffreBg.zIndex = 0;
+    
+    coffre.on("click", function (e) {
+        this.interactive = true;
+        inventoryOpen = !inventoryOpen
+        if(inventoryOpen) {
+            coffreBg.alpha = 0.8;
+        } else {
+            coffreBg.alpha = 0;
+        }
+    })
+    
+    app.stage.addChild(coffre, coffreBg)
     return coffre
 }
 

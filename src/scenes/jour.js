@@ -1,7 +1,7 @@
 import {Texture, Sprite} from 'pixi.js';
+import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
-import {Player} from 'tone'
 
 let cameraVector = {
     a: 0,
@@ -43,11 +43,6 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             object.goBack = false;
             object.l = Math.random() * 4;
             object.zIndex = 0;
-             
-            // object.on("click", function (e) {
-            //     this.interactive = true;
-            //     finalScene.addObject(object.id)
-            // })
 
             object
             .on('pointerdown', onDragStart)
@@ -68,6 +63,10 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                 if(checkCollision(this)) {
                     this.scale.set(0.05)
                     finalScene.addObject(object.id)
+                                        
+                    const url = "sound/Coffre.wav"
+                    const player = new Player(url).toDestination();
+                    player.autostart = true;
                 } else {
                     this.scale.set(OBJECTS[i].scale)
                     finalScene.deleteObject(object.id)

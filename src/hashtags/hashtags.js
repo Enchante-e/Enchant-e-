@@ -23,6 +23,11 @@ export const createNotification = (partnerName, type) => {
             p.innerHTML = partnerName + " vient d'ajouter un trésor"
             notifications.appendChild(p);
             break;
+        case "treasureRemoved":
+            var p = document.createElement('p')
+            p.innerHTML = partnerName + " vient d'enlever un trésor"
+            notifications.appendChild(p);
+            break;
         case "treasureTagged":
             alert(partnerName + " vient de tagger un trésor de [rayonannt]")
             break;
