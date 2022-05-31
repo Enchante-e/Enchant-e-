@@ -7,7 +7,7 @@ export const initConcept = () => {
     setTimeout(() => { 
         conceptOne[0].classList.add("hidden")
         conceptTwo[0].classList.remove("hidden")
-    }, 10000);
+    }, 100);
 }
 
 export const closeConcept = () => {

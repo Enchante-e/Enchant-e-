@@ -77,6 +77,9 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
+    const canvas = document.querySelectorAll('canvas')
+    canvas[0].style.background = "rgb(106,0,143)"
+    canvas[0].style.background = "linear-gradient(180deg, rgba(106,0,143,1) 0%, rgba(0,41,157,1) 100%)"
 
     document.getElementById("bulleBg").style.background = "#fff"
     document.getElementById("bulleName").style.color = "#fff"

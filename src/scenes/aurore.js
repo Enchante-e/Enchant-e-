@@ -14,6 +14,7 @@ export const initAurore = (globalApp, globalContainer) => {
 
     app = globalApp
     container = globalContainer
+    createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -56,7 +57,16 @@ export const initAurore = (globalApp, globalContainer) => {
         }
     }
 
+}
+
+export const playMusic = () => {
     const url = "sound/Aurore.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
+}
+
+const createEnvironment = () => {
+    const canvas = document.querySelectorAll('canvas')
+    canvas[0].style.background = "rgb(255,136,83)"
+    canvas[0].style.background = "linear-gradient(180deg, rgba(255,136,83,1) 0%, rgba(255,239,233,1) 100%)"
 }

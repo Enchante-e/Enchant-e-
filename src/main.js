@@ -5,6 +5,7 @@ import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
 import * as crépuscule from "./scenes/crépuscule"
+import * as aurore from "./scenes/aurore"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
@@ -63,7 +64,9 @@ joinBttn.addEventListener('click', () => {
     let code = codeInput.value.toUpperCase()
     if (code !== "") {
         socket.emit('join-room', code, myId)
-    } 
+    } else {
+        alert("Veuillez remplir le code")
+    }
 })
 
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
@@ -95,8 +98,10 @@ startExperience.addEventListener('click', (e) => {
         const name = myName
         userNameHTML.innerHTML = myName
         socket.emit('change-name', name, myId)
+        nameForm.closeName()
+    } else {
+        alert("Veuillez choisir un nom")
     }
-    nameForm.closeName()
 });
     
 // [EMIT] Change Name Input And emit
@@ -107,7 +112,8 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
-    crépuscule.playMusic()
+    // crépuscule.playMusic()
+    aurore.playMusic()
 });
 
 // [RECEIVED] Waiting for partner

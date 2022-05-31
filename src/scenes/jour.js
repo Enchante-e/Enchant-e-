@@ -14,6 +14,7 @@ export const initJour = (globalApp, globalContainer) => {
 
     app = globalApp
     container = globalContainer
+    createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -56,7 +57,16 @@ export const initJour = (globalApp, globalContainer) => {
         }
     }
 
+}
+
+export const playMusic = () => {
     const url = "sound/Jour.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
+}
+
+const createEnvironment = () => {
+    const canvas = document.querySelectorAll('canvas')
+    canvas[0].style.background = "rgb(155,194,255)"
+    canvas[0].style.background = "linear-gradient(180deg, rgba(155,194,255,1) 0%, rgba(232,241,255,1) 100%)"
 }

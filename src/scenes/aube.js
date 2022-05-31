@@ -14,6 +14,7 @@ export const initAube = (globalApp, globalContainer) => {
 
     app = globalApp
     container = globalContainer
+    createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -56,7 +57,16 @@ export const initAube = (globalApp, globalContainer) => {
         }
     }
     
+}
+
+export const playMusic = () => {
     const url = "sound/Aube.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
+}
+
+const createEnvironment = () => {
+    const canvas = document.querySelectorAll('canvas')
+    canvas[0].style.background = "rgb(182,142,155)"
+    canvas[0].style.background = "linear-gradient(180deg, rgba(182,142,155,1) 0%, rgba(223,206,255,1) 100%)"
 }

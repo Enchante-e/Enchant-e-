@@ -29,8 +29,6 @@ audio {
 
 canvas {
     display:block;
-    background: rgb(106,0,143);
-    background: linear-gradient(180deg, rgba(106,0,143,1) 0%, rgba(0,41,157,1) 100%);
 }
 
 input{

@@ -1,6 +1,9 @@
 import {Application,Container } from 'pixi.js';
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
+import * as aube from "../scenes/aube"
+import * as jour from "../scenes/jour"
+import * as aurore from "../scenes/aurore"
 import * as crépuscule from "../scenes/crépuscule"
 
 let cameraVector = {
@@ -8,8 +11,6 @@ let cameraVector = {
     l: 0
 };
 let move = false
-
-const OBJECTS = objectsData.objects
 
 var center = {},
 app = new Application({
@@ -45,7 +46,10 @@ export const initCanvas = () => {
     container.pivot.y = container.height / 8;
     
     app.stage.addChild(container);
-    crépuscule.initCrépuscule(app, container)
+    // aube.initAube(app, container)
+    // aurore.initAurore(app, container)
+    jour.initJour(app, container)
+    // crépuscule.initCrépuscule(app, container)
     finalScene.setStage(app)
 
     app.ticker.add((delta) => {
