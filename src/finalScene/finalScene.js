@@ -37,7 +37,7 @@ export const deleteCursor = (cursor) => {
 export const addObject = (objectId) => {
     if (chosenObjectsId.length <= 4) {
         chosenObjectsId.push(objectId)
-        console.log(objectId+" added")
+        console.log(objectId+" added", chosenObjectsId)
     } else {
         validateBttn.classList.remove("hidden")
     }
@@ -45,9 +45,9 @@ export const addObject = (objectId) => {
 
 export const deleteObject = (objectId) => {
     chosenObjectsId.map((object, i) => {
-        if(object.id == objectId) {
-            users.splice(i, 1)
-            console.log(objectId+" removed")
+        if(object == objectId) {
+            chosenObjectsId.splice(i, 1)
+            console.log(objectId+" removed", chosenObjectsId)
         }
     })
 }

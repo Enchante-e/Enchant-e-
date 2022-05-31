@@ -1,4 +1,4 @@
-import {Application,Container } from 'pixi.js';
+import {Application,Container, Texture, Sprite } from 'pixi.js';
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as aube from "../scenes/aube"
@@ -45,10 +45,11 @@ export const initCanvas = () => {
     container.pivot.x = container.width / 8;
     container.pivot.y = container.height / 8;
     
+    const inventory = createInventory()
     app.stage.addChild(container);
     // aube.initAube(app, container)
     // aurore.initAurore(app, container)
-    jour.initJour(app, container)
+    jour.initJour(app, container, inventory)
     // crépuscule.initCrépuscule(app, container)
     finalScene.setStage(app)
 
@@ -57,6 +58,22 @@ export const initCanvas = () => {
             object.update();
         } 
     });
+
+}
+
+const createInventory = () => {
+    const img = Texture.from("img/Coffre.svg")
+    const coffre = new Sprite(img)
+
+    coffre.x = 80;
+    coffre.y =  app.view.height - 110;
+    coffre.scale.set(0.4);
+    coffre.anchor.set(0.5)
+    coffre.zIndex = 0;
+    coffre.interactive = true;
+
+    app.stage.addChild(coffre)
+    return coffre
 }
 
 export const activeMovement = () => {
