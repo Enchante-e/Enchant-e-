@@ -48,7 +48,7 @@ export const initCanvas = () => {
     
     const inventory = createInventory()
     app.stage.addChild(container);
-    crépuscule.initCrépuscule(app, container, inventory)
+    jour.initJour(app, container, inventory)
     finalScene.setStage(app)
 
     app.ticker.add((delta) => {
