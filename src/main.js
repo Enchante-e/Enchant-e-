@@ -61,7 +61,6 @@ roomBttn.addEventListener('click', () => {
 
 // [EMIT] Join room with code
 joinBttn.addEventListener('click', () => {
-    document.getElementById("ambientPlayer").play()
     let code = codeInput.value.toUpperCase()
     if (code !== "") {
         socket.emit('join-room', code, myId)
@@ -145,6 +144,7 @@ socket.on('canvas-create', (memberId) => {
 // [RECEIVED] Create cursor of partner
 socket.on('cursor-create', () => {
     generateCursor()
+    hashtags.closeHashtag()
     finalSceneStarted = true
 });
 
@@ -165,7 +165,7 @@ socket.on('partner-objects', function(partnerObjects) {
 
 // [RECEIVED] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
-   console.log(id + " " + name + " a été déconnecté ")
+   alert(id + " " + name + " a été déconnecté ")
 
     let userName = document.getElementById(id + "name")
     userName ? userName.remove() : null

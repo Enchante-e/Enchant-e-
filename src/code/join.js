@@ -5,6 +5,7 @@ let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
    initJoin()
+   document.getElementById("ambientPlayer").play()
    homepage.closeHome()
 })
 

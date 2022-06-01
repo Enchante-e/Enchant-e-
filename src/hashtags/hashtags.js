@@ -37,7 +37,6 @@ export const createNotification = (partnerName, type) => {
 export const closeHashtag = () => {
     notifications.classList.add('hidden')
     clearInterval(publishHashtag)
-    
 }
 
 

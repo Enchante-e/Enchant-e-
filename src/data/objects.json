@@ -61,6 +61,16 @@
           "scale": 0.25
         },
         {
+          "id": 6,
+          "name": "test",
+          "src": "Seau.png",
+          "sound": "background.mp3",
+          "timeOfDay": "Jour",
+          "posX": 0,
+          "posY": 0,
+          "scale": 0.25
+        },
+        {
           "id": 7,
           "name": "Canapé",
           "src": "Canapé.png",

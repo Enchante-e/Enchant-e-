@@ -63,9 +63,9 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                 this.data = null;
 
                 if(checkCollision(this)) {
-                    addToSlot(this)                    
+                    addToSlot(this, OBJECTS[i].name)                    
                 } else {
-                    finalScene.deleteObject(object.id)
+                    finalScene.deleteObject(object.id, OBJECTS[i].name)
                     clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
@@ -145,13 +145,13 @@ const checkCollision = (object) => {
            objectBox.y < inventoryBox.y + inventoryBox.height;
 }
 
-const addToSlot = (object) => {
+const addToSlot = (object, objname) => {
     let slotFound = false
 
     INVENTORY_SLOTS.map((slot) => {
         if (slotFound === false) {
             if (slot.object == null) {
-                finalScene.addObject(object.id)
+                finalScene.addObject(object.id, objname)
                 slot.object = object
                 
                 object.x = slot.x;
