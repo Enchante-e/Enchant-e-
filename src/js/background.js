@@ -83,7 +83,7 @@ const createInventory = () => {
         this.interactive = true;
         inventoryOpen = !inventoryOpen
         if(inventoryOpen) {
-            coffreBg.alpha = 0.8;
+            coffreBg.alpha = 1;
         } else {
             coffreBg.alpha = 0;
         }

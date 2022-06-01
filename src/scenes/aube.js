@@ -8,6 +8,8 @@ let cameraVector = {
     l: 0
 };
 const OBJECTS = objectsData.objects
+const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
+let inventoryOpen = false
 let app, container, inventory, inventoryBox
 
 export const initAube = (globalApp, globalContainer, globalInventory) => {
@@ -61,15 +63,12 @@ export const initAube = (globalApp, globalContainer, globalInventory) => {
                 this.data = null;
 
                 if(checkCollision(this)) {
-                    this.scale.set(0.05)
-                    finalScene.addObject(object.id)
-                                        
-                    const url = "sound/Coffre.wav"
-                    const player = new Player(url).toDestination();
-                    player.autostart = true;
+                    addToSlot(this)                    
                 } else {
-                    this.scale.set(OBJECTS[i].scale)
                     finalScene.deleteObject(object.id)
+                    clearSlot(this)
+                    this.tint = 0xffffff;
+                    this.scale.set(OBJECTS[i].scale)
                 }
             }
 
@@ -80,7 +79,7 @@ export const initAube = (globalApp, globalContainer, globalInventory) => {
                     this.y = newPosition.y;
                 }
             }
-    
+
             object.update = function () {
                 if (this.goBack) {
                     this.x = lerp(this.x, this.initialPos.x, 0.5);
@@ -95,8 +94,35 @@ export const initAube = (globalApp, globalContainer, globalInventory) => {
             container.addChild(object);
         }
     }
-    
+
+    app.ticker.add((delta) => {
+        for (const object of container.children) {
+            object.update();
+        }
+    });    
+
+    inventory.on("click", function (e) {
+        this.interactive = true;
+        inventoryOpen = !inventoryOpen
+        if(inventoryOpen) {
+            INVENTORY_SLOTS.map((slot) => {
+                if (slot.object !== null) {
+                    slot.object.alpha = 1
+                    slot.object.scale.set(0.13)
+                }
+            })
+        } else {
+            INVENTORY_SLOTS.map((slot) => {
+                if (slot.object !== null) {
+                    slot.object.alpha = 0
+                    slot.object.scale.set(0)
+                }
+            })
+        }
+    })
+
 }
+
 
 export const playMusic = () => {
     const url = "sound/Aube.wav"
@@ -106,8 +132,8 @@ export const playMusic = () => {
 
 const createEnvironment = () => {
     const canvas = document.querySelectorAll('canvas')
-    canvas[0].style.background = "rgb(182,142,155)"
-    canvas[0].style.background = "linear-gradient(180deg, rgba(182,142,155,1) 0%, rgba(223,206,255,1) 100%)"
+    canvas[0].style.background = "rgb(155,194,255)"
+    canvas[0].style.background = "linear-gradient(180deg, rgba(155,194,255,1) 0%, rgba(232,241,255,1) 100%)"
 }
 
 const checkCollision = (object) => {
@@ -117,4 +143,47 @@ const checkCollision = (object) => {
            objectBox.x < inventoryBox.x + inventoryBox.width &&
            objectBox.y + objectBox.height > inventoryBox.y &&
            objectBox.y < inventoryBox.y + inventoryBox.height;
+}
+
+const addToSlot = (object) => {
+    let slotFound = false
+
+    INVENTORY_SLOTS.map((slot) => {
+        if (slotFound === false) {
+            if (slot.object == null) {
+                finalScene.addObject(object.id)
+                slot.object = object
+                
+                object.x = slot.x;
+                object.y = slot.y;
+                object.scale.set(0.13)
+                object.tint = 0x1A1D5C;
+                
+                if(inventoryOpen === false) {
+                    object.alpha = 0
+                    object.scale.set(0)
+                }                
+
+                const url = "sound/Coffre.wav"
+                const player = new Player(url).toDestination();
+                player.autostart = true;
+
+                slotFound = true
+            }
+        }
+    })
+
+    if (slotFound === false) {
+        alert("coffre full")
+        object.x = app.view.width / 2;
+        object.y = app.view.height / 2;
+    }
+}
+
+const clearSlot = (object) => {
+    INVENTORY_SLOTS.map((slot) => {
+        if (slot.object == object) {
+            slot.object = null        
+        }
+    })
 }
