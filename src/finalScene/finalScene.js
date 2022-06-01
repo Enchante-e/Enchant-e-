@@ -1,13 +1,17 @@
-import objectsData from "../data/objects.json"
-import * as socket from "../main"
 import {Texture, Sprite, Graphics} from 'pixi.js'
 import {Player} from 'tone'
+import objectsData from "../data/objects.json"
+import * as socket from "../main"
+import * as concept from "../conceptPages/concept"
+
 
 const OBJECTS = objectsData.objects
 let app, socketObj, cursor = null
 let chosenObjectsId = []
+let commonObjectsId = []
 let partnerObjectsId = null
 let validateBttn = document.getElementById("finishObjectsChoice")
+let finalSceneBttn = document.getElementById("startFinalScene")
 let interfaceFinalScene = [...document.getElementsByClassName("finalScene")]
 
 export const setStage = (globalApp) => {
@@ -40,7 +44,6 @@ export const deleteCursor = (cursor) => {
 export const addObject = (objectId, objectName) => {
     if (chosenObjectsId.length <= 5) {
         chosenObjectsId.push(objectId)
-        console.log(objectId+" added", chosenObjectsId, objectName)
 
         if(socketObj == null) {
             socketObj = socket.getSocket()
@@ -54,7 +57,6 @@ export const deleteObject = (objectId, objectName) => {
     chosenObjectsId.map((object, i) => {
         if(object == objectId) {
             chosenObjectsId.splice(i, 1)
-            console.log(objectId+" removed", chosenObjectsId, objectName)
 
             if(socketObj == null) {
                 socketObj = socket.getSocket()
@@ -68,49 +70,49 @@ export const deleteObject = (objectId, objectName) => {
 
 export const partnerObjects = (objects) => {
     partnerObjectsId = objects
-
-    partnerObjectsId.map((object) => {
-        if((OBJECTS[object])) {
-            const img = Texture.from("img/" + OBJECTS[object].src);
-            const objectImg = new Sprite(img) ;
-            objectImg.id = OBJECTS[object].id;
-
-            const SCALE = OBJECTS[object].scale
-            objectImg.scale.set(SCALE);
-            objectImg.interactive = true;
-
-            objectImg.tint = 0x9B7593;
-            objectImg.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
-            objectImg.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
-
-            objectImg.l = Math.random() * 4;
-            objectImg.zIndex = 5;
-
-            // objectImg.on("click", function () {
-            //     const url = "sound/" + OBJECTS[object].sound 
-            //     const player = new Player(url).toDestination();
-            //     player.autostart = true;
-            // })
-
-            app.stage.addChild(objectImg) 
-        } else {
-            console.log(' nexiste po')
-        }
-    })
 }
 
 validateBttn.addEventListener("click", () => {
+    console.log(chosenObjectsId)
     if (chosenObjectsId.length == 6) {
-        finished() 
+        finishedChoices() 
     } else {
         alert("You didn't chose enough objects")   
     }
 })
 
+finalSceneBttn.addEventListener("click", () => {
+    finalSceneInit()
+    concept.closePhoneConcept()
+})
 
-const finished = () => {
+const finishedChoices = () => {
+    concept.initPhoneConcept()
     app.stage.removeChild(app.stage.children[0])
-    chosenObjectsId.map((object, i) => {
+    validateBttn.classList.add("hidden")
+    socketObj.emit('set-objects', chosenObjectsId)
+}
+
+export const finalSceneInit = () => {
+    checkCommonObjects()
+    createObjectsSprites(chosenObjectsId, "0xEE7E3C")
+    createObjectsSprites(partnerObjectsId, "0x9B7593")
+    createObjectsSprites(commonObjectsId, "0xC57A68")
+    interfaceFinalScene[0].classList.remove("hidden")
+}
+
+const checkCommonObjects = () => {
+    chosenObjectsId.map(i => {
+        if (partnerObjectsId.includes(i)) {
+            commonObjectsId.push(i)
+            // partnerObjectsId.splice(i, 1)
+            // chosenObjectsId.splice(i, 1)
+        }
+    })
+}
+
+const createObjectsSprites = (objectsArray, objectsColor) => {
+    objectsArray.map((object) => {
         if((OBJECTS[object])) {
            
             const img = Texture.from("img/" + OBJECTS[object].src);
@@ -121,9 +123,9 @@ const finished = () => {
             objectImg.scale.set(SCALE);
             objectImg.interactive = true;
 
-            objectImg.tint = 0xEE7E3C;
-            objectImg.x =OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
-            objectImg.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
+            objectImg.tint = objectsColor;
+            objectImg.x = OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
+            objectImg.y = OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
 
             objectImg.l = Math.random() * 4;
             objectImg.zIndex = 5;
@@ -139,10 +141,6 @@ const finished = () => {
             console.log(' nexiste po')
         }
     })
-    validateBttn.classList.add("hidden")
-    interfaceFinalScene[0].classList.remove("hidden")
-    socketObj.emit('set-objects', chosenObjectsId)
 }
-
 
 

@@ -120,6 +120,11 @@ socket.on('waiting-for-partner', () => {
     loading.initLoad(myRoom)
 });
 
+// [RECEIVED] Waiting for partner
+socket.on('close-loading', () => {
+    loading.closeLoad()
+});
+
 // [RECEIVED] Name changed notification
 socket.on('name-notification', (name, id) => {
         partnerName = name
@@ -159,7 +164,7 @@ socket.on('partner-notification', function(type) {
     hashtags.createNotification(partnerName, type)
 })
 
-socket.on('partner-objects', function(partnerObjects) {
+socket.on('partner-objects', function(partnerObjects, hasFinished) {
     finalScene.partnerObjects(partnerObjects)
 })
 
