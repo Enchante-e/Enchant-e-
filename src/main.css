@@ -301,6 +301,7 @@ button {
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
+    user-select: none;
 }
 
 .pianoKey.black {
