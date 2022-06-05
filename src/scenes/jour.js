@@ -55,6 +55,11 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+
+                
+                const url = "sound/" + OBJECTS[i].sound
+                const player = new Player(url).toDestination();
+                player.autostart = true;
             }
 
             function onDragEnd() {
