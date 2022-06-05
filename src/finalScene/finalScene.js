@@ -3,6 +3,7 @@ import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as socket from "../main"
 import * as concept from "../conceptPages/concept"
+import * as endPage from './endPage'
 
 
 const OBJECTS = objectsData.objects
@@ -10,9 +11,12 @@ let app, socketObj, cursor = null
 let chosenObjectsId = []
 let commonObjectsId = []
 let partnerObjectsId = null
+
 let validateBttn = document.getElementById("finishObjectsChoice")
 let finalSceneBttn = document.getElementById("startFinalScene")
+let finishExperienceBttn = document.getElementById("finishExperienceBttn")
 let interfaceFinalScene = [...document.getElementsByClassName("finalScene")]
+
 
 export const setStage = (globalApp) => {
     app = globalApp 
@@ -39,6 +43,7 @@ export const updateCursor = (cursor, coordX, coordY) => {
 
 export const deleteCursor = (cursor) => {
     app.stage.removeChild(cursor)
+    document.getElementById("tag").remove()
 }
 
 export const addObject = (objectId, objectName) => {
@@ -73,7 +78,6 @@ export const partnerObjects = (objects) => {
 }
 
 validateBttn.addEventListener("click", () => {
-    console.log(chosenObjectsId)
     if (chosenObjectsId.length == 6) {
         finishedChoices() 
     } else {
@@ -88,16 +92,18 @@ finalSceneBttn.addEventListener("click", () => {
 
 const finishedChoices = () => {
     concept.initPhoneConcept()
-    app.stage.removeChild(app.stage.children[0])
+
+    while(app.stage.children[0]) { app.stage.removeChild(app.stage.children[0]); }
+
     validateBttn.classList.add("hidden")
     socketObj.emit('set-objects', chosenObjectsId)
 }
 
 export const finalSceneInit = () => {
     checkCommonObjects()
-    createObjectsSprites(chosenObjectsId, "0xEE7E3C")
-    createObjectsSprites(partnerObjectsId, "0x9B7593")
-    createObjectsSprites(commonObjectsId, "0xC57A68")
+    createObjectsSprites(chosenObjectsId, "0x8981c6")
+    createObjectsSprites(partnerObjectsId, "0x464280")
+    createObjectsSprites(commonObjectsId, "0xe1d7ff")
     interfaceFinalScene[0].classList.remove("hidden")
 }
 
@@ -105,13 +111,15 @@ const checkCommonObjects = () => {
     chosenObjectsId.map(i => {
         if (partnerObjectsId.includes(i)) {
             commonObjectsId.push(i)
-            // partnerObjectsId.splice(i, 1)
-            // chosenObjectsId.splice(i, 1)
         }
     })
+
+    chosenObjectsId = chosenObjectsId.filter( ( el ) => !commonObjectsId.includes( el ) )
+    partnerObjectsId = partnerObjectsId.filter( ( el ) => !commonObjectsId.includes( el ) )
 }
 
 const createObjectsSprites = (objectsArray, objectsColor) => {
+
     objectsArray.map((object) => {
         if((OBJECTS[object])) {
            
@@ -121,6 +129,7 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
             
             const SCALE = OBJECTS[object].scale
             objectImg.scale.set(SCALE);
+            objectImg.anchor.set(0.5)
             objectImg.interactive = true;
 
             objectImg.tint = objectsColor;
@@ -136,11 +145,40 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
             //     player.autostart = true;
             // })
 
+            objectImg
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+
+            function onDragStart(event) {
+                this.data = event.data;
+                this.dragging = true;
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+                }
+            }
+
             app.stage.addChild(objectImg) 
         } else {
-            console.log(' nexiste po')
+            console.log('L objet nexiste po')
         }
     })
 }
 
+
+finishExperienceBttn.addEventListener("click", () => {
+    endPage.initEndPage()
+})
 

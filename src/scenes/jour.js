@@ -7,7 +7,13 @@ let cameraVector = {
     a: 0,
     l: 0
 };
+
 const OBJECTS = objectsData.objects
+
+const MOODS = ["heureux", "triste", "mémorable", "douloureux", "joyeux", "unique", "nostalgique", "magique", "inoubliable", "effrayant", "drôle", "humiliant", "stressant", "relaxant", "amusant"]
+let moodsDiv = [...document.getElementsByClassName('moods')]
+let moodsList = document.getElementById('moodsList')
+
 const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
 let inventoryOpen = false
 let app, container, inventory, inventoryBox
@@ -121,6 +127,8 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
         }
     })
 
+    // initMoods()
+
 }
 
 
@@ -185,5 +193,13 @@ const clearSlot = (object) => {
         if (slot.object == object) {
             slot.object = null        
         }
+    })
+}
+
+const initMoods = () => {
+    MOODS.map((mood) => {
+        let p = document.createElement('p')
+        p.innerHTML = mood
+        moodsList.appendChild(p);
     })
 }

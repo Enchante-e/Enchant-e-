@@ -9,6 +9,7 @@ import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
+import * as manageExperience from "./manageExperience/manageExperience"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -39,7 +40,7 @@ let nameInput = document.getElementById("nameInput")
 let partnerDiv = document.getElementById("bulleAmi")
 let partnerSymbol = document.getElementById("bulleSymbol")
 let partnerNameHTML = [...document.getElementsByClassName("partnerName")]
-let userNameHTML = document.getElementById("userName")
+let userNameHTML = [...document.getElementsByClassName("userName")]
 
 let logo = [...document.getElementsByClassName('logo')]
 
@@ -72,7 +73,6 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
-    roomBttn.classList.add("hidden")
     
     if (userStatus == "creator") {
         pianoDiv[0].classList.remove("hidden")
@@ -96,7 +96,9 @@ startExperience.addEventListener('click', (e) => {
 
     if (myName !== "") {
         const name = myName
-        userNameHTML.innerHTML = myName
+        userNameHTML.map((item) => {
+            item.innerHTML = myName
+        })
         socket.emit('change-name', name, myId)
         nameForm.closeName()
     } else {
@@ -156,8 +158,10 @@ socket.on('cursor-create', () => {
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
-    nameTag.style.top =  coordY + "px";
-    nameTag.style.left =  coordX + "px";
+    if (nameTag) {
+        nameTag.style.top =  coordY + "px";
+        nameTag.style.left =  coordX + "px";
+    }
 });
 
 socket.on('partner-notification', function(type) {
@@ -194,8 +198,8 @@ const generateCursor = () => {
 
     nameTag = document.createElement('p')
     nameTag.innerHTML = partnerName
-    nameTag.id = partnerId
-    nameTag.classList.add("tag")
+    nameTag.id = "tag"
+    // nameTag.classList.add("tag")
     document.body.appendChild(nameTag)
 }
 
@@ -215,5 +219,9 @@ export const getSocket = () => {
     return socket
 }
 
+logo[0].addEventListener("click", () => {
+    manageExperience.closeExperience()
+    manageExperience.startExperience()
+})
 
 

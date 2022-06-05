@@ -57,6 +57,11 @@ input{
     width: 200px;
 }
 
+.interface .logo.end{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .interface .musicBttn{
     position: absolute;
     bottom: 35px;
@@ -84,7 +89,7 @@ input{
     margin: 25px auto;
 }
 
-.tag {
+#tag {
     position: absolute;
     top: 0;
     left: 0;
@@ -157,6 +162,11 @@ input{
     color-stop(0.60,  rgba(0,0,0,1)),
     color-stop(1.10,  rgba(0,0,0,0)));
     color: #ffffff;
+}
+
+.moods {
+    position: absolute;
+    z-index: 2;
 }
 
 #notifications p, #moodsList p{
@@ -424,4 +434,8 @@ button {
     justify-content: center;
     align-items: center;
     margin: 0 25px;
+}
+
+.conceptPage.endingPage p {
+    color: #ffffff;
 }
