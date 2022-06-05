@@ -1,4 +1,3 @@
-
 let logo = [...document.getElementsByClassName("logo")]
 let homeDiv = [...document.getElementsByClassName("homepage")]
 let musicBttn = [...document.getElementsByClassName("musicBttn")]
@@ -23,4 +22,6 @@ export const closeHome = () => {
     logo[0].classList.remove("hidden")
     // musicBttn[0].classList.remove("whiteTint")
 }
+
+
 
