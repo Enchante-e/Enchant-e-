@@ -26,6 +26,8 @@ play = false,
 container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
+const SCENES = [aube, aurore, jour, crépuscule]
+
 export const initCanvas = () => {
 
     document.body.appendChild(app.view);
@@ -48,9 +50,29 @@ export const initCanvas = () => {
     
     const inventory = createInventory()
     app.stage.addChild(container);
-    jour.initJour(app, container, inventory)
-    finalScene.setStage(app)
+    
+    SCENES.map((scene) => {
+        scene.init(app, container, inventory)
+    })
+    SCENES[0].playMusic()
 
+    document.body.style.height = "400vh"
+    document.body.style.overflowY = "scroll"
+    document.querySelector("canvas").style.position ="fixed"
+    document.querySelector("canvas").style.top = 0
+    document.querySelector("canvas").style.left = 0
+    // document.querySelector("canvas").style.zIndex 
+
+    document.addEventListener('wheel', (e) => {
+        console.log(e.pageY)
+        const object = container.getChildByName(objectsData.objects[0].name)
+        container.pivot.x = container.width / 12;
+        container.pivot.y = container.height / 12;
+        container.scale.set(container.scale.x * 1.05, container.scale.y * 1.05)
+
+    });
+    
+    finalScene.setStage(app)
     app.ticker.add((delta) => {
         for (const object of container.children) {
             object.update();

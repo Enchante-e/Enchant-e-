@@ -12,7 +12,7 @@ const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150
 let inventoryOpen = false
 let app, container, inventory, inventoryBox
 
-export const initAurore = (globalApp, globalContainer, globalInventory) => {
+export const init = (globalApp, globalContainer, globalInventory) => {
 
     app = globalApp
     container = globalContainer
@@ -27,6 +27,7 @@ export const initAurore = (globalApp, globalContainer, globalInventory) => {
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img) ;
             object.id = OBJECTS[i].id;
+            object.name = OBJECTS[i].name
     
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
