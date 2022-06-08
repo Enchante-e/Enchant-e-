@@ -1,4 +1,4 @@
-import {Texture, Sprite} from 'pixi.js';
+import {Texture, Sprite, Graphics} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
@@ -136,9 +136,33 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    const canvas = document.querySelectorAll('canvas')
-    canvas[0].style.background = "rgb(106,0,143)"
-    canvas[0].style.background = "linear-gradient(180deg, rgba(106,0,143,1) 0%, rgba(0,41,157,1) 100%)"
+    let leftCircleBg = new Graphics();
+    leftCircleBg.beginFill(0x6A008F)
+    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
+    leftCircleBg.endFill();
+    leftCircleBg.interactive = true
+    leftCircleBg.zIndex = 5
+    leftCircleBg.name = "Fond gauche Crépuscule"
+    
+    let rightCircleBg = new Graphics();
+    rightCircleBg.beginFill(0x011757);
+    rightCircleBg.drawCircle(app.view.width - 100, app.view.height / 2, 1000);
+    rightCircleBg.endFill();
+    rightCircleBg.interactive = true
+    rightCircleBg.zIndex = 5
+    rightCircleBg.name = "Fond droite Crépuscule"
+
+    app.stage.addChild(leftCircleBg, rightCircleBg);
+
+    document.addEventListener('wheel', (e) => {
+        if (e.deltaY >= 0) {
+            leftCircleBg.position.x = leftCircleBg.position.x - 40
+            rightCircleBg.position.x = rightCircleBg.position.x + 40
+        } else if (e.deltaY <= 0 && leftCircleBg.position.x <= 200 && rightCircleBg.position.x <= app.view.width) { 
+            leftCircleBg.position.x = leftCircleBg.position.x + 40
+            rightCircleBg.position.x = rightCircleBg.position.x - 40
+        }
+    });
 
     document.getElementById("bulleBg").style.background = "#fff"
     document.getElementById("bulleName").style.color = "#fff"

@@ -1,4 +1,4 @@
-import {Texture, Sprite} from 'pixi.js';
+import {Texture, Sprite, Graphics} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
@@ -137,9 +137,23 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    const canvas = document.querySelectorAll('canvas')
-    canvas[0].style.background = "rgb(155,194,255)"
-    canvas[0].style.background = "linear-gradient(180deg, rgba(155,194,255,1) 0%, rgba(232,241,255,1) 100%)"
+    let leftCircleBg = new Graphics();
+    leftCircleBg.beginFill(0xDDEAFF)
+    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
+    leftCircleBg.endFill();
+    leftCircleBg.interactive = true
+    leftCircleBg.zIndex = 5
+    leftCircleBg.name = "Fond gauche Jour"
+    
+    let rightCircleBg = new Graphics();
+    rightCircleBg.beginFill(0xE8F1FF);
+    rightCircleBg.drawCircle(app.view.width - 100, app.view.height / 2, 1000);
+    rightCircleBg.endFill();
+    rightCircleBg.interactive = true
+    rightCircleBg.zIndex = 5
+    rightCircleBg.name = "Fond droite Jour"
+
+    app.stage.addChild(leftCircleBg, rightCircleBg);
 }
 
 const checkCollision = (object) => {

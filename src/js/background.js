@@ -47,6 +47,7 @@ export const initCanvas = () => {
     container.y = app.screen.height / 8;
     container.pivot.x = container.width / 8;
     container.pivot.y = container.height / 8;
+    container.zIndex = 6
     
     const inventory = createInventory()
     app.stage.addChild(container);
@@ -56,20 +57,12 @@ export const initCanvas = () => {
     })
     SCENES[0].playMusic()
 
-    document.body.style.height = "400vh"
-    document.body.style.overflowY = "scroll"
-    document.querySelector("canvas").style.position ="fixed"
-    document.querySelector("canvas").style.top = 0
-    document.querySelector("canvas").style.left = 0
-    // document.querySelector("canvas").style.zIndex 
-
     document.addEventListener('wheel', (e) => {
-        console.log(e.pageY)
-        const object = container.getChildByName(objectsData.objects[0].name)
-        container.pivot.x = container.width / 12;
-        container.pivot.y = container.height / 12;
-        container.scale.set(container.scale.x * 1.05, container.scale.y * 1.05)
-
+        // console.log(e.pageY)
+        // const object = container.getChildByName(objectsData.objects[0].name)
+        // container.pivot.x = container.width / 12;
+        // container.pivot.y = container.height / 12;
+        // container.scale.set(container.scale.x * 1.05, container.scale.y * 1.05)
     });
     
     finalScene.setStage(app)
