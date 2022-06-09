@@ -1,5 +1,6 @@
 import {Application,Container, Texture, Sprite } from 'pixi.js';
 import objectsData from "../data/objects.json"
+import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
 import * as aube from "../scenes/aube"
 import * as jour from "../scenes/jour"
@@ -11,7 +12,6 @@ let cameraVector = {
     l: 0
 };
 let move = false
-let inventoryOpen = false
 
 var center = {},
 app = new Application({
@@ -27,6 +27,8 @@ container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
 const SCENES = [aube, aurore, jour, crépuscule]
+const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
+let inventoryOpen = false
 
 export const initCanvas = () => {
 
@@ -47,7 +49,8 @@ export const initCanvas = () => {
     container.y = app.screen.height / 8;
     container.pivot.x = container.width / 8;
     container.pivot.y = container.height / 8;
-    container.zIndex = 6
+    container.sortableChildren = true
+    app.stage.sortableChildren = true
     
     const inventory = createInventory()
     app.stage.addChild(container);
@@ -56,14 +59,6 @@ export const initCanvas = () => {
         scene.init(app, container, inventory)
     })
     SCENES[0].playMusic()
-
-    document.addEventListener('wheel', (e) => {
-        // console.log(e.pageY)
-        // const object = container.getChildByName(objectsData.objects[0].name)
-        // container.pivot.x = container.width / 12;
-        // container.pivot.y = container.height / 12;
-        // container.scale.set(container.scale.x * 1.05, container.scale.y * 1.05)
-    });
     
     finalScene.setStage(app)
     app.ticker.add((delta) => {
@@ -82,30 +77,87 @@ const createInventory = () => {
     coffre.y =  app.view.height - 110;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
-    coffre.zIndex = 5;
+    coffre.zIndex = 11;
     coffre.interactive = true;
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
 
     coffreBg.x = 0;
-    coffreBg.y = 10;
-    coffreBg.scale.set(0.2);
+    coffreBg.y = 125;
+    coffreBg.scale.set(0.15);
     coffreBg.alpha = 0;
-    coffreBg.zIndex = 0;
+    coffreBg.zIndex = 10;
     
     coffre.on("click", function (e) {
         this.interactive = true;
         inventoryOpen = !inventoryOpen
+
         if(inventoryOpen) {
             coffreBg.alpha = 1;
+            INVENTORY_SLOTS.map((slot) => {
+                if (slot.object !== null) {
+                    slot.object.alpha = 1
+                    slot.object.scale.set(0.13)
+                }
+            })
         } else {
             coffreBg.alpha = 0;
+            INVENTORY_SLOTS.map((slot) => {
+                if (slot.object !== null) {
+                    slot.object.alpha = 0
+                    slot.object.scale.set(0)
+                }
+            })
         }
     })
     
     app.stage.addChild(coffre, coffreBg)
     return coffre
+}
+
+export const addToSlot = (object) => {
+    let slotFound = false
+
+    INVENTORY_SLOTS.map((slot) => {
+        if (slotFound === false) {
+            if (slot.object == null) {
+                finalScene.addObject(object.id)
+                slot.object = object
+                
+                object.x = slot.x;
+                object.y = slot.y;
+                object.scale.set(0.13)
+                object.zIndex = 15
+                object.tint = 0x1A1D5C;
+                
+                if(inventoryOpen === false) {
+                    object.alpha = 0
+                    object.scale.set(0)
+                }                
+
+                const url = "sound/Coffre.wav"
+                const player = new Player(url).toDestination();
+                player.autostart = true;
+
+                slotFound = true
+            }
+        }
+    })
+
+    if (slotFound === false) {
+        alert("coffre full")
+        object.x = app.view.width / 2;
+        object.y = app.view.height / 2;
+    }
+}
+
+export const clearSlot = (object) => {
+    INVENTORY_SLOTS.map((slot) => {
+        if (slot.object == object) {
+            slot.object = null        
+        }
+    })
 }
 
 export const activeMovement = () => {
