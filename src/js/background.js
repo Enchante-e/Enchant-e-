@@ -143,7 +143,7 @@ const createInventory = () => {
 
     INVENTORY_SLOTS.map((slot) => {
         const anecdoteBttn = new Graphics();
-        anecdoteBttn.beginFill(0xd51a12);
+        anecdoteBttn.beginFill(0xFFFFFF);
         anecdoteBttn.drawCircle(slot.x + 150, slot.y + 150, 12);
         anecdoteBttn.endFill();
         anecdoteBttn.zIndex = 16
@@ -233,16 +233,26 @@ annecdoteAdd.addEventListener("click", () => {
     if (anecdoteTxt !== "") {
         INVENTORY_SLOTS.map((slot) => {
             if (slot.object !== null && slot.object.name == anecdotesDiv.className) {
-                if(slot.anecdote == null) {  
-                    let text = new Text(anecdoteTxt,{fontFamily : 'Helvetica, Arial', fontSize: 18, fill : 0xd51a12, align : 'center'});
+                if(slot.anecdote == null) {
+                    const textContainer = new Container();
+                    
+                    const text = new Text(anecdoteTxt,{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
                     text.x = slot.x + 200
                     text.y = slot.y + 100
 
-                    slot.anecdote = text
-
-                    app.stage.addChild(text)
+                    const textBg = Sprite.from(Texture.WHITE);
+                    textBg.width = text.width + 10;
+                    textBg.height = text.height + 10;
+                    textBg.x = slot.x + 195
+                    textBg.y = slot.y + 95
+                    
+                    textContainer.addChild(textBg, text)
+                    app.stage.addChild(textContainer)
+                    slot.anecdote = textContainer
                 } else {
-                    slot.anecdote.text = anecdoteTxt
+                    slot.anecdote.children[1].text = anecdoteTxt
+                    slot.anecdote.children[0].width = slot.anecdote.children[1].width + 10
+                    slot.anecdote.children[0].height = slot.anecdote.children[1].height + 10
                 }
             } 
         })

@@ -21,9 +21,8 @@ export const setStage = (globalApp) => {
 
 export const createCursor = () => {
     cursor  = new Graphics();
-    cursor.beginFill(0xFFFFFF);
-    cursor.drawCircle(app.view.width / 2, app.view.height / 2, 8);
-    cursor.endFill();
+    cursor.lineStyle(5, 0x1A1D5C);
+    cursor.drawCircle(app.view.width / 2, app.view.height / 2, 18);
     cursor.zIndex = 5
     
     app.stage.addChild(cursor);
