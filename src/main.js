@@ -113,7 +113,6 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
-    jour.playMusic()
 });
 
 // [RECEIVED] Waiting for partner
