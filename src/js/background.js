@@ -30,6 +30,7 @@ const SCENES = [aube, aurore, jour, crépuscule]
 const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
 let inventoryOpen = false
 
+let anecdotesDiv = document.getElementById('anecdotes')
 let annecdoteInput = document.getElementById('anecdoteInput')
 let annecdoteAdd = document.getElementById('anecdoteBttnAdd')
 let annecdoteDelete = document.getElementById('anecdoteBttnDelete')
@@ -133,8 +134,8 @@ const createInventory = () => {
                         slot.anecdote.alpha = 0
                         slot.anecdote.scale.set(0)
                     }
-                    document.getElementById('testInput').style.display = "none"
-                    document.getElementById('testInput').className = ''
+                    anecdotesDiv.style.display = "none"
+                    anecdotesDiv.className = ''
                 }
             })
         }
@@ -216,13 +217,13 @@ export const clearSlot = (object) => {
 }
 
 export const initAnecdotes = (slot) => {
-    const testInput = document.getElementById('testInput')
-    if (testInput.style.display == "block") {
-        testInput.style.display = "none"
-        testInput.className = ''
+
+    if (anecdotesDiv.style.display == "flex") {
+        anecdotesDiv.style.display = "none"
+        anecdotesDiv.className = ''
     } else {
-        testInput.style.display ="block"
-        testInput.classList.add(slot.object.name)
+        anecdotesDiv.style.display ="flex"
+        anecdotesDiv.classList.add(slot.object.name)
     }
 }
 
@@ -231,9 +232,9 @@ annecdoteAdd.addEventListener("click", () => {
 
     if (anecdoteTxt !== "") {
         INVENTORY_SLOTS.map((slot) => {
-            if (slot.object !== null && slot.object.name == document.getElementById('testInput').className) {
+            if (slot.object !== null && slot.object.name == anecdotesDiv.className) {
                 if(slot.anecdote == null) {  
-                    let text = new Text(anecdoteTxt,{fontFamily : 'Arial', fontSize: 24, fill : 0xd51a12, align : 'center'});
+                    let text = new Text(anecdoteTxt,{fontFamily : 'Helvetica, Arial', fontSize: 18, fill : 0xd51a12, align : 'center'});
                     text.x = slot.x + 200
                     text.y = slot.y + 100
 
@@ -247,21 +248,26 @@ annecdoteAdd.addEventListener("click", () => {
         })
     }
 
-    document.getElementById('testInput').style.display = "none"
-    document.getElementById('testInput').className = ''
+    anecdotesDiv.style.display = "none"
+    anecdotesDiv.className = ''
 })
 
 annecdoteDelete.addEventListener("click", () => {
     
     INVENTORY_SLOTS.map((slot) => {
-        if (slot.object !== null && slot.object.name == document.getElementById('testInput').className) {
+        if (slot.object !== null && slot.object.name == anecdotesDiv.className) {
             app.stage.removeChild(slot.anecdote)
             slot.anecdote = null
         } 
     })
     
-    document.getElementById('testInput').style.display = "none"
-    document.getElementById('testInput').className = ''
+    anecdotesDiv.style.display = "none"
+    anecdotesDiv.className = ''
+})
+
+anecdoteBttnClose.addEventListener("click", () => {
+    anecdotesDiv.style.display = "none"
+    anecdotesDiv.className = ''
 })
 
 export const activeMovement = () => {

@@ -31,6 +31,16 @@
 
         <button class="hidden" id="finishObjectsChoice">Valider</button>
 
+        <div id="anecdotes">
+            <label for="anecdoteInput">Quelle anecdote veux tu associer à ce trésor ?</label>
+            <input type="text" id="anecdoteInput" autofocus/>
+            <div>
+                <button id="anecdoteBttnAdd">Appliquer</button>
+                <button id="anecdoteBttnDelete">Supprimer</button>
+                <button id="anecdoteBttnClose">Annuler</button>
+            </div>
+        </div>
+
         <div class="finalScene hidden">
             <div class="colorLegend">
                 <div class="legendItem">
@@ -189,13 +199,6 @@
         Vous serez redirigés dans quelques instants vers votre univers commun.</p>
         <p>Et si vous vous appeliez pour en discuter ?</p>
         <button id="startFinalScene">Entrer</button>
-    </div>
-
-    <div id="testInput">
-        <label for="anecdoteInput">Quelle anecdote ?</label>
-        <input type="text" id="anecdoteInput" autofocus/>
-        <button id="anecdoteBttnAdd">Ajouter</button>
-        <button id="anecdoteBttnDelete">Supprimer</button>
     </div>
 
     <script src="main.js"></script>
