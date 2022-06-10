@@ -1,4 +1,4 @@
-import {Application,Container, Texture, Sprite } from 'pixi.js';
+import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
 import objectsData from "../data/objects.json"
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
@@ -27,8 +27,12 @@ container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
 const SCENES = [aube, aurore, jour, crépuscule]
-const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
+const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
 let inventoryOpen = false
+
+let annecdoteInput = document.getElementById('anecdoteInput')
+let annecdoteAdd = document.getElementById('anecdoteBttnAdd')
+let annecdoteDelete = document.getElementById('anecdoteBttnDelete')
 
 export const initCanvas = () => {
 
@@ -99,6 +103,21 @@ const createInventory = () => {
                 if (slot.object !== null) {
                     slot.object.alpha = 1
                     slot.object.scale.set(0.13)
+                    slot.bttn.alpha = 1
+                    slot.bttn.scale.set(1)
+
+                    if (slot.anecdote !== null) {
+                        slot.anecdote.alpha = 1
+                        slot.anecdote.scale.set(1)
+                    }
+                } else {
+                    slot.bttn.alpha = 0
+                    slot.bttn.scale.set(0)
+                    
+                    if (slot.anecdote !== null) {
+                        slot.anecdote.alpha = 0
+                        slot.anecdote.scale.set(0)
+                    }
                 }
             })
         } else {
@@ -107,10 +126,39 @@ const createInventory = () => {
                 if (slot.object !== null) {
                     slot.object.alpha = 0
                     slot.object.scale.set(0)
+                    slot.bttn.alpha = 0
+                    slot.bttn.scale.set(0)
+
+                    if (slot.anecdote !== null) {
+                        slot.anecdote.alpha = 0
+                        slot.anecdote.scale.set(0)
+                    }
+                    document.getElementById('testInput').style.display = "none"
+                    document.getElementById('testInput').className = ''
                 }
             })
         }
     })
+
+    INVENTORY_SLOTS.map((slot) => {
+        const anecdoteBttn = new Graphics();
+        anecdoteBttn.beginFill(0xd51a12);
+        anecdoteBttn.drawCircle(slot.x + 150, slot.y + 150, 12);
+        anecdoteBttn.endFill();
+        anecdoteBttn.zIndex = 16
+        anecdoteBttn.scale.set(0)
+        anecdoteBttn.alpha = 0
+        anecdoteBttn.interactive = true
+        slot.bttn = anecdoteBttn
+
+        anecdoteBttn.on("click", function (e) {
+            this.interactive = true;
+            initAnecdotes(slot)
+        })
+
+        app.stage.addChild(anecdoteBttn);
+    })
+    
     
     app.stage.addChild(coffre, coffreBg)
     return coffre
@@ -134,6 +182,9 @@ export const addToSlot = (object) => {
                 if(inventoryOpen === false) {
                     object.alpha = 0
                     object.scale.set(0)
+                } else {
+                    slot.bttn.alpha = 1
+                    slot.bttn.scale.set(1)
                 }                
 
                 const url = "sound/Coffre.wav"
@@ -155,10 +206,63 @@ export const addToSlot = (object) => {
 export const clearSlot = (object) => {
     INVENTORY_SLOTS.map((slot) => {
         if (slot.object == object) {
-            slot.object = null        
+            slot.object = null 
+            slot.bttn.alpha = 0   
+            slot.bttn.scale.set(0)
+            app.stage.removeChild(slot.anecdote)
+            slot.anecdote = null 
         }
     })
 }
+
+export const initAnecdotes = (slot) => {
+    const testInput = document.getElementById('testInput')
+    if (testInput.style.display == "block") {
+        testInput.style.display = "none"
+        testInput.className = ''
+    } else {
+        testInput.style.display ="block"
+        testInput.classList.add(slot.object.name)
+    }
+}
+
+annecdoteAdd.addEventListener("click", () => {
+    const anecdoteTxt = annecdoteInput.value
+
+    if (anecdoteTxt !== "") {
+        INVENTORY_SLOTS.map((slot) => {
+            if (slot.object !== null && slot.object.name == document.getElementById('testInput').className) {
+                if(slot.anecdote == null) {  
+                    let text = new Text(anecdoteTxt,{fontFamily : 'Arial', fontSize: 24, fill : 0xd51a12, align : 'center'});
+                    text.x = slot.x + 200
+                    text.y = slot.y + 100
+
+                    slot.anecdote = text
+
+                    app.stage.addChild(text)
+                } else {
+                    slot.anecdote.text = anecdoteTxt
+                }
+            } 
+        })
+    }
+
+    document.getElementById('testInput').style.display = "none"
+    document.getElementById('testInput').className = ''
+})
+
+annecdoteDelete.addEventListener("click", () => {
+    
+    INVENTORY_SLOTS.map((slot) => {
+        if (slot.object !== null && slot.object.name == document.getElementById('testInput').className) {
+            app.stage.removeChild(slot.anecdote)
+            slot.anecdote = null
+        } 
+    })
+    
+    document.getElementById('testInput').style.display = "none"
+    document.getElementById('testInput').className = ''
+})
 
 export const activeMovement = () => {
     return move = true
