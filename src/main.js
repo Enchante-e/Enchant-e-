@@ -4,7 +4,7 @@ import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as crépuscule from "./scenes/crépuscule"
+import * as jour from "./scenes/jour"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
@@ -56,6 +56,7 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
+    document.getElementById("ambientPlayer").play()
 })
 
 // [EMIT] Join room with code
@@ -63,7 +64,9 @@ joinBttn.addEventListener('click', () => {
     let code = codeInput.value.toUpperCase()
     if (code !== "") {
         socket.emit('join-room', code, myId)
-    } 
+    } else {
+        alert("Veuillez remplir le code")
+    }
 })
 
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
@@ -95,8 +98,10 @@ startExperience.addEventListener('click', (e) => {
         const name = myName
         userNameHTML.innerHTML = myName
         socket.emit('change-name', name, myId)
+        nameForm.closeName()
+    } else {
+        alert("Veuillez choisir un nom")
     }
-    nameForm.closeName()
 });
     
 // [EMIT] Change Name Input And emit
@@ -107,7 +112,7 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
-    crépuscule.playMusic()
+    jour.playMusic()
 });
 
 // [RECEIVED] Waiting for partner
@@ -139,6 +144,7 @@ socket.on('canvas-create', (memberId) => {
 // [RECEIVED] Create cursor of partner
 socket.on('cursor-create', () => {
     generateCursor()
+    hashtags.closeHashtag()
     finalSceneStarted = true
 });
 
@@ -159,7 +165,7 @@ socket.on('partner-objects', function(partnerObjects) {
 
 // [RECEIVED] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
-   console.log(id + " " + name + " a été déconnecté ")
+   alert(id + " " + name + " a été déconnecté ")
 
     let userName = document.getElementById(id + "name")
     userName ? userName.remove() : null

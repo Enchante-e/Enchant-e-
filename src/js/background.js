@@ -1,6 +1,9 @@
-import {Application,Container } from 'pixi.js';
+import {Application,Container, Texture, Sprite } from 'pixi.js';
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
+import * as aube from "../scenes/aube"
+import * as jour from "../scenes/jour"
+import * as aurore from "../scenes/aurore"
 import * as crépuscule from "../scenes/crépuscule"
 
 let cameraVector = {
@@ -8,8 +11,7 @@ let cameraVector = {
     l: 0
 };
 let move = false
-
-const OBJECTS = objectsData.objects
+let inventoryOpen = false
 
 var center = {},
 app = new Application({
@@ -44,8 +46,9 @@ export const initCanvas = () => {
     container.pivot.x = container.width / 8;
     container.pivot.y = container.height / 8;
     
+    const inventory = createInventory()
     app.stage.addChild(container);
-    crépuscule.initCrépuscule(app, container)
+    jour.initJour(app, container, inventory)
     finalScene.setStage(app)
 
     app.ticker.add((delta) => {
@@ -53,6 +56,41 @@ export const initCanvas = () => {
             object.update();
         } 
     });
+
+}
+
+const createInventory = () => {
+    const imgCoffre = Texture.from("img/Coffre.svg")
+    const coffre = new Sprite(imgCoffre)
+
+    coffre.x = 80;
+    coffre.y =  app.view.height - 110;
+    coffre.scale.set(0.4);
+    coffre.anchor.set(0.5)
+    coffre.zIndex = 5;
+    coffre.interactive = true;
+
+    const imgCoffreBg = Texture.from("img/CoffreBg.svg")
+    const coffreBg = new Sprite(imgCoffreBg)
+
+    coffreBg.x = 0;
+    coffreBg.y = 10;
+    coffreBg.scale.set(0.2);
+    coffreBg.alpha = 0;
+    coffreBg.zIndex = 0;
+    
+    coffre.on("click", function (e) {
+        this.interactive = true;
+        inventoryOpen = !inventoryOpen
+        if(inventoryOpen) {
+            coffreBg.alpha = 1;
+        } else {
+            coffreBg.alpha = 0;
+        }
+    })
+    
+    app.stage.addChild(coffre, coffreBg)
+    return coffre
 }
 
 export const activeMovement = () => {
