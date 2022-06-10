@@ -17,7 +17,7 @@ let foundCodeMatch = false
 // SOCKET ------------------------------------------------------------------------------------------------------------------------------------
 
 io.on('connection', socket => {
-    let user = {id: socket.id, name : "", isReady : false, partnerId : "", coordX: 0, coordY: 0};
+    let user = {id: socket.id, name : "", isReady : false, hasFinished: false, partnerId : "", coordX: 0, coordY: 0};
     users.push(user)
     socket.emit('init', user);
 
@@ -103,12 +103,26 @@ io.on('connection', socket => {
     })
 
     socket.on('set-objects', (objects) => {
-        io.sockets.to(user.partnerId).emit('cursor-create');
+        user.hasFinished = true
         io.sockets.to(user.partnerId).emit('partner-objects',objects);
+        io.sockets.to(user.partnerId).emit('cursor-create');
+        
+        if(user.hasFinished && user.partnerId !== "") {
+            users.map((u) => {
+                if (u.id == user.partnerId ) {
+                    if (u.hasFinished == true) {
+                        socket.emit('close-loading')
+                        io.sockets.to(user.partnerId).emit('close-loading')
+                    } else {
+                        socket.emit('waiting-for-partner')
+                    }
+                }
+            })
+        }
     })
 
     socket.on('disconnect', () => {
-        io.emit('disconnect-notification', user.id, user.name)
+        io.sockets.to(user.partnerId).emit('disconnect-notification', user.id, user.name)
         users.map((knownUser, i) => {
             if (knownUser.id == user.id) {
                 users.splice(i, 1)
