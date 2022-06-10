@@ -16,7 +16,7 @@ export const init = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    createEnvironment()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -114,55 +114,11 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    let leftCircleBg = new Graphics();
-    leftCircleBg.beginFill(0x6A008F)
-    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
-    leftCircleBg.endFill();
-    leftCircleBg.interactive = true
-    leftCircleBg.zIndex = 5
-    leftCircleBg.name = "Fond gauche Crépuscule"
-    
-    let rightCircleBg = new Graphics();
-    rightCircleBg.beginFill(0x011757);
-    rightCircleBg.drawCircle(app.view.width - 100, app.view.height / 2, 1000);
-    rightCircleBg.endFill();
-    rightCircleBg.interactive = true
-    rightCircleBg.zIndex = 5
-    rightCircleBg.name = "Fond droite Crépuscule"
-
-    // app.stage.addChild(leftCircleBg, rightCircleBg);
-
-    // document.addEventListener('wheel', (e) => {
-    //     if (e.deltaY >= 0 && rightCircleBg.position.x <= 1360) {
-    //         console.log(leftCircleBg.position.x, rightCircleBg.position.x)
-    //         leftCircleBg.position.x = leftCircleBg.position.x - 40
-    //         rightCircleBg.position.x = rightCircleBg.position.x + 40
-    //     } else if (e.deltaY <= 0 && leftCircleBg.position.x <= 200 && rightCircleBg.position.x <= app.view.width) { 
-    //         leftCircleBg.position.x = leftCircleBg.position.x + 40
-    //         rightCircleBg.position.x = rightCircleBg.position.x - 40
-    //     }
-
-    //     if (rightCircleBg.position.x == 1360) {
-    //         console.log('fin hihi')
-    //     }
-    // });
 
     document.getElementById("bulleBg").style.background = "#fff"
     document.getElementById("bulleName").style.color = "#fff"
     document.getElementById("bulleSymbol").style.color = "#0a0d42"
 
-    // const backgroundImg = Texture.from("img/constraints-c-lines.svg");
-    // const background = new Sprite(backgroundImg)
-    // background.scale.set(0.5);
-    // app.stage.addChild(background);
-
-    // for (let i = 0; i < 1; i++) {
-    //     const constraintImg = Texture.from("img/constraints-c-3-"+i+".svg");
-    //     const constraint = new Sprite(constraintImg)
-    //     constraint.scale.set(0.5);
-        
-    //     app.stage.addChild(constraint);
-    // }
 }
 
 const checkCollision = (object) => {

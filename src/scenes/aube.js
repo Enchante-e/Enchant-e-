@@ -16,7 +16,7 @@ export const init = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    createEnvironment()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -114,30 +114,6 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    const gradTexture = createGradTexture();
-    const sprite = new Sprite(gradTexture)
-    sprite.width = 1200;
-    sprite.height = 1200;
-
-    let leftCircleBg = new Graphics();
-    leftCircleBg.beginFill();
-    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
-    leftCircleBg.endFill();
-    
-    sprite.addChild(leftCircleBg);
-    
-    leftCircleBg.interactive = true;
-    leftCircleBg.name = "Fond gauche Aube"
-    
-    let rightCircleBg = new Graphics();
-    rightCircleBg.beginFill(0xF4BAFF);
-    rightCircleBg.drawCircle(app.view.width - 200, app.view.height / 2, 1000);
-    rightCircleBg.endFill();
-    rightCircleBg.interactive = true;
-    rightCircleBg.name = "Fond droite Aube"
-    
-    app.stage.addChild(sprite, leftCircleBg);
-    sprite.mask = leftCircleBg;
 }
 
 const checkCollision = (object) => {

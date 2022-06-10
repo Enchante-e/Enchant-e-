@@ -16,7 +16,7 @@ export const init = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    createEnvironment()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -114,21 +114,6 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    let leftCircleBg = new Graphics();
-    leftCircleBg.beginFill(0xFF8853)
-    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
-    leftCircleBg.endFill();
-    leftCircleBg.interactive = true;
-    leftCircleBg.name = "Fond gauche Aurore"
-    
-    let rightCircleBg = new Graphics();
-    rightCircleBg.beginFill(0x6461FF);
-    rightCircleBg.drawCircle(app.view.width - 200, app.view.height / 2, 1000);
-    rightCircleBg.endFill();
-    rightCircleBg.interactive = true;
-    rightCircleBg.name = "Fond droite Aurore"
-
-    // app.stage.addChild(leftCircleBg, rightCircleBg);
 }
 
 const checkCollision = (object) => {

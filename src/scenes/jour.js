@@ -16,7 +16,7 @@ export const init = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    createEnvironment()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -114,27 +114,6 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    let leftCircleBg = new Graphics();
-    leftCircleBg.beginFill(0xDDEAFF)
-    leftCircleBg.drawCircle(200, app.view.height / 2, 1000);
-    leftCircleBg.endFill();
-    leftCircleBg.interactive = true
-    leftCircleBg.zIndex = 5
-    leftCircleBg.name = "Fond gauche Jour"
-    
-    let rightCircleBg = new Graphics();
-    rightCircleBg.beginFill(0xE8F1FF);
-    rightCircleBg.drawCircle(app.view.width - 100, app.view.height / 2, 1000);
-    rightCircleBg.endFill();
-    rightCircleBg.interactive = true
-    rightCircleBg.zIndex = 5
-    rightCircleBg.name = "Fond droite Jour"
-
-    const rayonsTxt = Texture.from("img/Rayons-Jour.svg");
-    const rayons = new Sprite(rayonsTxt) ;
-    app.stage.addChild(rayons);
- 
-    // app.stage.addChild(leftCircleBg, rightCircleBg);
 }
 
 const checkCollision = (object) => {
