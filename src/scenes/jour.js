@@ -130,6 +130,10 @@ const createEnvironment = () => {
     rightCircleBg.zIndex = 5
     rightCircleBg.name = "Fond droite Jour"
 
+    const rayonsTxt = Texture.from("img/Rayons-Jour.svg");
+    const rayons = new Sprite(rayonsTxt) ;
+    app.stage.addChild(rayons);
+ 
     // app.stage.addChild(leftCircleBg, rightCircleBg);
 }
 
