@@ -90,6 +90,11 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+                this.alpha = 0.6;
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
             }
 
             function onDragEnd() {
@@ -105,6 +110,10 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
+                gsap.to(object.scale, {
+                    x: object.scale.x,
+                    y: object.scale.y
+                });
             }
 
             function onDragMove() {
@@ -113,6 +122,7 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     this.x = newPosition.x;
                     this.y = newPosition.y;
                 }
+                
             }
 
             object.update = function () {
@@ -150,20 +160,13 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             // });
 
             // PARALLAX 
-            let startTutorial = document.getElementById("startTutorial")
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
                     console.log("scroll down")
-                    // gsap.to(object.scale, {
-                    //     x: 2,
-                    //     y: 2,
-                    //     duration: 10
-                    // });
-
                     gsap.to(object.position, {
-                        x: object.x * 4,
-                        y: object.y * 4,
+                        x: object.x * 2,
+                        y: object.y * 2,
                         duration: 10
                     });
 
@@ -184,7 +187,7 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     gsap.to(object.position, {
                         x: object.initialPos.x,
                         y: object.initialPos.y,
-                        duration: 5
+                        duration: 2
                     });
                 }
             });
@@ -241,6 +244,7 @@ const createEnvironment = () => {
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
+    
 
     return objectBox.x + objectBox.width > inventoryBox.x &&
         objectBox.x < inventoryBox.x + inventoryBox.width &&
