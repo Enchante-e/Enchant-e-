@@ -47,8 +47,6 @@ const INVENTORY_SLOTS = [{
     y: 750
 }]
 let inventoryOpen = false
-let app, container, inventory, inventoryBox
-
 let app, container, inventoryBox
 
 
@@ -259,47 +257,3 @@ const checkCollision = (object) => {
         objectBox.y + objectBox.height > inventoryBox.y &&
         objectBox.y < inventoryBox.y + inventoryBox.height;
 }
-
-const addToSlot = (object, objname) => {
-    let slotFound = false
-
-    INVENTORY_SLOTS.map((slot) => {
-        if (slotFound === false) {
-            if (slot.object == null) {
-                finalScene.addObject(object.id, objname)
-                slot.object = object
-
-                object.x = slot.x;
-                object.y = slot.y;
-                object.scale.set(0.13)
-                object.tint = 0x1A1D5C;
-
-                if (inventoryOpen === false) {
-                    object.alpha = 0
-                    object.scale.set(0)
-                }
-
-                const url = "sound/Coffre.wav"
-                const player = new Player(url).toDestination();
-                player.autostart = true;
-
-                slotFound = true
-            }
-        }
-    })
-
-    if (slotFound === false) {
-        alert("coffre full")
-        object.x = app.view.width / 2;
-        object.y = app.view.height / 2;
-    }
-}
-
-const clearSlot = (object) => {
-    INVENTORY_SLOTS.map((slot) => {
-        if (slot.object == object) {
-            slot.object = null
-        }
-    })
-
- 
