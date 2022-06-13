@@ -31,7 +31,7 @@ export const initAurore = (globalApp, globalContainer, globalInventory) => {
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
             object.scale.set(SCALE);
-            object.anchor.set(0.5)
+            object.anchor.set(0.5);
             object.interactive = true;
             object.buttonMode = LUCK;
     

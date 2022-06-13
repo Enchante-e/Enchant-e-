@@ -1,14 +1,48 @@
-import {Texture, Sprite} from 'pixi.js';
-import {Player} from 'tone'
+import {
+    Texture,
+    Sprite
+} from 'pixi.js';
+import {
+    Player
+} from 'tone'
+import * as PIXI from 'pixi.js'
+import {
+    gsap
+} from "gsap";
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
+gsap.registerPlugin(ScrollTrigger);
 
 let cameraVector = {
     a: 0,
     l: 0
 };
 const OBJECTS = objectsData.objects
-const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
+const INVENTORY_SLOTS = [{
+    'object': null,
+    x: -100,
+    y: 0
+}, {
+    'object': null,
+    x: 100,
+    y: 150
+}, {
+    'object': null,
+    x: -100,
+    y: 300
+}, {
+    'object': null,
+    x: 100,
+    y: 450
+}, {
+    'object': null,
+    x: -100,
+    y: 600
+}, {
+    'object': null,
+    x: 100,
+    y: 750
+}]
 let inventoryOpen = false
 let app, container, inventory, inventoryBox
 
@@ -22,20 +56,21 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if(OBJECTS[i].timeOfDay == "Jour") {
+        if (OBJECTS[i].timeOfDay == "Jour") {
 
             const img = Texture.from("img/" + OBJECTS[i].src);
-            const object = new Sprite(img) ;
+            const object = new Sprite(img);
             object.id = OBJECTS[i].id;
-    
+
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
             object.scale.set(SCALE);
+            object.targetScale = SCALE;
             object.anchor.set(0.5)
             object.interactive = true;
             object.buttonMode = LUCK;
-    
-            object.x =OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
+
+            object.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
             object.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
             object.initialPos = {
                 x: object.x,
@@ -47,10 +82,10 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             object.zIndex = 0;
 
             object
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
 
             function onDragStart(event) {
                 this.data = event.data;
@@ -62,8 +97,8 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                 this.dragging = false;
                 this.data = null;
 
-                if(checkCollision(this)) {
-                    addToSlot(this, OBJECTS[i].name)                    
+                if (checkCollision(this)) {
+                    addToSlot(this, OBJECTS[i].name)
                 } else {
                     finalScene.deleteObject(object.id, OBJECTS[i].name)
                     clearSlot(this)
@@ -90,21 +125,77 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
                 }
             }
-            
+
+
+            // BLUR FILTER
+
+            // const blurFilter1 = new PIXI.filters.BlurFilter();
+            // blurFilter1.blur = 0.0;
+            // object.filters = [blurFilter1];
+
+            // const time = 2.0;
+            // TweenMax.to(blurFilter1, time, {
+            //     blur: 5.0,
+            //     repeat: -1
+            // });
+
+            // OBJECTS FOLLOW MOUSE
+
+            // app.stage.interactive = true;
+
+            // app.stage.hitArea = app.renderer.screen;
+
+            // app.stage.addEventListener('pointermove', (e) => {
+            //     object.position.copyFrom(e.global);
+            // });
+
+            // PARALLAX 
+            let startTutorial = document.getElementById("startTutorial")
+
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    console.log("scroll down")
+                    // object.targetScale = SCALE;
+                    gsap.to(object, {
+                        // onUpdate: () => {
+                        //     object.scale.set(object.targetScale)
+                        //     console.log(targetScale)
+                        // },
+                        y: 10,
+                        duration: 10
+                    });
+
+                } else if (e.deltaY <= 0) {
+                    console.log("scroll up")
+                    // gsap.to(object, {
+                    //     onUpdate: () => {
+                    //         object.scale.set(object.targetScale)
+                    //         console.log(targetScale)
+                    //     },
+                    //     targetScale: 1,
+                    // });
+                }
+            });
+
             container.addChild(object);
         }
+
+
+
     }
+
+
 
     app.ticker.add((delta) => {
         for (const object of container.children) {
             object.update();
         }
-    });    
+    });
 
     inventory.on("click", function (e) {
         this.interactive = true;
         inventoryOpen = !inventoryOpen
-        if(inventoryOpen) {
+        if (inventoryOpen) {
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
                     slot.object.alpha = 1
@@ -138,11 +229,11 @@ const createEnvironment = () => {
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
-    
+
     return objectBox.x + objectBox.width > inventoryBox.x &&
-           objectBox.x < inventoryBox.x + inventoryBox.width &&
-           objectBox.y + objectBox.height > inventoryBox.y &&
-           objectBox.y < inventoryBox.y + inventoryBox.height;
+        objectBox.x < inventoryBox.x + inventoryBox.width &&
+        objectBox.y + objectBox.height > inventoryBox.y &&
+        objectBox.y < inventoryBox.y + inventoryBox.height;
 }
 
 const addToSlot = (object, objname) => {
@@ -153,16 +244,16 @@ const addToSlot = (object, objname) => {
             if (slot.object == null) {
                 finalScene.addObject(object.id, objname)
                 slot.object = object
-                
+
                 object.x = slot.x;
                 object.y = slot.y;
                 object.scale.set(0.13)
                 object.tint = 0x1A1D5C;
-                
-                if(inventoryOpen === false) {
+
+                if (inventoryOpen === false) {
                     object.alpha = 0
                     object.scale.set(0)
-                }                
+                }
 
                 const url = "sound/Coffre.wav"
                 const player = new Player(url).toDestination();
@@ -183,7 +274,7 @@ const addToSlot = (object, objname) => {
 const clearSlot = (object) => {
     INVENTORY_SLOTS.map((slot) => {
         if (slot.object == object) {
-            slot.object = null        
+            slot.object = null
         }
     })
 }
