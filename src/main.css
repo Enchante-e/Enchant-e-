@@ -476,6 +476,7 @@ button {
     top: 0;
     z-index: 5;
     left: 0;
+    color: white;
 }
 
 #sceneOne, #sceneTwo, #sceneThree, #sceneFour {

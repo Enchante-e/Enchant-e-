@@ -208,37 +208,13 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             container.addChild(object);
         }
 
-
-
     }
-
-
 
     app.ticker.add((delta) => {
         for (const object of container.children) {
             object.update();
         }
     });
-
-    inventory.on("click", function (e) {
-        this.interactive = true;
-        inventoryOpen = !inventoryOpen
-        if (inventoryOpen) {
-            INVENTORY_SLOTS.map((slot) => {
-                if (slot.object !== null) {
-                    slot.object.alpha = 1
-                    slot.object.scale.set(0.23)
-                }
-            })
-        } else {
-            INVENTORY_SLOTS.map((slot) => {
-                if (slot.object !== null) {
-                    slot.object.alpha = 0
-                    slot.object.scale.set(0)
-                }
-            })
-        }
-    })
 
 }
 
