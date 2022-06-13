@@ -155,25 +155,37 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
                     console.log("scroll down")
-                    // object.targetScale = SCALE;
-                    gsap.to(object, {
-                        // onUpdate: () => {
-                        //     object.scale.set(object.targetScale)
-                        //     console.log(targetScale)
-                        // },
-                        y: 10,
+                    // gsap.to(object.scale, {
+                    //     x: 2,
+                    //     y: 2,
+                    //     duration: 10
+                    // });
+
+                    gsap.to(object.position, {
+                        x: object.x * 4,
+                        y: object.y * 4,
                         duration: 10
                     });
 
                 } else if (e.deltaY <= 0) {
                     console.log("scroll up")
-                    // gsap.to(object, {
-                    //     onUpdate: () => {
-                    //         object.scale.set(object.targetScale)
-                    //         console.log(targetScale)
-                    //     },
-                    //     targetScale: 1,
+
+                    // gsap.to(object.scale, {
+                    //     // onUpdate: () => {
+                    //     //     object.scale.set(object.targetScale)
+                    //     //     console.log(targetScale)
+                    //     // },
+                    //     x: object.scale.x / 4,
+                    //     y: object.scale.y / 4,
+                    //     duration: 10
                     // });
+
+
+                    gsap.to(object.position, {
+                        x: object.initialPos.x,
+                        y: object.initialPos.y,
+                        duration: 5
+                    });
                 }
             });
 
