@@ -20,7 +20,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if(OBJECTS[i].timeOfDay == "Crépuscule") {
+        if(OBJECTS[i].timeOfDay == "Crépuscule" && !globalContainer.getChildByName(OBJECTS[i].name)) {
 
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img) ;
@@ -129,4 +129,3 @@ const checkCollision = (object) => {
            objectBox.y + objectBox.height > inventoryBox.y &&
            objectBox.y < inventoryBox.y + inventoryBox.height;
 }
-

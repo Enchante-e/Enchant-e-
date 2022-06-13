@@ -66,7 +66,7 @@ export const initCanvas = () => {
     //     scene.initScene(app, container, inventory)
     // })
     // SCENES[0].playMusic()
-    sceneManager.initManager(app)
+    sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
     app.ticker.add((delta) => {
@@ -285,4 +285,8 @@ anecdoteBttnClose.addEventListener("click", () => {
 
 export const activeMovement = () => {
     return move = true
+}
+
+export const getInventoryObjects = () => {
+    return INVENTORY_SLOTS
 }
