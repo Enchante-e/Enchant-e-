@@ -15,6 +15,7 @@
   "author": "Llorenç Pujol Ferriol",
   "license": "MIT",
   "dependencies": {
+    "gsap": "^3.10.4",
     "pixi.js": "~5.3.3",
     "socket.io-client": "^4.4.1",
     "src": "^1.1.2",
