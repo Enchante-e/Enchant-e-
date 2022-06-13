@@ -7,6 +7,8 @@ import * as jour from "../scenes/jour"
 import * as aurore from "../scenes/aurore"
 import * as crépuscule from "../scenes/crépuscule"
 
+import * as sceneManager from "../scenes/sceneManager"
+
 let cameraVector = {
     a: 0,
     l: 0
@@ -60,10 +62,11 @@ export const initCanvas = () => {
     const inventory = createInventory()
     app.stage.addChild(container);
     
-    SCENES.map((scene) => {
-        scene.init(app, container, inventory)
-    })
-    SCENES[0].playMusic()
+    // SCENES.map((scene) => {
+    //     scene.initScene(app, container, inventory)
+    // })
+    // SCENES[0].playMusic()
+    sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
     app.ticker.add((delta) => {
@@ -282,4 +285,8 @@ anecdoteBttnClose.addEventListener("click", () => {
 
 export const activeMovement = () => {
     return move = true
+}
+
+export const getInventoryObjects = () => {
+    return INVENTORY_SLOTS
 }

@@ -50,7 +50,8 @@ let inventoryOpen = false
 let app, container, inventoryBox
 
 
-export const init = (globalApp, globalContainer, globalInventory) => {
+export const initScene = (globalApp, globalContainer, globalInventory) => {
+
 
     app = globalApp
     container = globalContainer
@@ -59,7 +60,9 @@ export const init = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if (OBJECTS[i].timeOfDay == "Jour") {
+
+        if(OBJECTS[i].timeOfDay == "Jour" && !globalContainer.getChildByName(OBJECTS[i].name)) {
+
 
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img);
@@ -253,7 +256,7 @@ const checkCollision = (object) => {
     
 
     return objectBox.x + objectBox.width > inventoryBox.x &&
-        objectBox.x < inventoryBox.x + inventoryBox.width &&
-        objectBox.y + objectBox.height > inventoryBox.y &&
-        objectBox.y < inventoryBox.y + inventoryBox.height;
+           objectBox.x < inventoryBox.x + inventoryBox.width &&
+           objectBox.y + objectBox.height > inventoryBox.y &&
+           objectBox.y < inventoryBox.y + inventoryBox.height;
 }

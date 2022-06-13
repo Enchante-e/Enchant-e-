@@ -11,7 +11,7 @@ let cameraVector = {
 const OBJECTS = objectsData.objects
 let app, container, inventoryBox
 
-export const init = (globalApp, globalContainer, globalInventory) => {
+export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     app = globalApp
     container = globalContainer
@@ -20,7 +20,7 @@ export const init = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if(OBJECTS[i].timeOfDay == "Aurore") {
+        if(OBJECTS[i].timeOfDay == "Aurore" && !globalContainer.getChildByName(OBJECTS[i].name)) {
 
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img) ;
