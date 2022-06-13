@@ -11,7 +11,7 @@ let cameraVector = {
 const OBJECTS = objectsData.objects
 let app, container, inventoryBox
 
-export const init = (globalApp, globalContainer, globalInventory) => {
+export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     app = globalApp
     container = globalContainer

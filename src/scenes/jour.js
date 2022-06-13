@@ -11,7 +11,7 @@ let cameraVector = {
 const OBJECTS = objectsData.objects
 let app, container, inventoryBox
 
-export const init = (globalApp, globalContainer, globalInventory) => {
+export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     app = globalApp
     container = globalContainer
@@ -123,4 +123,8 @@ const checkCollision = (object) => {
            objectBox.x < inventoryBox.x + inventoryBox.width &&
            objectBox.y + objectBox.height > inventoryBox.y &&
            objectBox.y < inventoryBox.y + inventoryBox.height;
+}
+
+export const deleteScene = () => {
+    
 }
