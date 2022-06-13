@@ -16,9 +16,6 @@ dotenv.config();
 const socket = io(process.env.IO_URL)
 homepage.initHome()
 
-
-
-
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
 let myId, myName, myRoom = ""
@@ -114,12 +111,16 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
-    jour.playMusic()
 });
 
 // [RECEIVED] Waiting for partner
 socket.on('waiting-for-partner', () => {
     loading.initLoad(myRoom)
+});
+
+// [RECEIVED] Waiting for partner
+socket.on('close-loading', () => {
+    loading.closeLoad()
 });
 
 // [RECEIVED] Name changed notification
@@ -161,7 +162,7 @@ socket.on('partner-notification', function(type) {
     hashtags.createNotification(partnerName, type)
 })
 
-socket.on('partner-objects', function(partnerObjects) {
+socket.on('partner-objects', function(partnerObjects, hasFinished) {
     finalScene.partnerObjects(partnerObjects)
 })
 

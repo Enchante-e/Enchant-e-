@@ -1,6 +1,8 @@
+
 import {
     Texture,
-    Sprite
+    Sprite,
+    Graphics
 } from 'pixi.js';
 import {
     Player
@@ -9,9 +11,10 @@ import * as PIXI from 'pixi.js'
 import {
     gsap
 } from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
-gsap.registerPlugin(ScrollTrigger);
+import * as background from "../js/background"
 
 let cameraVector = {
     a: 0,
@@ -46,13 +49,15 @@ const INVENTORY_SLOTS = [{
 let inventoryOpen = false
 let app, container, inventory, inventoryBox
 
-export const initJour = (globalApp, globalContainer, globalInventory) => {
+let app, container, inventoryBox
+
+
+export const init = (globalApp, globalContainer, globalInventory) => {
 
     app = globalApp
     container = globalContainer
-    inventory = globalInventory
-    inventoryBox = inventory.getBounds()
-    createEnvironment()
+    inventoryBox = globalInventory.getBounds()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -61,6 +66,8 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img);
             object.id = OBJECTS[i].id;
+
+            object.name = OBJECTS[i].name
 
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
@@ -79,7 +86,7 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
 
             object.goBack = false;
             object.l = Math.random() * 4;
-            object.zIndex = 0;
+            object.zIndex = 5;
 
             object
                 .on('pointerdown', onDragStart)
@@ -95,6 +102,10 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     x: object.scale.x * 0.7,
                     y: object.scale.y * 0.7
                 });
+
+                const url = "sound/" + OBJECTS[i].sound
+                const player = new Player(url).toDestination();
+                player.autostart = true;
             }
 
             function onDragEnd() {
@@ -102,11 +113,12 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                 this.dragging = false;
                 this.data = null;
 
-                if (checkCollision(this)) {
-                    addToSlot(this, OBJECTS[i].name)
+                if(checkCollision(this)) {
+                    background.addToSlot(this, OBJECTS[i].name)                    
+
                 } else {
                     finalScene.deleteObject(object.id, OBJECTS[i].name)
-                    clearSlot(this)
+                    background.clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
@@ -214,7 +226,7 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
                     slot.object.alpha = 1
-                    slot.object.scale.set(0.13)
+                    slot.object.scale.set(0.23)
                 }
             })
         } else {
@@ -229,7 +241,6 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
 
 }
 
-
 export const playMusic = () => {
     const url = "sound/Jour.wav"
     const player = new Player(url).toDestination();
@@ -237,9 +248,6 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    const canvas = document.querySelectorAll('canvas')
-    canvas[0].style.background = "rgb(155,194,255)"
-    canvas[0].style.background = "linear-gradient(180deg, rgba(155,194,255,1) 0%, rgba(232,241,255,1) 100%)"
 }
 
 const checkCollision = (object) => {
@@ -293,4 +301,5 @@ const clearSlot = (object) => {
             slot.object = null
         }
     })
-}
+
+ 

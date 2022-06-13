@@ -1,12 +1,13 @@
 import hashtagsData from '../data/hashtags.json'
 
+let publishHashtag
 let hashtags = hashtagsData.hashtags
 let notifications = document.getElementById("notifications")
 
 export const initHashtag = () => {
     notifications.classList.remove('hidden')
 
-    const publishHashtag = setInterval(() => {
+    publishHashtag = setInterval(() => {
         const randomHashtagId = Math.floor(Math.random() * hashtags.length - 1)
         hashtags.splice(randomHashtagId, 1)
         var p = document.createElement('p')

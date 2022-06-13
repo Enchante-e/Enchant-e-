@@ -34,6 +34,16 @@
 
         <button class="hidden" id="finishObjectsChoice">Valider</button>
 
+        <div id="anecdotes">
+            <label for="anecdoteInput">Quelle anecdote veux tu associer à ce trésor ?</label>
+            <input type="text" id="anecdoteInput" autofocus/>
+            <div>
+                <button id="anecdoteBttnAdd">Appliquer</button>
+                <button id="anecdoteBttnDelete">Supprimer</button>
+                <button id="anecdoteBttnClose">Annuler</button>
+            </div>
+        </div>
+
         <div class="finalScene hidden">
             <div class="colorLegend">
                 <div class="legendItem">
@@ -51,7 +61,6 @@
             </div>
 
             <div class="finalMenu">
-                <button id="shareBttn">Partager</button>
                 <button id="finishExperienceBttn">Terminer</button>
             </div>
         </div>
@@ -181,6 +190,20 @@
                 class="partnerName"></span> ?</p>
         <p>*Votre coffre est limité à six trésors</p>
         <button id="startTutorial">Entrer</button>
+    </div>
+
+    <div class="fullpage conceptPage conceptPageThree hidden">
+            <p><span class="partnerName"></span> et vous avez rempli vos coffres aux trésors.<br>
+            Vous serez redirigés dans quelques instants vers votre univers commun.</p>
+            <p>Et si vous vous appeliez pour en discuter ?</p>
+            <button id="startFinalScene">Entrer</button>
+    </div>
+
+    <div class="fullpage conceptPage conceptPageThree hidden">
+        <p><span class="partnerName"></span> et vous avez rempli vos coffres aux trésors.<br>
+        Vous serez redirigés dans quelques instants vers votre univers commun.</p>
+        <p>Et si vous vous appeliez pour en discuter ?</p>
+        <button id="startFinalScene">Entrer</button>
     </div>
 
     <script src="main.js"></script>
