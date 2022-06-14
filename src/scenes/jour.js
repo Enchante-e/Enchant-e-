@@ -1,7 +1,20 @@
-import {Texture, Sprite} from 'pixi.js';
-import {Player} from 'tone'
+
+import {
+    Texture,
+    Sprite,
+    Graphics
+} from 'pixi.js';
+import {
+    Player
+} from 'tone'
+import * as PIXI from 'pixi.js'
+import {
+    gsap
+} from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
+import * as background from "../js/background"
 
 let cameraVector = {
     a: 0,
@@ -14,34 +27,64 @@ const MOODS = ["heureux", "triste", "mémorable", "douloureux", "joyeux", "uniqu
 let moodsDiv = [...document.getElementsByClassName('moods')]
 let moodsList = document.getElementById('moodsList')
 
-const INVENTORY_SLOTS = [{'object': null,x:-100,y:0},{'object': null,x:100,y:150},{'object': null,x:-100,y:300},{'object': null,x:100,y:450},{'object': null,x:-100,y:600},{'object': null,x:100,y:750}]
+const INVENTORY_SLOTS = [{
+    'object': null,
+    x: -100,
+    y: 0
+}, {
+    'object': null,
+    x: 100,
+    y: 150
+}, {
+    'object': null,
+    x: -100,
+    y: 300
+}, {
+    'object': null,
+    x: 100,
+    y: 450
+}, {
+    'object': null,
+    x: -100,
+    y: 600
+}, {
+    'object': null,
+    x: 100,
+    y: 750
+}]
 let inventoryOpen = false
-let app, container, inventory, inventoryBox
+let app, container, inventoryBox
 
-export const initJour = (globalApp, globalContainer, globalInventory) => {
+
+export const initScene = (globalApp, globalContainer, globalInventory) => {
+
 
     app = globalApp
     container = globalContainer
-    inventory = globalInventory
-    inventoryBox = inventory.getBounds()
-    createEnvironment()
+    inventoryBox = globalInventory.getBounds()
+    // createEnvironment()
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if(OBJECTS[i].timeOfDay == "Jour") {
+
+        if(OBJECTS[i].timeOfDay == "Jour" && !globalContainer.getChildByName(OBJECTS[i].name)) {
+
 
             const img = Texture.from("img/" + OBJECTS[i].src);
-            const object = new Sprite(img) ;
+            const object = new Sprite(img);
             object.id = OBJECTS[i].id;
-    
+
+            object.name = OBJECTS[i].name
+
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
             object.scale.set(SCALE);
+            object.targetScale = SCALE;
             object.anchor.set(0.5)
             object.interactive = true;
             object.buttonMode = LUCK;
-    
-            object.x =OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
+
+            object.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
             object.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
             object.initialPos = {
                 x: object.x,
@@ -50,17 +93,26 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
 
             object.goBack = false;
             object.l = Math.random() * 4;
-            object.zIndex = 0;
+            object.zIndex = 5;
 
             object
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
 
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+                this.alpha = 0.6;
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
+
+                const url = "sound/" + OBJECTS[i].sound
+                const player = new Player(url).toDestination();
+                player.autostart = true;
             }
 
             function onDragEnd() {
@@ -69,13 +121,18 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                 this.data = null;
 
                 if(checkCollision(this)) {
-                    addToSlot(this, OBJECTS[i].name)                    
+                    background.addToSlot(this, OBJECTS[i].name)                    
+
                 } else {
                     finalScene.deleteObject(object.id, OBJECTS[i].name)
-                    clearSlot(this)
+                    background.clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
+                gsap.to(object.scale, {
+                    x: object.scale.x,
+                    y: object.scale.y
+                });
             }
 
             function onDragMove() {
@@ -84,6 +141,7 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     this.x = newPosition.x;
                     this.y = newPosition.y;
                 }
+                
             }
 
             object.update = function () {
@@ -96,41 +154,77 @@ export const initJour = (globalApp, globalContainer, globalInventory) => {
                     this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
                 }
             }
-            
+
+
+            // BLUR FILTER
+
+            // const blurFilter1 = new PIXI.filters.BlurFilter();
+            // blurFilter1.blur = 0.0;
+            // object.filters = [blurFilter1];
+
+            // const time = 2.0;
+            // TweenMax.to(blurFilter1, time, {
+            //     blur: 5.0,
+            //     repeat: -1
+            // });
+
+            // OBJECTS FOLLOW MOUSE
+
+            // app.stage.interactive = true;
+
+            // app.stage.hitArea = app.renderer.screen;
+
+            // app.stage.addEventListener('pointermove', (e) => {
+            //     object.position.copyFrom(e.global);
+            // });
+
+            // PARALLAX 
+
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    console.log("scroll down")
+                    gsap.to(object.position, {
+                        x: object.x * 2,
+                        y: object.y * 2,
+                        duration: 10
+                    });
+
+                } else if (e.deltaY <= 0) {
+                    console.log("scroll up")
+
+                    // gsap.to(object.scale, {
+                    //     // onUpdate: () => {
+                    //     //     object.scale.set(object.targetScale)
+                    //     //     console.log(targetScale)
+                    //     // },
+                    //     x: object.scale.x / 4,
+                    //     y: object.scale.y / 4,
+                    //     duration: 10
+                    // });
+
+
+                    gsap.to(object.position, {
+                        x: object.initialPos.x,
+                        y: object.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
+
             container.addChild(object);
         }
+
     }
 
     app.ticker.add((delta) => {
         for (const object of container.children) {
             object.update();
         }
-    });    
-
-    inventory.on("click", function (e) {
-        this.interactive = true;
-        inventoryOpen = !inventoryOpen
-        if(inventoryOpen) {
-            INVENTORY_SLOTS.map((slot) => {
-                if (slot.object !== null) {
-                    slot.object.alpha = 1
-                    slot.object.scale.set(0.13)
-                }
-            })
-        } else {
-            INVENTORY_SLOTS.map((slot) => {
-                if (slot.object !== null) {
-                    slot.object.alpha = 0
-                    slot.object.scale.set(0)
-                }
-            })
-        }
-    })
+    });
 
     // initMoods()
 
 }
-
 
 export const playMusic = () => {
     const url = "sound/Jour.wav"
@@ -139,67 +233,14 @@ export const playMusic = () => {
 }
 
 const createEnvironment = () => {
-    const canvas = document.querySelectorAll('canvas')
-    canvas[0].style.background = "rgb(155,194,255)"
-    canvas[0].style.background = "linear-gradient(180deg, rgba(155,194,255,1) 0%, rgba(232,241,255,1) 100%)"
 }
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
     
+
     return objectBox.x + objectBox.width > inventoryBox.x &&
            objectBox.x < inventoryBox.x + inventoryBox.width &&
            objectBox.y + objectBox.height > inventoryBox.y &&
            objectBox.y < inventoryBox.y + inventoryBox.height;
-}
-
-const addToSlot = (object, objname) => {
-    let slotFound = false
-
-    INVENTORY_SLOTS.map((slot) => {
-        if (slotFound === false) {
-            if (slot.object == null) {
-                finalScene.addObject(object.id, objname)
-                slot.object = object
-                
-                object.x = slot.x;
-                object.y = slot.y;
-                object.scale.set(0.13)
-                object.tint = 0x1A1D5C;
-                
-                if(inventoryOpen === false) {
-                    object.alpha = 0
-                    object.scale.set(0)
-                }                
-
-                const url = "sound/Coffre.wav"
-                const player = new Player(url).toDestination();
-                player.autostart = true;
-
-                slotFound = true
-            }
-        }
-    })
-
-    if (slotFound === false) {
-        alert("coffre full")
-        object.x = app.view.width / 2;
-        object.y = app.view.height / 2;
-    }
-}
-
-const clearSlot = (object) => {
-    INVENTORY_SLOTS.map((slot) => {
-        if (slot.object == object) {
-            slot.object = null        
-        }
-    })
-}
-
-const initMoods = () => {
-    MOODS.map((mood) => {
-        let p = document.createElement('p')
-        p.innerHTML = mood
-        moodsList.appendChild(p);
-    })
 }

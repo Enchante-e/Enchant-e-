@@ -17,7 +17,6 @@ dotenv.config();
 const socket = io(process.env.IO_URL)
 homepage.initHome()
 
-
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
 let myId, myName, myRoom = ""
@@ -57,7 +56,7 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
-    document.getElementById("ambientPlayer").play()
+    // document.getElementById("ambientPlayer").play()
 })
 
 // [EMIT] Join room with code
@@ -114,7 +113,6 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
-    jour.playMusic()
 });
 
 // [RECEIVED] Waiting for partner

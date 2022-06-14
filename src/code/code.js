@@ -9,6 +9,7 @@ let checkBttn = document.getElementById("checkCode")
 let notes = [...document.getElementsByClassName("noteBg")]
 let noteLabels = [...document.getElementsByClassName("noteLabel")]
 let pianoDiv = [...document.getElementsByClassName("pianoCode")]
+let pianoKey = [...document.getElementsByClassName("pianoKey")]
 
 
 export const init = (homepage, roomCode) => {
@@ -24,6 +25,9 @@ export const init = (homepage, roomCode) => {
     document.addEventListener("keydown", keyDown)
     document.addEventListener("keyup", keyUp)
     checkBttn.addEventListener("click", checkCode)
+    pianoKey.map((key) => {
+      key.addEventListener("click", keyDownClick)
+    })
 }
 
 const assignNotes = () => {
@@ -102,10 +106,65 @@ const keyDown = (e) => {
     }
 }
 
+const keyDownClick = (e) => {
+    switch(e.target.id) {
+      case 'C4':
+        playNote('C4'), keyUp() 
+        break;
+      case 'Db4':
+        playNote('Db4'), keyUp() 
+        break;
+      case 'D4':
+        playNote('D4'), keyUp() 
+        break;
+      case 'Eb4':
+        playNote('Eb4'), keyUp() 
+        break;
+      case 'E4':
+        playNote('E4'), keyUp() 
+        break;
+      case 'F4':
+        playNote('F4'), keyUp() 
+        break;
+      case 'Gb4':
+        playNote('Gb4'), keyUp() 
+        break;
+      case 'G4':
+        playNote('G4'), keyUp() 
+        break;
+      case 'Ab4':
+        playNote('Ab4'), keyUp() 
+        break;
+      case 'A4':
+        playNote('A4'), keyUp() 
+        break;
+      case 'Bb4':
+        playNote('Bb4'), keyUp() 
+        break;
+      case 'B4':
+        playNote('B4'), keyUp() 
+        break;
+      case 'C5':
+        playNote('C5'), keyUp() 
+        break;
+      case 'A#4':
+        playNote('A#4') , keyUp() //to check w/ musicos
+        break;
+      case 'D#4':
+        playNote('D#4') , keyUp() //to check w/ musicos
+        break;
+      case 'F#4':
+        playNote('F#4') , keyUp() //to check w/ musicos
+        break;
+      case 'C#4':
+        playNote('C#4') , keyUp() //to check w/ musicos
+        break;
+    }
+}
+
 const keyUp = () => {
     const activeKeys = [...document.getElementsByClassName("activeKey")]
     activeKeys.map((a) => {
-      a.classList.remove("activeKey")
       if(keysPressed.length < 4) {
         keysPressed.push(a.innerText)
       } else {
@@ -120,6 +179,9 @@ const playNote = (note) => {
     const synth = new PolySynth().toDestination()
     synth.triggerAttackRelease(note,"8n");
     document.getElementById(note)?.classList.add("activeKey")
+    setTimeout(() => { 
+      document.getElementById(note)?.classList.remove("activeKey")
+  }, 100);
 }
 
 const checkCode = () => {
