@@ -49,8 +49,6 @@ const INVENTORY_SLOTS = [{
 let inventoryOpen = false
 let app, container, inventory, inventoryBox
 
-let app, container, inventoryBox
-
 
 export const init = (globalApp, globalContainer, globalInventory) => {
 
@@ -302,4 +300,4 @@ const clearSlot = (object) => {
         }
     })
 
- 
+}

@@ -88,7 +88,7 @@ const createInventory = () => {
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
 
-    coffreBg.x = 0;
+    coffreBg.x = -40;
     coffreBg.y = 125;
     coffreBg.scale.set(0.15);
     coffreBg.alpha = 0;
@@ -99,7 +99,13 @@ const createInventory = () => {
         inventoryOpen = !inventoryOpen
 
         if(inventoryOpen) {
-            coffreBg.alpha = 1;
+
+            gsap.to(coffreBg, {
+                alpha: 1,
+                x: 0,
+                duration: 1
+            });
+
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
                     slot.object.alpha = 1
@@ -122,7 +128,11 @@ const createInventory = () => {
                 }
             })
         } else {
-            coffreBg.alpha = 0;
+            gsap.to(coffreBg, {
+                alpha: 0,
+                x: -10,
+                duration: 1
+            });
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
                     slot.object.alpha = 0
