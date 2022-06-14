@@ -23,4 +23,7 @@ export const closeExperience = () => {
     // server clear all datas from previous experiences
     // and all local values in main
     // close all pages (concept pages, nameform ...)
+
+        // deleteCursor()
+
 }
