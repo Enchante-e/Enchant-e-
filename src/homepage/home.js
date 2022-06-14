@@ -3,7 +3,6 @@ let homeDiv = [...document.getElementsByClassName("homepage")]
 let musicBttn = [...document.getElementsByClassName("musicBttn")]
 let ambientPlayerHTML = document.getElementById("ambientPlayer")
 ambientPlayerHTML.volume = 0.4
-// ambientPlayerHTML.play()
 
 musicBttn[0].addEventListener("click", () => {
     if (ambientPlayerHTML.paused) {
@@ -15,6 +14,7 @@ musicBttn[0].addEventListener("click", () => {
 
 export const initHome = () => {
     document.body.classList.add("homeStyle")
+    initCanvas()
 }
 
 export const closeHome = () => {

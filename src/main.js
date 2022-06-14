@@ -55,7 +55,7 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
-    document.getElementById("ambientPlayer").play()
+    // document.getElementById("ambientPlayer").play()
 })
 
 // [EMIT] Join room with code

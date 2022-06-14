@@ -10,7 +10,7 @@ body {
 
 body.homeStyle {
     color: #ffffff;
-    background: url("../static/img/bg.png");
+    background: #1A1D5C;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -247,7 +247,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem auto;
+    margin: 2.5rem auto;
 }
 
 .notes .note {
@@ -271,6 +271,7 @@ button {
     left: 20px;
     width: 15px;
     height: 20px;
+    font-size: 1.5em;
 }
 
 .piano {
@@ -309,6 +310,7 @@ button {
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
+    user-select: none;
 }
 
 .pianoKey.black {
