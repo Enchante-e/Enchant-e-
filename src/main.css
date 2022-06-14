@@ -498,3 +498,11 @@ button {
 #sceneOne, #sceneTwo, #sceneThree, #sceneFour {
     display: none;
 }
+
+#closeEndPage {
+    border: none;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 2.2em;
+}
