@@ -10,7 +10,6 @@ body {
 
 body.homeStyle {
     color: #ffffff;
-    /* background: url("../static/img/bg.png"); */
     background: #1A1D5C;
     background-repeat: no-repeat;
     background-size: cover;
