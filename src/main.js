@@ -4,17 +4,30 @@ import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as jour from "./scenes/jour"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
+import animLogo from "./data/animLogo.json"
 
 import dotenv from "dotenv";
 dotenv.config();
 
 const socket = io(process.env.IO_URL)
 homepage.initHome()
+
+//test
+
+const animation = lottie.loadAnimation({
+    container: document.getElementById('lottie'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    animationData: animLogo
+});
+
+animation.play()
+
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
