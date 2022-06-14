@@ -14,7 +14,6 @@ musicBttn[0].addEventListener("click", () => {
 
 export const initHome = () => {
     document.body.classList.add("homeStyle")
-    initCanvas()
 }
 
 export const closeHome = () => {
