@@ -6,16 +6,19 @@ import * as crépuscule from "./crépuscule"
 import objectsData from "../data/objects.json"
 import { getInventoryObjects } from '../js/background';
 
+
 const SCENES = [aube, aurore, jour, crépuscule]
 let currentScene = 'aube'
 const OBJECTS = objectsData.objects
+
+const AUDIO_POEME = document.createElement("AUDIO")
+AUDIO_POEME.autoplay = true
+AUDIO_POEME.loop = false
 
 let sceneOneBttn = document.getElementById('sceneOne')
 let sceneTwoBttn = document.getElementById('sceneTwo')
 let sceneThreeBttn = document.getElementById('sceneThree')
 let sceneFourBttn = document.getElementById('sceneFour')
-
-sceneOneBttn.style.display = sceneTwoBttn.style.display = sceneThreeBttn.style.display = sceneFourBttn.style.display = "none"
 
 export const initManager = (globalApp, globalContainer, globalInventory) => {
 
@@ -34,32 +37,34 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
         loader.load(OBJECTS[i].src)
     }
 
+    playMusic("sound/Aube.wav")
+
     sceneOneBttn.addEventListener("click", () => {
         currentScene = "Aube"
         clearScene(globalContainer)
         aube.initScene(globalApp, globalContainer, globalInventory)
-        aube.playMusic()
+        playMusic("sound/Aube.wav")
     })
     
     sceneTwoBttn.addEventListener("click", () => {
         currentScene = "Aurore"
         clearScene(globalContainer)
         aurore.initScene(globalApp, globalContainer, globalInventory)
-        aurore.playMusic()
+        playMusic("sound/Aurore.wav")
     })
     
     sceneThreeBttn.addEventListener("click", () => {
         currentScene = "Jour"
         clearScene(globalContainer)
         jour.initScene(globalApp, globalContainer, globalInventory)
-        jour.playMusic()
+        playMusic("sound/Jour.wav")
     })
     
     sceneFourBttn.addEventListener("click", () => {
         currentScene = "Crépuscule"
         clearScene(globalContainer)
         crépuscule.initScene(globalApp, globalContainer, globalInventory)
-        crépuscule.playMusic()
+        playMusic("sound/Crépuscule.wav")
     })
 }
 
@@ -88,4 +93,24 @@ const clearScene = (globalContainer) => {
             }
         }
     })
+}
+
+const playMusic = (url) => {
+
+    console.log(AUDIO_POEME.paused, AUDIO_POEME.currentTime)
+    
+    if (AUDIO_POEME.paused && AUDIO_POEME.currentTime > 0) {
+        AUDIO_POEME.src = url
+        AUDIO_POEME.play()
+    } else if (AUDIO_POEME.paused && AUDIO_POEME.currentTime == 0) {
+        AUDIO_POEME.src = url
+        AUDIO_POEME.play()
+    } else {
+        const delay = (25 - AUDIO_POEME.currentTime) * 1000
+        setTimeout(() => { 
+            AUDIO_POEME.src = url
+            AUDIO_POEME.play()
+        }, delay);
+    }
+
 }

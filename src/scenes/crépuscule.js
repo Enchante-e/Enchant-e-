@@ -106,13 +106,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
 }
 
-
-export const playMusic = () => {
-    const url = "sound/Crépuscule.wav"
-    const player = new Player(url).toDestination();
-    player.autostart = true;
-}
-
 const createEnvironment = () => {
 
     document.getElementById("bulleBg").style.background = "#fff"

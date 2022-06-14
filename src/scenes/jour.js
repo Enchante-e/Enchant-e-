@@ -4,9 +4,7 @@ import {
     Sprite,
     Graphics
 } from 'pixi.js';
-import {
-    Player
-} from 'tone'
+
 import * as PIXI from 'pixi.js'
 import {
     gsap
@@ -27,32 +25,6 @@ const MOODS = ["heureux", "triste", "mémorable", "douloureux", "joyeux", "uniqu
 let moodsDiv = [...document.getElementsByClassName('moods')]
 let moodsList = document.getElementById('moodsList')
 
-const INVENTORY_SLOTS = [{
-    'object': null,
-    x: -100,
-    y: 0
-}, {
-    'object': null,
-    x: 100,
-    y: 150
-}, {
-    'object': null,
-    x: -100,
-    y: 300
-}, {
-    'object': null,
-    x: 100,
-    y: 450
-}, {
-    'object': null,
-    x: -100,
-    y: 600
-}, {
-    'object': null,
-    x: 100,
-    y: 750
-}]
-let inventoryOpen = false
 let app, container, inventoryBox
 
 
@@ -110,9 +82,11 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     y: object.scale.y * 0.7
                 });
 
-                const url = "sound/" + OBJECTS[i].sound
-                const player = new Player(url).toDestination();
-                player.autostart = true;
+                if(OBJECTS[i].sound !== "") {
+                    const url = "sound/" + OBJECTS[i].sound
+                    const player = new Player(url).toDestination();
+                    player.autostart = true;
+                }
             }
 
             function onDragEnd() {
@@ -122,7 +96,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
                 if(checkCollision(this)) {
                     background.addToSlot(this, OBJECTS[i].name)                    
-
                 } else {
                     finalScene.deleteObject(object.id, OBJECTS[i].name)
                     background.clearSlot(this)
@@ -222,14 +195,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
         }
     });
 
-    // initMoods()
-
-}
-
-export const playMusic = () => {
-    const url = "sound/Jour.wav"
-    const player = new Player(url).toDestination();
-    player.autostart = true;
 }
 
 const createEnvironment = () => {
