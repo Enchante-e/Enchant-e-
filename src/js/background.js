@@ -5,6 +5,8 @@ import * as aube from "../scenes/aube"
 import * as jour from "../scenes/jour"
 import * as aurore from "../scenes/aurore"
 import * as crépuscule from "../scenes/crépuscule"
+import * as tutorial from "../tutorial/tutorial"
+
 
 let cameraVector = {
     a: 0,
@@ -57,11 +59,14 @@ export const initCanvas = () => {
         } 
     });
 
+    tutorial.initTutorial(app)
+
 }
 
 const createInventory = () => {
     const imgCoffre = Texture.from("img/Coffre.svg")
     const coffre = new Sprite(imgCoffre)
+    coffre.name = 'coffre'
 
     coffre.x = 80;
     coffre.y =  app.view.height - 110;
@@ -72,6 +77,7 @@ const createInventory = () => {
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
+    coffreBg.name = 'coffreBg'
 
     coffreBg.x = 0;
     coffreBg.y = 10;
