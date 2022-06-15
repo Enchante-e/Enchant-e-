@@ -15,38 +15,13 @@ gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
+import * as sceneManager from "./sceneManager"
 
 let cameraVector = {
     a: 0,
     l: 0
 };
 const OBJECTS = objectsData.objects
-const INVENTORY_SLOTS = [{
-    'object': null,
-    x: -100,
-    y: 0
-}, {
-    'object': null,
-    x: 100,
-    y: 150
-}, {
-    'object': null,
-    x: -100,
-    y: 300
-}, {
-    'object': null,
-    x: 100,
-    y: 450
-}, {
-    'object': null,
-    x: -100,
-    y: 600
-}, {
-    'object': null,
-    x: 100,
-    y: 750
-}]
-let inventoryOpen = false
 let app, container, inventoryBox
 
 
@@ -134,6 +109,17 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+                    if(checkCollision(this)) {
+                        gsap.to(object, { 
+                            rotation: 0.8,
+                            transformOrigin: "right 10%"
+                        });                 
+                    } else {
+                        gsap.to(object, {
+                            rotation: -0.4,
+                            transformOrigin: "left 10%"
+                        }); 
+                    }
                 }
                 
             }
@@ -176,32 +162,13 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
-                    console.log("scroll down")
-                    gsap.to(object.position, {
-                        x: object.x * 2,
-                        y: object.y * 2,
-                        duration: 10
-                    });
 
+                    changePosition(object,object.x * 2, object.y * 2, 10 )          
+                    
                 } else if (e.deltaY <= 0) {
-                    console.log("scroll up")
-
-                    // gsap.to(object.scale, {
-                    //     // onUpdate: () => {
-                    //     //     object.scale.set(object.targetScale)
-                    //     //     console.log(targetScale)
-                    //     // },
-                    //     x: object.scale.x / 4,
-                    //     y: object.scale.y / 4,
-                    //     duration: 10
-                    // });
-
-
-                    gsap.to(object.position, {
-                        x: object.initialPos.x,
-                        y: object.initialPos.y,
-                        duration: 2
-                    });
+                    
+                    changePosition(object,object.initialPos.x,object.initialPos.y, 2 )          
+           
                 }
             });
 
@@ -217,6 +184,14 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
     });
 
 }
+
+export const changePosition = (object, posX, posY, duration) => {
+    gsap.to(object.position, {
+        x: posX,
+        y: posY,
+        duration: duration
+    }) 
+} 
 
 export const playMusic = () => {
     const url = "sound/Jour.wav"
