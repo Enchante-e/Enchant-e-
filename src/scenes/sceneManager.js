@@ -15,14 +15,12 @@ let sceneTwoBttn = document.getElementById('sceneTwo')
 let sceneThreeBttn = document.getElementById('sceneThree')
 let sceneFourBttn = document.getElementById('sceneFour')
 
-sceneOneBttn.style.display = sceneTwoBttn.style.display = sceneThreeBttn.style.display = sceneFourBttn.style.display = "none"
-
 export const initManager = (globalApp, globalContainer, globalInventory) => {
 
     const loader = new Loader()
     loader.baseUrl = "img"
     loader.onComplete.add(() => {
-        sceneOneBttn.style.display = sceneTwoBttn.style.display = sceneThreeBttn.style.display = sceneFourBttn.style.display = "block"
+        document.getElementById('testDiv').style.display = "block"
         firstLoadSmooth(globalApp, globalContainer, globalInventory)
     })
 
@@ -42,6 +40,7 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
     })
     
     sceneTwoBttn.addEventListener("click", () => {
+        console.log("helooooooo")
         currentScene = "Aurore"
         clearScene(globalContainer)
         aurore.initScene(globalApp, globalContainer, globalInventory)
