@@ -55,7 +55,15 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
-    // document.getElementById("ambientPlayer").play()
+    document.getElementById("ambientPlayer").play()
+    
+    homeAnimation.play()
+
+    gsap.to([...document.getElementsByClassName("homeNav")][0], {
+        opacity: 0,
+        duration: 1.5
+      });
+
 })
 
 // [EMIT] Join room with code
@@ -71,11 +79,19 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
-    roomBttn.classList.add("hidden")
-    
-    if (userStatus == "creator") {
-        pianoDiv[0].classList.remove("hidden")
-        musicCode.init(homepage, code)
+
+    if (userStatus == "creator") {      
+        gsap.to(document.body, {
+          backgroundColor: "#FFFFFF",
+          delay: 4,
+          duration: 1
+        });
+      
+        setTimeout(() => { 
+          pianoDiv[0].classList.remove("hidden")
+          musicCode.init(homepage, code)
+        }, 5500);
+
     } else if(userStatus == "invited") {
         join.closeJoin()
         nameForm.initName() 

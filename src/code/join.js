@@ -6,6 +6,10 @@ let roomConnect = document.getElementById("roomConnect")
 roomConnect.addEventListener('click', () => {
 
   homepage.homeAnimation.play()
+  gsap.to([...document.getElementsByClassName("homeNav")][0], {
+    opacity: 0,
+    duration: 1.5
+  });
   document.getElementById("ambientPlayer").play()
 
   gsap.to(document.body, {
