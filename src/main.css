@@ -357,10 +357,9 @@ button {
 
 .homeNav { 
     display: flex;   
-    margin: auto;
     justify-content: center;
     align-items: center; 
-    margin: 75px 0;
+    margin-top: 35vh;
 }
 
 .homeBttn {
