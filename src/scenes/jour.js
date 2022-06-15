@@ -134,6 +134,17 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+                    if(checkCollision(this)) {
+                        gsap.to(object, { 
+                            rotation: 0.8,
+                            transformOrigin: "right 10%"
+                        });                 
+                    } else {
+                        gsap.to(object, {
+                            rotation: -0.4,
+                            transformOrigin: "left 10%"
+                        }); 
+                    }
                 }
                 
             }
