@@ -9,7 +9,7 @@
           "posX": 0.92,
           "posY": 0.68,
           "scale": 0.18,
-          "index": 0
+          "index": -3
         },
         {
           "id": 1,
@@ -20,7 +20,7 @@
           "posX": 0,
           "posY": 0.1,
           "scale": 0.35,
-          "index": 0
+          "index": -2
         },
         {
           "id": 2,
@@ -31,7 +31,7 @@
           "posX": 0.2,
           "posY": 0.6,
           "scale": 0.3,
-          "index": 0
+          "index": -5
         },
         {
           "id": 3,
@@ -53,7 +53,7 @@
           "posX": 0.35,
           "posY": 0.15,
           "scale": 0.2,
-          "index": 0
+          "index": -3
         },
         {
           "id": 5,
@@ -64,7 +64,7 @@
           "posX": 0.2,
           "posY": 0.6,
           "scale": 0.25,
-          "index": 0
+          "index": -5
         },
         {
           "id": 6,
@@ -75,7 +75,7 @@
           "posX": 0,
           "posY": 0,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 7,
@@ -86,7 +86,7 @@
           "posX": 0.7,
           "posY": 0.65,
           "scale": 0.3,
-          "index": 0
+          "index": -3
         },
         {
           "id": 8,
@@ -97,7 +97,7 @@
           "posX": 0.1,
           "posY": 0.65,
           "scale": 0.25,
-          "index": 0
+          "index": -2
         },
         {
           "id": 9,
@@ -119,7 +119,7 @@
           "posX": 0.1,
           "posY": 0.9,
           "scale": 0.18,
-          "index": 0
+          "index": -6
         },
         {
           "id": 11,
@@ -130,7 +130,7 @@
           "posX": 0,
           "posY": 0.85,
           "scale": 0.35,
-          "index": 0
+          "index": 1
         },
         {
           "id": 12,
@@ -141,7 +141,7 @@
           "posX": 0.35,
           "posY": 0.18,
           "scale": 0.25,
-          "index": 0
+          "index": -3
         },
         {
           "id": 13,
@@ -152,7 +152,7 @@
           "posX": 0.55,
           "posY": 0.5,
           "scale": 0.12,
-          "index": 0
+          "index": -6
         },
         {
           "id": 14,
@@ -163,7 +163,7 @@
           "posX": 0.1,
           "posY": 0.1,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 15,
@@ -174,7 +174,7 @@
           "posX": 0.5,
           "posY": 0.25,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 16,
@@ -207,7 +207,7 @@
           "posX": 0.75,
           "posY": 0.58,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 19,
@@ -218,7 +218,7 @@
           "posX": 0.5,
           "posY": 0.5,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 20,
@@ -229,7 +229,7 @@
           "posX": 0.8,
           "posY": 0.3,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 21,
@@ -240,7 +240,7 @@
           "posX": 0.05,
           "posY": 0.5,
           "scale": 0.12,
-          "index": 0
+          "index": -2
         },
         {
           "id": 22,
@@ -251,7 +251,7 @@
           "posX": 0.12,
           "posY": 0.45,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 23,
@@ -262,7 +262,7 @@
           "posX": 0.9,
           "posY": 0.7,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 24,
@@ -273,7 +273,7 @@
           "posX": 0.15,
           "posY": 0.5,
           "scale": 0.4,
-          "index": 0
+          "index": -6
         },
         {
           "id": 25,
@@ -284,7 +284,7 @@
           "posX": 0.8,
           "posY": 0.45,
           "scale": 0.25,
-          "index": 0
+          "index": -2
         },
         {
           "id": 26,
@@ -295,7 +295,7 @@
           "posX": 0.4,
           "posY": 0.4,
           "scale": 0.12,
-          "index": 0
+          "index": -1
         },
         {
           "id": 27,
@@ -317,7 +317,7 @@
           "posX": 0.5,
           "posY": 0.5,
           "scale": 0.25,
-          "index": 0
+          "index": -4
         },
         {
           "id": 29,
@@ -328,7 +328,7 @@
           "posX": 0.35,
           "posY": 0.08,
           "scale": 0.13,
-          "index": 0
+          "index": -2
         },
         {
           "id": 30,
@@ -339,7 +339,7 @@
           "posX": 0.2,
           "posY": 0.4,
           "scale": 0.25,
-          "index": 0
+          "index": -5
         },
         {
           "id": 31,
@@ -350,7 +350,7 @@
           "posX": 0.2,
           "posY": 0.15,
           "scale": 0.25,
-          "index": 0
+          "index": -3
         },
         {
           "id": 32,
@@ -361,7 +361,7 @@
           "posX": 0.5,
           "posY": 0.8,
           "scale": 0.2,
-          "index": 0
+          "index": -5
         },
         {
           "id": 33,
@@ -372,7 +372,7 @@
           "posX": 0.85,
           "posY": 0.7,
           "scale": 0.25,
-          "index": 0
+          "index": -1
         },
         {
           "id": 34,
@@ -383,7 +383,7 @@
           "posX": 0.45,
           "posY": 0.4,
           "scale": 0.15,
-          "index": 0
+          "index": -2
         },
         {
           "id": 35,
@@ -394,7 +394,7 @@
           "posX": 0.25,
           "posY": 0.7,
           "scale": 0.5,
-          "index": 0
+          "index": -2
         },
         {
           "id": 36,
@@ -405,7 +405,7 @@
           "posX": 0.65,
           "posY": 0.15,
           "scale": 0.5,
-          "index": 0
+          "index": -3
         },
         {
           "id": 37,
@@ -416,7 +416,7 @@
           "posX": 0.07,
           "posY": 0.65,
           "scale": 0.15,
-          "index": 0
+          "index": -6
         },
         {
           "id": 38,
@@ -427,7 +427,7 @@
           "posX": 0.05,
           "posY": 0.4,
           "scale": 0.18,
-          "index": 0
+          "index": -7
         },
         {
           "id": 39,
@@ -438,7 +438,7 @@
           "posX": 0,
           "posY": 0,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 40,
@@ -449,7 +449,7 @@
           "posX": 0.08,
           "posY": 0.2,
           "scale": 0.25,
-          "index": 0
+          "index": -2
         },
         {
           "id": 41,
@@ -460,7 +460,7 @@
           "posX": 0.4,
           "posY": 0,
           "scale": 0.25,
-          "index": 0
+          "index": -4
         },
         {
           "id": 42,
@@ -471,7 +471,7 @@
           "posX": 0.9,
           "posY": 0.9,
           "scale": 0.25,
-          "index": 0
+          "index": -4
         },
         {
           "id": 43,
@@ -482,7 +482,7 @@
           "posX": 0.15,
           "posY": 0.38,
           "scale": 0.25,
-          "index": 0
+          "index": -6
         },
         {
           "id": 44,
@@ -493,7 +493,7 @@
           "posX": 0.85,
           "posY": 0.08,
           "scale": 0.25,
-          "index": 0
+          "index": -2
         },
         {
           "id": 45,
@@ -504,7 +504,7 @@
           "posX": 0.12,
           "posY": 0.8,
           "scale": 0.19,
-          "index": 0
+          "index": -4
         },
         {
           "id": 46,
@@ -515,7 +515,7 @@
           "posX": 0,
           "posY": 0.3,
           "scale": 0.25,
-          "index": 0
+          "index": -4
         },
         {
           "id": 47,
@@ -537,7 +537,7 @@
           "posX": 0.85,
           "posY": 0.5,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 49,
@@ -548,7 +548,7 @@
           "posX": 0,
           "posY": 0,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 50,
@@ -559,7 +559,7 @@
           "posX": 0,
           "posY": 0,
           "scale": 0.25,
-          "index": 0
+          "index": 1
         },
         {
           "id": 51,
@@ -570,7 +570,7 @@
           "posX": 0,
           "posY": 0.1,
           "scale": 0.25,
-          "index": 0
+          "index": -3
         },
         {
           "id": 52,
@@ -581,7 +581,7 @@
           "posX": 0.9,
           "posY": 0.45,
           "scale": 0.17,
-          "index": 0
+          "index": -1
         },
         {
           "id": 53,
@@ -592,7 +592,7 @@
           "posX": 0.08,
           "posY": 0.55,
           "scale": 0.2,
-          "index": 0
+          "index": -6
         },
         {
           "id": 54,
@@ -603,7 +603,7 @@
           "posX": 0.4,
           "posY": 0.8,
           "scale": 0.25,
-          "index": 0
+          "index": -5
         },
         {
           "id": 55,
@@ -614,7 +614,7 @@
           "posX": 0.92,
           "posY": 0.45,
           "scale": 0.11,
-          "index": 0
+          "index": -6
         },
         {
           "id": 56,
@@ -625,7 +625,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": -3
         },
         {
           "id": 57,
@@ -647,7 +647,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 59,
@@ -658,7 +658,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 60,
@@ -680,7 +680,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": -3
         },
         {
           "id": 62,
@@ -691,7 +691,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 63,
@@ -702,7 +702,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 64,
@@ -713,7 +713,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 65,
@@ -724,7 +724,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 66,
@@ -735,7 +735,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 67,
@@ -746,7 +746,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 68,
@@ -757,7 +757,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 69,
@@ -768,7 +768,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 70,
@@ -790,7 +790,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": -1
         },
         {
           "id": 72,
@@ -801,7 +801,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 73,
@@ -823,7 +823,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 75,
@@ -834,7 +834,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": -7
         },
         {
           "id": 76,
@@ -845,7 +845,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 77,
@@ -856,7 +856,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 78,
@@ -867,7 +867,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 79,
@@ -878,7 +878,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         },
         {
           "id": 80,
@@ -889,7 +889,7 @@
           "posX": 0.65,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 0
+          "index": 1
         }
     ]
 }

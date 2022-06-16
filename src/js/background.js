@@ -61,19 +61,10 @@ export const initCanvas = () => {
     
     const inventory = createInventory()
     app.stage.addChild(container);
-    
-    // SCENES.map((scene) => {
-    //     scene.initScene(app, container, inventory)
-    // })
-    // SCENES[0].playMusic()
+
     sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        } 
-    });
 
 }
 

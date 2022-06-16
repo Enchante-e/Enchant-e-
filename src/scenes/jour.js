@@ -138,18 +138,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 
             }
 
-            object.update = function () {
-                if (this.goBack) {
-                    this.x = lerp(this.x, this.initialPos.x, 0.5);
-                    this.y = lerp(this.y, this.initialPos.y, 0.5);
-                    this.goBack = (this.x == this.initialPos.x) ? false : true;
-                } else {
-                    this.x += Math.cos(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                    this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                }
-            }
-
-
             // BLUR FILTER
 
             // const blurFilter1 = new PIXI.filters.BlurFilter();
@@ -209,12 +197,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
         }
 
     }
-
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        }
-    });
 
 }
 

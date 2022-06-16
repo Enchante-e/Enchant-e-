@@ -1,0 +1,40 @@
+{
+    "hashtags": [
+        {
+            "id": 0,
+            "src": "Aube-Fond-Droite.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 0
+        },
+        {
+            "id": 1,
+            "src": "Aube-Fond-Gauche.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 0
+        },
+        {
+            "id": 2,
+            "src": "Aube-algue-middle.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 0
+        },
+        {
+            "id": 3,
+            "src": "",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 0
+        }
+    ]
+}

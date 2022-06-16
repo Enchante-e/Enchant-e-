@@ -1,4 +1,4 @@
-import {Texture, Sprite, Graphics} from 'pixi.js';
+import {Texture, Sprite, Container} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
@@ -16,7 +16,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    // createEnvironment()
+    createEnvironment(globalContainer)
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -42,8 +42,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             }
 
             object.goBack = false;
-            object.l = Math.random() * 4;
-            object.zIndex = 5;
+            object.zIndex = OBJECTS[i].index;
 
             object
             .on('pointerdown', onDragStart)
@@ -82,27 +81,10 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     this.y = newPosition.y;
                 }
             }
-
-            object.update = function () {
-                if (this.goBack) {
-                    this.x = lerp(this.x, this.initialPos.x, 0.5);
-                    this.y = lerp(this.y, this.initialPos.y, 0.5);
-                    this.goBack = (this.x == this.initialPos.x) ? false : true;
-                } else {
-                    this.x += Math.cos(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                    this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                }
-            }
             
             container.addChild(object);
         }
     }
-
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        }
-    });    
 
 }
 
@@ -113,7 +95,83 @@ export const playMusic = () => {
     player.autostart = true;
 }
 
-const createEnvironment = () => {
+const createEnvironment = (globalContainer) => {
+    const container = new Container(1080)
+    container.x = app.screen.width / 8;
+    container.y = app.screen.height / 8;
+    container.pivot.x = container.width / 8;
+    container.pivot.y = container.height / 8;
+    container.sortableChildren = true
+    container.zIndex = -1
+    app.stage.addChild(container)
+
+    const rightImg = Texture.from("img/Aube-Fond-Droite.svg")
+    const rightBg = new Sprite(rightImg) 
+    rightBg.name = "Aube-Fond-Droite"
+    rightBg.zIndex = -7
+
+    const leftImg = Texture.from("img/Aube-Fond-Gauche.svg")
+    const leftBg = new Sprite(leftImg) 
+    leftBg.name = "Aube-Fond-Gauche"
+    leftBg.zIndex = -8
+
+    rightBg.x = app.view.width / 4 ;
+    rightBg.y = - app.view.height / 2;
+    rightBg.scale.set(0.8)
+    rightBg.interactive = true;
+
+    leftBg.x =  - app.view.width / 2 ;
+    leftBg.y = - app.view.height / 2;
+    leftBg.scale.set(0.8)
+    leftBg.interactive = true;
+    
+    const contrainteImg = Texture.from("img/Contraintes/Aube-algue-middle.svg")
+    const contrainteBg = new Sprite(contrainteImg) 
+    contrainteBg.scale.set(0.8)
+    contrainteBg.x =  150;
+    contrainteBg.interactive = true;
+    // contrainteBg.name = "Con"
+    contrainteBg.zIndex = 1
+    contrainteBg.anchor.set(0.5)
+
+
+    contrainteBg
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+            leftBg
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+            rightBg
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+
+            function onDragStart(event) {
+                this.data = event.data;
+                this.dragging = true;
+
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+                }
+            }
+
+    globalContainer.addChild(rightBg,leftBg, contrainteBg)
 }
 
 const checkCollision = (object) => {
@@ -125,23 +183,3 @@ const checkCollision = (object) => {
            objectBox.y < inventoryBox.y + inventoryBox.height;
 }
 
-const createGradTexture = () => {
-    const quality = 256;
-    const canvas = document.createElement('canvas');
-    canvas.width = quality;
-    canvas.height = 1;
-
-    const ctx = canvas.getContext('2d');
-
-    const grd = ctx.createLinearGradient(0, 0, quality, 0);
-    grd.addColorStop(0, 'rgba(106, 0, 143)');
-    grd.addColorStop(1, 'rgba(0, 41, 157)');
-
-    ctx.fillStyle = grd;
-    // ctx.beginPath();
-    // ctx.arc(200, app.view.height / 2, 1000, 0, 2 * Math.PI);
-    // ctx.fill();
-    ctx.fillRect(0, 0, quality, 1);
-
-    return Texture.from(canvas);
-}
