@@ -1,5 +1,5 @@
 {
-    "hashtags": [
+    "contraintes": [
         {
             "id": 0,
             "src": "Aube-Fond-Droite.svg",
@@ -7,7 +7,7 @@
             "posX": 0.65,
             "posY": 0.7,
             "scale": 0.2,
-            "index": 0
+            "index": -7
         },
         {
             "id": 1,
@@ -16,7 +16,7 @@
             "posX": 0.65,
             "posY": 0.7,
             "scale": 0.2,
-            "index": 0
+            "index": -8
         },
         {
             "id": 2,
@@ -25,16 +25,106 @@
             "posX": 0.65,
             "posY": 0.7,
             "scale": 0.2,
-            "index": 0
+            "index": 1
         },
         {
             "id": 3,
-            "src": "",
+            "src": "Aube-Arabesque-Ronde.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 1
+        },
+        {
+            "id": 4,
+            "src": "Aube-Arabesque.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -1
+        },
+        {
+            "id": 5,
+            "src": "Aube-Bottom-Middle.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": 1
+        },
+        {
+            "id": 6,
+            "src": "Aube-Bottom-Purple.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -6
+        },
+        {
+            "id": 7,
+            "src": "Aube-Purple-Behind-Background.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -6
+        },
+        {
+            "id": 8,
+            "src": "Aube-Purple-Front.svg",
             "timeOfDay": "Aube",
             "posX": 0.65,
             "posY": 0.7,
             "scale": 0.2,
             "index": 0
+        },
+        {
+            "id": 9,
+            "src": "Aube-Ronds.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -2
+        },
+        {
+            "id": 10,
+            "src": "Aube-Top-Left-Behind-Purple.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -4
+        },
+        {
+            "id": 11,
+            "src": "Aube-Top-Left-Rose.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -3
+        },
+        {
+            "id": 12,
+            "src": "Aube-Top-Rose.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -5
+        },
+        {
+            "id": 13,
+            "src": "Aube-ZigZag-Purple-Front-Left.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.65,
+            "posY": 0.7,
+            "scale": 0.2,
+            "index": -3
         }
     ]
 }

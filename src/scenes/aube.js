@@ -1,6 +1,7 @@
 import {Texture, Sprite, Container} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 
@@ -9,6 +10,7 @@ let cameraVector = {
     l: 0
 };
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 export const initScene = (globalApp, globalContainer, globalInventory) => {
@@ -96,61 +98,27 @@ export const playMusic = () => {
 }
 
 const createEnvironment = (globalContainer) => {
-    const container = new Container(1080)
-    container.x = app.screen.width / 8;
-    container.y = app.screen.height / 8;
-    container.pivot.x = container.width / 8;
-    container.pivot.y = container.height / 8;
-    container.sortableChildren = true
-    container.zIndex = -1
-    app.stage.addChild(container)
 
-    const rightImg = Texture.from("img/Aube-Fond-Droite.svg")
-    const rightBg = new Sprite(rightImg) 
-    rightBg.name = "Aube-Fond-Droite"
-    rightBg.zIndex = -7
+    for (let i = 0; i < CONTRAINTES.length; i++) {
 
-    const leftImg = Texture.from("img/Aube-Fond-Gauche.svg")
-    const leftBg = new Sprite(leftImg) 
-    leftBg.name = "Aube-Fond-Gauche"
-    leftBg.zIndex = -8
+        if(CONTRAINTES[i].timeOfDay == "Aube") {
 
-    rightBg.x = app.view.width / 4 ;
-    rightBg.y = - app.view.height / 2;
-    rightBg.scale.set(0.8)
-    rightBg.interactive = true;
+            const contrainteImg = Texture.from("img/Contraintes/" + CONTRAINTES[i].src)
+            const contrainte = new Sprite(contrainteImg) 
+            contrainte.zIndex = CONTRAINTES[i].index
+            contrainte.scale.set(CONTRAINTES[i].scale)
+            contrainte.x =  CONTRAINTES[i].posX;
+            contrainte.y =  CONTRAINTES[i].posY;
+            contrainte.anchor.set(0.5)
+            contrainte.interactive = true;
 
-    leftBg.x =  - app.view.width / 2 ;
-    leftBg.y = - app.view.height / 2;
-    leftBg.scale.set(0.8)
-    leftBg.interactive = true;
-    
-    const contrainteImg = Texture.from("img/Contraintes/Aube-algue-middle.svg")
-    const contrainteBg = new Sprite(contrainteImg) 
-    contrainteBg.scale.set(0.8)
-    contrainteBg.x =  150;
-    contrainteBg.interactive = true;
-    // contrainteBg.name = "Con"
-    contrainteBg.zIndex = 1
-    contrainteBg.anchor.set(0.5)
+            contrainte
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
 
-
-    contrainteBg
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
-            leftBg
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
-            rightBg
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
-
+                    
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
@@ -171,7 +139,13 @@ const createEnvironment = (globalContainer) => {
                 }
             }
 
-    globalContainer.addChild(rightBg,leftBg, contrainteBg)
+        
+            globalContainer.addChild(contrainte)
+
+        }
+    }
+
+
 }
 
 const checkCollision = (object) => {
