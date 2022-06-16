@@ -315,7 +315,7 @@
           "sound": "Fer_à_cheval.wav",
           "timeOfDay": "Aube",
           "posX": 0.12,
-          "posY": 0.12,
+          "posY": 0.2,
           "scale": 0.2,
           "index": -4
         },
