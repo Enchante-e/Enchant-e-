@@ -83,9 +83,9 @@
           "src": "Canapé.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.7,
-          "posY": 0.65,
-          "scale": 0.3,
+          "posX": 0.9,
+          "posY": 0.35,
+          "scale": 0.5,
           "index": -3
         },
         {
@@ -94,9 +94,9 @@
           "src": "Toboggan.png",
           "sound": "Toboggan.wav",
           "timeOfDay": "Aube",
-          "posX": 0.1,
-          "posY": 0.65,
-          "scale": 0.25,
+          "posX": 0.88,
+          "posY": 0.38,
+          "scale": 0.55,
           "index": -2
         },
         {
@@ -160,9 +160,9 @@
           "src": "Thé.png",
           "sound": "Thé.wav",
           "timeOfDay": "Aube",
-          "posX": 0.1,
-          "posY": 0.1,
-          "scale": 0.25,
+          "posX": 0.25,
+          "posY": 0.80,
+          "scale": 0.32,
           "index": -1
         },
         {
@@ -171,9 +171,9 @@
           "src": "Bague.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.5,
-          "posY": 0.25,
-          "scale": 0.25,
+          "posX": 0.17,
+          "posY": 0.86,
+          "scale": 0.23,
           "index": -1
         },
         {
@@ -193,8 +193,8 @@
           "src": "Brosse.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.6,
-          "posY": 0.8,
+          "posX": 0.65,
+          "posY": 0.95,
           "scale": 0.25,
           "index": 0
         },
@@ -226,9 +226,9 @@
           "src": "Chocolat.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.8,
-          "posY": 0.3,
-          "scale": 0.25,
+          "posX": 0.20,
+          "posY": 0.96,
+          "scale": 0.28,
           "index": 1
         },
         {
@@ -259,9 +259,9 @@
           "src": "Cocktail.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.9,
-          "posY": 0.7,
-          "scale": 0.25,
+          "posX": 0.72,
+          "posY": 0.36,
+          "scale": 0.3,
           "index": -1
         },
         {
@@ -314,9 +314,9 @@
           "src": "Fer-à-cheval.png",
           "sound": "Fer_à_cheval.wav",
           "timeOfDay": "Aube",
-          "posX": 0.5,
-          "posY": 0.5,
-          "scale": 0.25,
+          "posX": 0.12,
+          "posY": 0.2,
+          "scale": 0.2,
           "index": -4
         },
         {
@@ -369,10 +369,10 @@
           "src": "Photo.png",
           "sound": "Photo.wav",
           "timeOfDay": "Aurore",
-          "posX": 0.85,
-          "posY": 0.7,
+          "posX": 0.25,
+          "posY": 0.35,
           "scale": 0.25,
-          "index": -1
+          "index": -3
         },
         {
           "id": 34,
@@ -457,9 +457,9 @@
           "src": "Airpod.png",
           "sound": "Airpods.wav",
           "timeOfDay": "Aube",
-          "posX": 0.4,
-          "posY": 0,
-          "scale": 0.25,
+          "posX": 0.1,
+          "posY": 0.1,
+          "scale": 0.2,
           "index": -4
         },
         {
@@ -512,8 +512,8 @@
           "src": "Pomme.png",
           "sound": "Pomme.wav",
           "timeOfDay": "Aube",
-          "posX": 0,
-          "posY": 0.3,
+          "posX": 0.08,
+          "posY": 0.55,
           "scale": 0.25,
           "index": -4
         },
@@ -523,8 +523,8 @@
           "src": "Tube-de-peinture.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.7,
-          "posY": 0,
+          "posX": 0.95,
+          "posY": 0.95,
           "scale": 0.25,
           "index": 0
         },
@@ -600,9 +600,9 @@
           "src": "Ski.png",
           "sound": "Ski.wav",
           "timeOfDay": "Aube",
-          "posX": 0.4,
-          "posY": 0.8,
-          "scale": 0.25,
+          "posX": 0.18,
+          "posY": 0.5,
+          "scale": 0.6,
           "index": -5
         },
         {
@@ -666,9 +666,9 @@
           "src": "Café.png",
           "sound": "Café.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.72,
+          "posY": 0.90,
+          "scale": 0.28,
           "index": 0
         },
         {
@@ -677,9 +677,9 @@
           "src": "Caroussel.png",
           "sound": "Caroussel.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.5,
+          "posY": 0.5,
+          "scale": 0.3,
           "index": -3
         },
         {
@@ -688,9 +688,9 @@
           "src": "Ciné.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.45,
+          "posY": 0.92,
+          "scale": 0.3,
           "index": 1
         },
         {
@@ -776,9 +776,9 @@
           "src": "Moto.png",
           "sound": "Moto.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 1,
+          "posY": 0.65,
+          "scale": 0.65,
           "index": 0
         },
         {
@@ -787,10 +787,10 @@
           "src": "Musique.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.52,
+          "posY": 0.12,
           "scale": 0.2,
-          "index": -1
+          "index": -6
         },
         {
           "id": 72,
@@ -809,9 +809,9 @@
           "src": "Ordi.png",
           "sound": "Ordinateur.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.56,
+          "posY": 0.95,
+          "scale": 0.23,
           "index": 0
         },
         {
@@ -820,10 +820,10 @@
           "src": "Parasol.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
-          "index": 1
+          "posX": 0.45,
+          "posY": 0.95,
+          "scale": 0.45,
+          "index": 0
         },
         {
           "id": 75,
@@ -853,8 +853,8 @@
           "src": "Polaroid.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.25,
+          "posY": 0.35,
           "scale": 0.2,
           "index": 1
         },

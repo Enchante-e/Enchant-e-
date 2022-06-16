@@ -1,14 +1,10 @@
-import {Texture, Sprite, Container} from 'pixi.js';
+import {Texture, Sprite} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 
-let cameraVector = {
-    a: 0,
-    l: 0
-};
 const OBJECTS = objectsData.objects
 const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
@@ -107,8 +103,8 @@ const createEnvironment = (globalContainer) => {
             const contrainte = new Sprite(contrainteImg) 
             contrainte.zIndex = CONTRAINTES[i].index
             contrainte.scale.set(CONTRAINTES[i].scale)
-            contrainte.x =  CONTRAINTES[i].posX;
-            contrainte.y =  CONTRAINTES[i].posY;
+            contrainte.x =  CONTRAINTES[i].posX * window.innerWidth - (window.innerWidth / 6);
+            contrainte.y =  CONTRAINTES[i].posY * window.innerHeight - (window.innerHeight / 6);
             contrainte.anchor.set(0.5)
             contrainte.interactive = true;
 

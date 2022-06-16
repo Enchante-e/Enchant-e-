@@ -1,5 +1,4 @@
 import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
-import objectsData from "../data/objects.json"
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
 import * as aube from "../scenes/aube"
@@ -48,9 +47,9 @@ export const initCanvas = () => {
     container.sortableChildren = true
     app.stage.sortableChildren = true
     
-    const inventory = createInventory()
     app.stage.addChild(container);
-
+    
+    const inventory = createInventory()
     sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
@@ -65,7 +64,7 @@ const createInventory = () => {
     coffre.y =  app.view.height - 110;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
-    coffre.zIndex = 11;
+    coffre.zIndex = 2;
     coffre.interactive = true;
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
@@ -75,7 +74,7 @@ const createInventory = () => {
     coffreBg.y = 125;
     coffreBg.scale.set(0.15);
     coffreBg.alpha = 0;
-    coffreBg.zIndex = 10;
+    coffreBg.zIndex = 2;
     
     coffre.on("click", function (e) {
         this.interactive = true;
@@ -143,8 +142,7 @@ const createInventory = () => {
         app.stage.addChild(anecdoteBttn);
     })
     
-    
-    app.stage.addChild(coffre, coffreBg)
+    container.addChild(coffreBg,coffre)
     return coffre
 }
 
