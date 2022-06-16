@@ -6,8 +6,8 @@
           "src": "Tirelire.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.92,
-          "posY": 0.68,
+          "posX": 0.95,
+          "posY": 0.85,
           "scale": 0.18,
           "index": -3
         },
@@ -17,8 +17,8 @@
           "src": "Manette.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0,
-          "posY": 0.1,
+          "posX": 0.12,
+          "posY": 0.18,
           "scale": 0.35,
           "index": -2
         },
@@ -116,8 +116,8 @@
           "src": "Makeup.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.1,
-          "posY": 0.9,
+          "posX": 0.15,
+          "posY": 0.95,
           "scale": 0.18,
           "index": -6
         },
@@ -149,7 +149,7 @@
           "src": "Bière.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.55,
+          "posX": 0.68,
           "posY": 0.5,
           "scale": 0.12,
           "index": -6
@@ -183,7 +183,7 @@
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
           "posX": 0.7,
-          "posY": 0,
+          "posY": 0.15,
           "scale": 0.25,
           "index": 0
         },
@@ -234,13 +234,13 @@
         {
           "id": 21,
           "name": "Clap cinéma",
-          "src": "Clap-ciné.png",
+          "src": "Clap.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
           "posX": 0.05,
           "posY": 0.5,
-          "scale": 0.12,
-          "index": -2
+          "scale": 0.15,
+          "index": -3
         },
         {
           "id": 22,
@@ -270,8 +270,8 @@
           "src": "Coeur.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.15,
-          "posY": 0.5,
+          "posX": 0.28,
+          "posY": 0.8,
           "scale": 0.4,
           "index": -6
         },
@@ -281,8 +281,8 @@
           "src": "Collier.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.8,
-          "posY": 0.45,
+          "posX": 0.92,
+          "posY": 0.48,
           "scale": 0.25,
           "index": -2
         },
@@ -336,9 +336,9 @@
           "src": "Gâteau.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.2,
-          "posY": 0.4,
-          "scale": 0.25,
+          "posX": 0.75,
+          "posY": 0.5,
+          "scale": 0.15,
           "index": -5
         },
         {
@@ -391,8 +391,8 @@
           "src": "Rose.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.25,
-          "posY": 0.7,
+          "posX": 0.38,
+          "posY": 1,
           "scale": 0.5,
           "index": -2
         },
@@ -413,8 +413,8 @@
           "src": "Sushi.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.07,
-          "posY": 0.65,
+          "posX": 0.12,
+          "posY": 0.80,
           "scale": 0.15,
           "index": -6
         },
@@ -435,10 +435,10 @@
           "src": "Carte.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0,
-          "posY": 0,
+          "posX": 0.5,
+          "posY": 0.5,
           "scale": 0.25,
-          "index": 1
+          "index": -3
         },
         {
           "id": 40,
@@ -501,8 +501,8 @@
           "src": "Gamelle.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aurore",
-          "posX": 0.12,
-          "posY": 0.8,
+          "posX": 0.7,
+          "posY": 0.3,
           "scale": 0.19,
           "index": -4
         },
@@ -622,8 +622,8 @@
           "src": "Camera.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.72,
+          "posY": 0.91,
           "scale": 0.2,
           "index": -3
         },
@@ -688,10 +688,10 @@
           "src": "Ciné.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.45,
-          "posY": 0.92,
-          "scale": 0.3,
-          "index": 1
+          "posX": 0.25,
+          "posY": 0.41,
+          "scale": 0.15,
+          "index": -6
         },
         {
           "id": 63,
@@ -732,10 +732,10 @@
           "src": "Fantome.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.5,
+          "posY": 0.22,
           "scale": 0.2,
-          "index": 1
+          "index": -4
         },
         {
           "id": 67,
@@ -765,9 +765,9 @@
           "src": "Lune.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.92,
+          "posY": 0.1,
+          "scale": 0.25,
           "index": 1
         },
         {
@@ -842,10 +842,10 @@
           "src": "Poisson.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
-          "index": 1
+          "posX": 0.57,
+          "posY": 1,
+          "scale": 0.25,
+          "index": 0
         },
         {
           "id": 77,
@@ -886,10 +886,10 @@
           "src": "Voiture.png",
           "sound": "Voiture.wav",
           "timeOfDay": "Crépuscule",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.85,
+          "posY": 0.8,
           "scale": 0.2,
-          "index": 1
+          "index": -6
         }
     ]
 }
