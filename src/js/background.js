@@ -41,17 +41,6 @@ export const initCanvas = () => {
 
     document.body.appendChild(app.view);
 
-    document.addEventListener("mousemove", function (e) {
-        center.x = app.screen.width / 2;
-        center.y = app.screen.height / 2;
-        if(move == true) {
-            cameraVector.a = center.x - e.x;
-            cameraVector.l = center.y - e.y;
-            cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-            cameraVector.l = Math.sqrt(a * a + b * b);
-        }
-    })
-
     container.x = app.screen.width / 8;
     container.y = app.screen.height / 8;
     container.pivot.x = container.width / 8;
