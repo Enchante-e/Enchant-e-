@@ -55,34 +55,22 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
         case "Aube":
             clearScene(globalContainer)
             aube.playMusic()
-
-            setTimeout(() => {     
-                aube.initScene(globalApp, globalContainer, globalInventory)
-            }, 2505);
+            aube.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Aurore":
             clearScene(globalContainer)
             aurore.playMusic()
-
-            setTimeout(() => {
-                aurore.initScene(globalApp, globalContainer, globalInventory)
-            }, 2505);
+            aurore.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Jour":
             clearScene(globalContainer)
             jour.playMusic()
-
-            setTimeout(() => {      
-                jour.initScene(globalApp, globalContainer, globalInventory)
-            }, 2505);
+            jour.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Crépuscule":
             clearScene(globalContainer)
             crépuscule.playMusic()
-
-            setTimeout(() => {
-                crépuscule.initScene(globalApp, globalContainer, globalInventory)
-            }, 2505);
+            crépuscule.initScene(globalApp, globalContainer, globalInventory)
             break;
     }
 
