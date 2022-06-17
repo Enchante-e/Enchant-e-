@@ -576,6 +576,60 @@
             "posY": 0.92,
             "scale": 0.4,
             "index": -5
+        },      
+        {
+            "id": 14,
+            "src": "Final-Arabesque-Blue-Top-Left.svg",
+            "timeOfDay": "Final",
+            "posX": 0.12,
+            "posY": 0.55,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 15,
+            "src": "Final-Arabesque-Pink-Top-Right.svg",
+            "timeOfDay": "Final",
+            "posX": 1.05,
+            "posY": 0.18,
+            "scale": 0.35,
+            "index": 0
+        },      
+        {
+            "id": 13,
+            "src": "Final-Arabesque-Right-Bottom-Pink.svg",
+            "timeOfDay": "Final",
+            "posX": 1.15,
+            "posY": 0.98,
+            "scale": 0.42,
+            "index": 1
+        },
+        {
+            "id": 14,
+            "src": "Final-Arabesque-Yellow-Middle.svg",
+            "timeOfDay": "Final",
+            "posX": 0.75,
+            "posY": 0.5,
+            "scale": 0.32,
+            "index": -1
+        },
+        {
+            "id": 15,
+            "src": "Final-Left-Pink-Ronds.svg",
+            "timeOfDay": "Final",
+            "posX": 0.25,
+            "posY": 0.7,
+            "scale": 0.4,
+            "index": -5
+        },      
+        {
+            "id": 15,
+            "src": "Final-Arabesque-Pink-Yellow-Top-Right.svg",
+            "timeOfDay": "Final",
+            "posX": 1.15,
+            "posY": 0.25,
+            "scale": 0.45,
+            "index": -5
         }      
     ]
 }

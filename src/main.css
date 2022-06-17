@@ -90,9 +90,9 @@ input{
     top: 0;
     left: 0;
     z-index: 3;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1.2em;
-    color: #FFFFFF;
+    color: #0a0d42;
     display: flex;
     text-align: center;
     flex-direction: column-reverse;

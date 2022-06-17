@@ -154,8 +154,8 @@ socket.on('cursor-create', () => {
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
-    nameTag.style.top =  coordY + "px";
-    nameTag.style.left =  coordX + "px";
+    nameTag.style.top =  coordY + 10 + "px";
+    nameTag.style.left =  coordX - 15 + "px";
 });
 
 socket.on('partner-notification', function(type) {
