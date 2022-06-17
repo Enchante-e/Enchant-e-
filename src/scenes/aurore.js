@@ -56,6 +56,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             .on('pointermove', onDragMove);
 
             function onDragStart(event) {
+                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
 
