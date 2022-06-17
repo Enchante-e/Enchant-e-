@@ -104,7 +104,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
-                this.alpha = 0.6;
                 gsap.to(object.scale, {
                     x: object.scale.x * 0.7,
                     y: object.scale.y * 0.7
@@ -244,6 +243,7 @@ const createEnvironment = (globalContainer) => {
 
 
             function onDragStart(event) {
+                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
 
