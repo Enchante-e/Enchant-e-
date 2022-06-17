@@ -1,14 +1,12 @@
-import {Texture, Sprite, Graphics} from 'pixi.js';
+import {Texture, Sprite} from 'pixi.js';
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 
-let cameraVector = {
-    a: 0,
-    l: 0
-};
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 export const initScene = (globalApp, globalContainer, globalInventory) => {
@@ -16,7 +14,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    // createEnvironment()
+    createEnvironment(globalContainer)
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -42,8 +40,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             }
 
             object.goBack = false;
-            object.l = Math.random() * 4;
-            object.zIndex = 5;
+            object.zIndex = OBJECTS[i].index;
 
             object
             .on('pointerdown', onDragStart)
@@ -105,16 +102,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 }     
             }
 
-            object.update = function () {
-                if (this.goBack) {
-                    this.x = lerp(this.x, this.initialPos.x, 0.5);
-                    this.y = lerp(this.y, this.initialPos.y, 0.5);
-                    this.goBack = (this.x == this.initialPos.x) ? false : true;
-                } else {
-                    this.x += Math.cos(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                    this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                }
-            }
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
@@ -137,12 +124,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
         }
     }
 
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        }
-    });    
-
 }
 
 
@@ -152,7 +133,56 @@ export const playMusic = () => {
     player.autostart = true;
 }
 
-const createEnvironment = () => {
+const createEnvironment = (globalContainer) => {
+
+    for (let i = 0; i < CONTRAINTES.length; i++) {
+
+        if(CONTRAINTES[i].timeOfDay == "Aube") {
+
+            const contrainteImg = Texture.from("img/Contraintes/" + CONTRAINTES[i].src)
+            const contrainte = new Sprite(contrainteImg) 
+            contrainte.zIndex = CONTRAINTES[i].index
+            contrainte.scale.set(CONTRAINTES[i].scale)
+            contrainte.x =  CONTRAINTES[i].posX * window.innerWidth - (window.innerWidth / 6);
+            contrainte.y =  CONTRAINTES[i].posY * window.innerHeight - (window.innerHeight / 6);
+            contrainte.anchor.set(0.5)
+            contrainte.interactive = true;
+
+            contrainte
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
+
+                    
+            function onDragStart(event) {
+                this.alpha = 0.6;
+                this.data = event.data;
+                this.dragging = true;
+
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+                }
+            }
+
+        
+            globalContainer.addChild(contrainte)
+
+        }
+    }
+
+
 }
 
 const checkCollision = (object) => {
@@ -164,23 +194,3 @@ const checkCollision = (object) => {
            objectBox.y < inventoryBox.y + inventoryBox.height;
 }
 
-const createGradTexture = () => {
-    const quality = 256;
-    const canvas = document.createElement('canvas');
-    canvas.width = quality;
-    canvas.height = 1;
-
-    const ctx = canvas.getContext('2d');
-
-    const grd = ctx.createLinearGradient(0, 0, quality, 0);
-    grd.addColorStop(0, 'rgba(106, 0, 143)');
-    grd.addColorStop(1, 'rgba(0, 41, 157)');
-
-    ctx.fillStyle = grd;
-    // ctx.beginPath();
-    // ctx.arc(200, app.view.height / 2, 1000, 0, 2 * Math.PI);
-    // ctx.fill();
-    ctx.fillRect(0, 0, quality, 1);
-
-    return Texture.from(canvas);
-}
