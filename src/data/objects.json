@@ -80,7 +80,7 @@
         {
           "id": 7,
           "name": "Canapé",
-          "src": "Canapé.png",
+          "src": "Canape.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aube",
           "posX": 0.9,
@@ -157,7 +157,7 @@
         {
           "id": 14,
           "name": "Thé",
-          "src": "Thé.png",
+          "src": "The.png",
           "sound": "Thé.wav",
           "timeOfDay": "Aube",
           "posX": 0.25,
@@ -575,7 +575,7 @@
         {
           "id": 52,
           "name": "Téléphone",
-          "src": "Téléphone.png",
+          "src": "Telephone.png",
           "sound": "Parassol.wav",
           "timeOfDay": "Aurore",
           "posX": 0.9,
@@ -652,7 +652,7 @@
         {
           "id": 59,
           "name": "Bubble tea",
-          "src": "Bubble-thé.png",
+          "src": "Bubble-the.png",
           "sound": "Boisson.wav",
           "timeOfDay": "Aurore",
           "posX": 0.65,
@@ -663,7 +663,7 @@
         {
           "id": 60,
           "name": "Café",
-          "src": "Café.png",
+          "src": "Cafe.png",
           "sound": "Café.wav",
           "timeOfDay": "Aube",
           "posX": 0.72,
