@@ -217,9 +217,4 @@ export const getSocket = () => {
     return socket
 }
 
-logo[0].addEventListener("click", () => {
-    manageExperience.closeExperience()
-    manageExperience.startExperience()
-})
-
 
