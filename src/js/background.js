@@ -66,6 +66,7 @@ const createInventory = () => {
     coffre.anchor.set(0.5)
     coffre.zIndex = 2;
     coffre.interactive = true;
+    coffre.name = "Coffre-Bttn"
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
@@ -75,6 +76,7 @@ const createInventory = () => {
     coffreBg.scale.set(0.15);
     coffreBg.alpha = 0;
     coffreBg.zIndex = 2;
+    coffreBg.name = "Coffre-Bg"
     
     coffre.on("click", function (e) {
         this.interactive = true;
@@ -142,7 +144,7 @@ const createInventory = () => {
         app.stage.addChild(anecdoteBttn);
     })
     
-    container.addChild(coffreBg,coffre)
+    app.stage.addChild(coffreBg,coffre)
     return coffre
 }
 

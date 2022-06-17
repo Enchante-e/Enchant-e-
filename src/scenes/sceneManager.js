@@ -6,7 +6,6 @@ import * as crépuscule from "./crépuscule"
 import objectsData from "../data/objects.json"
 import { getInventoryObjects } from '../js/background';
 
-const SCENES = [aube, aurore, jour, crépuscule]
 let currentScene = 'aube'
 const OBJECTS = objectsData.objects
 
@@ -75,9 +74,21 @@ const firstLoadSmooth = (globalApp, globalContainer, globalInventory) => {
 }
 
 const clearScene = (globalContainer) => {
+    let inventoryAssets = []
+
     while (globalContainer.children[0]) {
-        globalContainer.removeChild(globalContainer.children[0])
+        if(globalContainer.children[0].name !== "Coffre-Bg" || globalContainer.children[0].name !== "Coffre-Bttn") {
+            globalContainer.removeChild(globalContainer.children[0])
+        } else {
+            inventoryAssets.push(globalContainer.children[0])
+            globalContainer.removeChild(globalContainer.children[0])
+        }
     }
+
+    inventoryAssets.map((asset) => {
+        globalContainer.addChild(asset)
+        console.log(asset)
+    })
 
     const INVENTORY_SLOTS = getInventoryObjects()
 
@@ -88,4 +99,7 @@ const clearScene = (globalContainer) => {
             }
         }
     })
+
+    console.log(globalContainer)
+
 }
