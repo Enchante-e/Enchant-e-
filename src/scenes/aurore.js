@@ -59,6 +59,12 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
+                this.alpha = 0.6;
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
 
                 const url = "sound/" + OBJECTS[i].sound
                 const player = new Player(url).toDestination();
@@ -78,6 +84,11 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
             }
 
             function onDragMove() {
@@ -85,8 +96,38 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+                    if(checkCollision(this)) {
+                        gsap.to(object, {
+                            rotation: 0.8,
+                            transformOrigin: "right 10%"
+                        });                 
+                    } else {
+                        gsap.to(object, {
+                            rotation: -0.4,
+                            transformOrigin: "left 10%"
+                        }); 
+                    }
                 }
             }
+
+
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+-                    gsap.to(object.position, {
+                        x: object.x * 2,
+                        y: object.y * 2,
+                        duration: 10
+                    });
+
+                } else if (e.deltaY <= 0) {
+-                    gsap.to(object.position, {
+                        x: object.initialPos.x,
+                        y: object.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
+
             
             container.addChild(object);
         }
