@@ -1,5 +1,4 @@
 import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
-import objectsData from "../data/objects.json"
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
 import * as aube from "../scenes/aube"
@@ -41,17 +40,6 @@ export const initCanvas = () => {
 
     document.body.appendChild(app.view);
 
-    document.addEventListener("mousemove", function (e) {
-        center.x = app.screen.width / 2;
-        center.y = app.screen.height / 2;
-        if(move == true) {
-            cameraVector.a = center.x - e.x;
-            cameraVector.l = center.y - e.y;
-            cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-            cameraVector.l = Math.sqrt(a * a + b * b);
-        }
-    })
-
     container.x = app.screen.width / 8;
     container.y = app.screen.height / 8;
     container.pivot.x = container.width / 8;
@@ -59,21 +47,12 @@ export const initCanvas = () => {
     container.sortableChildren = true
     app.stage.sortableChildren = true
     
-    const inventory = createInventory()
     app.stage.addChild(container);
     
-    // SCENES.map((scene) => {
-    //     scene.initScene(app, container, inventory)
-    // })
-    // SCENES[0].playMusic()
+    const inventory = createInventory()
     sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        } 
-    });
 
 }
 
@@ -85,8 +64,9 @@ const createInventory = () => {
     coffre.y =  app.view.height - 110;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
-    coffre.zIndex = 11;
+    coffre.zIndex = 2;
     coffre.interactive = true;
+    coffre.name = "Coffre-Bttn"
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
@@ -95,7 +75,8 @@ const createInventory = () => {
     coffreBg.y = 125;
     coffreBg.scale.set(0.15);
     coffreBg.alpha = 0;
-    coffreBg.zIndex = 10;
+    coffreBg.zIndex = 2;
+    coffreBg.name = "Coffre-Bg"
     
     coffre.on("click", function (e) {
         this.interactive = true;
@@ -163,8 +144,7 @@ const createInventory = () => {
         app.stage.addChild(anecdoteBttn);
     })
     
-    
-    app.stage.addChild(coffre, coffreBg)
+    app.stage.addChild(coffreBg,coffre)
     return coffre
 }
 

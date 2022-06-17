@@ -3,6 +3,11 @@ import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
+import contraintesData from "../data/contraintes.json"
+
+
+
+const CONTRAINTES = contraintesData.contraintes
 
 let cameraVector = {
     a: 0,
@@ -16,7 +21,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    // createEnvironment()
+    createEnvironment(globalContainer)
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -42,8 +47,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             }
 
             object.goBack = false;
-            object.l = Math.random() * 4;
-            object.zIndex = 5;
+            object.zIndex = OBJECTS[i].index;
 
             object
             .on('pointerdown', onDragStart)
@@ -52,6 +56,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             .on('pointermove', onDragMove);
 
             function onDragStart(event) {
+                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
 
@@ -82,27 +87,10 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     this.y = newPosition.y;
                 }
             }
-
-            object.update = function () {
-                if (this.goBack) {
-                    this.x = lerp(this.x, this.initialPos.x, 0.5);
-                    this.y = lerp(this.y, this.initialPos.y, 0.5);
-                    this.goBack = (this.x == this.initialPos.x) ? false : true;
-                } else {
-                    this.x += Math.cos(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                    this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                }
-            }
             
             container.addChild(object);
         }
     }
-
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        }
-    });    
 
 }
 
@@ -113,7 +101,63 @@ export const playMusic = () => {
     player.autostart = true;
 }
 
-const createEnvironment = () => {
+const createEnvironment = (globalContainer) => {
+
+
+    for (let i = 0; i < CONTRAINTES.length; i++) {
+
+        if (CONTRAINTES[i].timeOfDay == "Aurore") {
+
+            const contrainteImg = Texture.from("img/Contraintes/" + CONTRAINTES[i].src)
+            const contrainte = new Sprite(contrainteImg)
+            contrainte.zIndex = CONTRAINTES[i].index
+            contrainte.scale.set(CONTRAINTES[i].scale)
+            contrainte.x = CONTRAINTES[i].posX;
+            contrainte.y = CONTRAINTES[i].posY;
+            contrainte.anchor.set(0.5)
+            contrainte.interactive = true;
+
+            contrainte.x = CONTRAINTES[i].posX * window.innerWidth - (window.innerWidth / 6);
+            contrainte.y = CONTRAINTES[i].posY * window.innerHeight - (window.innerHeight / 6);
+            contrainte.initialPos = {
+                x: contrainte.x,
+                y: contrainte.y
+            }
+
+            contrainte
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
+
+
+            function onDragStart(event) {
+                this.data = event.data;
+                this.dragging = true;
+
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+                }
+            }
+
+
+            globalContainer.addChild(contrainte)
+
+        }
+    }
+
+
 }
 
 const checkCollision = (object) => {
