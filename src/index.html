@@ -20,7 +20,7 @@
 
         <div class="musicBttn whiteTint">
             <img src="../static/img/musicBttn.svg" />
-            <audio id="ambientPlayer" src="../static/sound/background.mp3" loop="loop"></audio>
+            <audio id="ambientPlayer" src="../static/sound/background.wav" loop="loop"></audio>
         </div>
 
         <div id="bulleAmi" class="hidden">
@@ -31,6 +31,10 @@
         </div>
 
         <div id="notifications" class="hidden"></div>
+        <div class="moods hidden">
+            <p>Un souvenir...</p>
+            <div id="moodsList"></div>
+        </div>
 
         <button class="hidden" id="finishObjectsChoice">Valider</button>
 
@@ -45,20 +49,20 @@
         </div>
 
         <div class="finalScene hidden">
-            <div class="colorLegend">
+            <!-- <div class="colorLegend">
                 <div class="legendItem">
-                    <div class="legendColor" style="background-color: #9B7593;"></div>
+                    <div class="legendColor" style="background-color: #464280;"></div>
                     <p>Objets choisis par <span class="partnerName"></span></p>
                 </div>
                 <div class="legendItem">
-                    <div class="legendColor" style="background-color: #EE7E3C;"></div>
+                    <div class="legendColor" style="background-color: #8981c6;"></div>
                     <p>Objets que j'ai choisi</p>
                 </div>
                 <div class="legendItem">
-                    <div class="legendColor" style="background-color: #C57A68;"></div>
+                    <div class="legendColor" style="background-color: #e1d7ff;"></div>
                     <p>Objets choisis par nous deux</p>
                 </div>
-            </div>
+            </div> -->
 
             <div class="finalMenu">
                 <button id="finishExperienceBttn">Terminer</button>
@@ -179,10 +183,8 @@
     </div>
 
     <div class="fullpage conceptPage conceptPageOne hidden">
-        <p>Enchanté(e) <span id="userName"></span>. <br> Vous partez en voyage pour une chasse<br> aux trésors un peu
-            particulière.</p>
-        <p>Chaque relation est unique. <br>Elle est le résultat de deux individus<br> complexes et de trésors communs.
-        </p>
+            <p>Enchanté(e) <span class="userName"></span>. <br> Vous partez en voyage pour une chasse<br> aux trésors un peu particulière.</p>
+            <p>Chaque relation est unique. <br>Elle est le résultat de deux individus<br> complexes et de trésors communs.</p>
     </div>
 
     <div class="fullpage conceptPage conceptPageTwo hidden">
@@ -199,11 +201,11 @@
             <button id="startFinalScene">Entrer</button>
     </div>
 
-    <div class="fullpage conceptPage conceptPageThree hidden">
-        <p><span class="partnerName"></span> et vous avez rempli vos coffres aux trésors.<br>
-        Vous serez redirigés dans quelques instants vers votre univers commun.</p>
-        <p>Et si vous vous appeliez pour en discuter ?</p>
-        <button id="startFinalScene">Entrer</button>
+    <div class="fullpage conceptPage endingPage hidden">
+        <p>Merci de votre passage sur Enchanté(e) <span class="userName"></span></p>
+        <p>N’oubliez pas, chaque relation est unique.<br>Vous pouvez recommencer l’expérience autant de fois <br>que vous le souhaitez, avec la personne de votre choix.</p>
+        <button id="returnHome">Tenter l’expérience à nouveau</button>
+        <button id="closeEndPage">X</button>
     </div>
 
     <div id="testDiv">

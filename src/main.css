@@ -58,6 +58,11 @@ input{
     width: 200px;
 }
 
+.interface .logo.end{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .interface .musicBttn{
     position: absolute;
     bottom: 35px;
@@ -85,7 +90,7 @@ input{
     margin: 25px auto;
 }
 
-.tag {
+#tag {
     position: absolute;
     top: 0;
     left: 0;
@@ -437,6 +442,10 @@ button {
     margin: 0 25px;
 }
 
+.conceptPage.endingPage p {
+    color: #ffffff;
+}
+
 #anecdotes {
     position: absolute;
     top: 0;
@@ -482,4 +491,12 @@ button {
     width: 150px;
     transform: translateX(-50%);
     display: none;
+}
+
+#closeEndPage {
+    border: none;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 2.2em;
 }

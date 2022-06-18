@@ -135,7 +135,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
 }
 
-
 export const playMusic = () => {
     const url = "sound/Aurore.wav"
     const player = new Player(url).toDestination();

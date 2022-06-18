@@ -1,25 +1,17 @@
-import contraintesData from "../data/contraintes.json"
-
-
-
-const CONTRAINTES = contraintesData.contraintes
-
-
-
 import {
     Texture,
     Sprite,
     Graphics
 } from 'pixi.js';
-import {
-    Player
-} from 'tone'
+
 import * as PIXI from 'pixi.js'
+import {Player} from 'tone'
 import {
     gsap
 } from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 import * as sceneManager from "./sceneManager"
@@ -28,7 +20,9 @@ let cameraVector = {
     a: 0,
     l: 0
 };
+
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 
@@ -84,9 +78,11 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     y: object.scale.y * 0.7
                 });
 
-                const url = "sound/" + OBJECTS[i].sound
-                const player = new Player(url).toDestination();
-                player.autostart = true;
+                if(OBJECTS[i].sound !== "") {
+                    const url = "sound/" + OBJECTS[i].sound
+                    const player = new Player(url).toDestination();
+                    player.autostart = true;
+                }
             }
 
             function onDragEnd() {

@@ -1,9 +1,11 @@
 import {Texture, Sprite, Graphics} from 'pixi.js'
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as socket from "../main"
 import * as concept from "../conceptPages/concept"
-import contraintesData from "../data/contraintes.json"
+import * as endPage from './endPage'
+
 
 const OBJECTS = objectsData.objects
 const CONTRAINTES = contraintesData.contraintes
@@ -12,9 +14,12 @@ let app, socketObj, cursor = null
 let chosenObjectsId = []
 let commonObjectsId = []
 let partnerObjectsId = null
+
 let validateBttn = document.getElementById("finishObjectsChoice")
 let finalSceneBttn = document.getElementById("startFinalScene")
+let finishExperienceBttn = document.getElementById("finishExperienceBttn")
 let interfaceFinalScene = [...document.getElementsByClassName("finalScene")]
+
 
 export const setStage = (globalApp) => {
     app = globalApp 
@@ -24,7 +29,7 @@ export const setStage = (globalApp) => {
 export const createCursor = () => {
     cursor  = new Graphics();
     cursor.lineStyle(3, 0x1A1D5C);
-    cursor.drawCircle(app.view.width / 2, app.view.height / 2, 18);
+    cursor.drawCircle(app.view.width / 2, app.view.height / 2, 15);
     cursor.zIndex = 5
     
     app.stage.addChild(cursor);
@@ -40,6 +45,7 @@ export const updateCursor = (cursor, coordX, coordY) => {
 
 export const deleteCursor = (cursor) => {
     app.stage.removeChild(cursor)
+    document.getElementById("tag").remove()
 }
 
 export const addObject = (objectId, objectName) => {
@@ -74,7 +80,6 @@ export const partnerObjects = (objects) => {
 }
 
 validateBttn.addEventListener("click", () => {
-    console.log(chosenObjectsId)
     if (chosenObjectsId.length == 6) {
         finishedChoices() 
     } else {
@@ -89,7 +94,9 @@ finalSceneBttn.addEventListener("click", () => {
 
 const finishedChoices = () => {
     concept.initPhoneConcept()
-    app.stage.removeChild(app.stage.children[0])
+
+    while(app.stage.children[0]) { app.stage.removeChild(app.stage.children[0]); }
+
     validateBttn.classList.add("hidden")
     socketObj.emit('set-objects', chosenObjectsId)
 }
@@ -119,9 +126,11 @@ const checkCommonObjects = () => {
             chosenObjectsId.splice(chosenObjectsId.indexOf(object), 1)
         }
     })
+
 }
 
 const createObjectsSprites = (objectsArray, objectsColor) => {
+
     objectsArray.map((object) => {
         if((OBJECTS[object])) {
            
@@ -178,9 +187,34 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
 
             }
 
+            objectImg
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+
+            function onDragStart(event) {
+                this.data = event.data;
+                this.dragging = true;
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+                }
+            }
+
             app.stage.addChild(objectImg) 
         } else {
-            console.log(' nexiste po')
+            console.log('L objet nexiste po')
         }
     })
 }
@@ -247,4 +281,9 @@ const createEnvironment = () => {
 
 
 }
+
+
+finishExperienceBttn.addEventListener("click", () => {
+    endPage.initEndPage()
+})
 

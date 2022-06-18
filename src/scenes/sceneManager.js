@@ -9,6 +9,10 @@ import { getInventoryObjects } from '../js/background';
 let currentScene = 'aube'
 const OBJECTS = objectsData.objects
 
+const AUDIO_POEME = document.createElement("AUDIO")
+AUDIO_POEME.autoplay = true
+AUDIO_POEME.loop = false
+
 let sceneOneBttn = document.getElementById('sceneOne')
 let sceneTwoBttn = document.getElementById('sceneTwo')
 let sceneThreeBttn = document.getElementById('sceneThree')
@@ -30,6 +34,8 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
     for (let i = 0; i < OBJECTS.length; i++) {
         loader.load(OBJECTS[i].src)
     }
+
+    playMusic("sound/Aube.wav")
 
     sceneOneBttn.addEventListener("click", () => {
         switchScene("Aube", globalApp, globalContainer, globalInventory)
@@ -105,6 +111,24 @@ const clearScene = (globalContainer) => {
             }
         }
     })
+}
 
+const playMusic = (url) => {
+
+    console.log(AUDIO_POEME.paused, AUDIO_POEME.currentTime)
+    
+    if (AUDIO_POEME.paused && AUDIO_POEME.currentTime > 0) {
+        AUDIO_POEME.src = url
+        AUDIO_POEME.play()
+    } else if (AUDIO_POEME.paused && AUDIO_POEME.currentTime == 0) {
+        AUDIO_POEME.src = url
+        AUDIO_POEME.play()
+    } else {
+        const delay = (25 - AUDIO_POEME.currentTime) * 1000
+        setTimeout(() => { 
+            AUDIO_POEME.src = url
+            AUDIO_POEME.play()
+        }, delay);
+    }
 
 }
