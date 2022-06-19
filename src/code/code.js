@@ -1,4 +1,4 @@
-import {PolySynth} from 'tone'
+import {PolySynth, Chorus} from 'tone'
 import * as nameForm from "../name/name"
 import * as loading from "../loading/loading"
 
@@ -247,7 +247,13 @@ const keyUp = () => {
 }
 
 const playNote = (note) => {
-    const synth = new PolySynth().toDestination()
+    const chorus = new Chorus(2, 1.5, 0.8).toDestination().start();
+    const synth = new PolySynth().toDestination().connect(chorus)
+    synth.set({  	
+      envelope: {
+        attack: 0.25
+    } });
+    synth.volume.value = -15
     synth.triggerAttackRelease(note,"8n");
     document.getElementById(note)?.classList.add("activeKey")
     setTimeout(() => { 
