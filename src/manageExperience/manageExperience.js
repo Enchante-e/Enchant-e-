@@ -3,8 +3,9 @@ let homepage = [...document.getElementsByClassName("homepage")]
 let returnHomeBttn = document.getElementById("returnHome")
 
 returnHomeBttn.addEventListener("click", () => {
-    closeExperience()
-    startExperience()
+    window.location.reload()
+    // closeExperience()
+    // startExperience()
 })
 
 export const startExperience = () => {

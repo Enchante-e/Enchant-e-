@@ -1,4 +1,4 @@
-import {Texture, Sprite, Graphics} from 'pixi.js'
+import {Texture, Sprite, Graphics, Container, Text} from 'pixi.js'
 import {Player} from 'tone'
 import objectsData from "../data/objects.json"
 import contraintesData from "../data/contraintes.json"
@@ -14,6 +14,7 @@ let app, socketObj, cursor = null
 let chosenObjectsId = []
 let commonObjectsId = []
 let partnerObjectsId = null
+let hoverContainer = null
 
 let validateBttn = document.getElementById("finishObjectsChoice")
 let finalSceneBttn = document.getElementById("startFinalScene")
@@ -103,10 +104,11 @@ const finishedChoices = () => {
 
 export const finalSceneInit = () => {
     checkCommonObjects()
-    createObjectsSprites(chosenObjectsId, "0xEE7E3C")
-    createObjectsSprites(partnerObjectsId, "0x9B7593")
-    createObjectsSprites(commonObjectsId, "0xC57A68")
+    createObjectsSprites(chosenObjectsId, "Mine")
+    createObjectsSprites(partnerObjectsId, "Their")
+    createObjectsSprites(commonObjectsId, "Ours")
     createEnvironment()
+    hoverContainer = createHoverText()
     interfaceFinalScene[0].classList.remove("hidden")
 }
 
@@ -129,7 +131,7 @@ const checkCommonObjects = () => {
 
 }
 
-const createObjectsSprites = (objectsArray, objectsColor) => {
+const createObjectsSprites = (objectsArray, whichObjects) => {
 
     objectsArray.map((object) => {
         if((OBJECTS[object])) {
@@ -143,12 +145,13 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
             objectImg.anchor.set(0.5)
             objectImg.interactive = true;
 
-            // objectImg.tint = objectsColor;
             objectImg.x = OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
             objectImg.y = OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
             objectImg.zIndex = OBJECTS[object].index;
 
             objectImg
+            .on('mouseover', onMouseOver)
+            .on('mouseout', onMouseOut)
             .on('pointerdown', onDragStart)
             .on('pointerup', onDragEnd)
             .on('pointerupoutside', onDragEnd)
@@ -184,32 +187,24 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
                     this.x = newPosition.x;
                     this.y = newPosition.y;
                 }
-
             }
-
-            objectImg
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
-
-            function onDragStart(event) {
-                this.data = event.data;
-                this.dragging = true;
-            }
-
-            function onDragEnd() {
-                this.alpha = 1;
-                this.dragging = false;
-                this.data = null;
-            }
-
-            function onDragMove() {
-                if (this.dragging) {
-                    const newPosition = this.data.getLocalPosition(this.parent);
-                    this.x = newPosition.x;
-                    this.y = newPosition.y;
+            
+            function onMouseOver(e) {
+                switch(whichObjects) {
+                    case "Mine":
+                      updateHoverText("Trésor choisi par vous", e.target.x, e.target.y)
+                      break;
+                    case "Their":
+                      updateHoverText("Trésor choisi par votre proche", e.target.x, e.target.y)
+                      break;
+                    case "Ours":
+                      updateHoverText("Trésor choisi par vous deux", e.target.x, e.target.y)
+                      break;
                 }
+            }
+
+            function onMouseOut() {
+                hoverContainer.alpha = 0
             }
 
             app.stage.addChild(objectImg) 
@@ -219,11 +214,39 @@ const createObjectsSprites = (objectsArray, objectsColor) => {
     })
 }
 
+const createHoverText = () => {   
+    const container = new Container();
+    container.alpha = 0
+    container.zIndex = 5
+    
+    const text = new Text("Trésor choisi par vous",{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
+    text.x = 5
+    text.y = 5
+
+    const textBg = Sprite.from(Texture.WHITE);
+    textBg.width = text.width + 10;
+    textBg.height = text.height + 10;
+    textBg.x = 0
+    textBg.y = 0
+
+    container.addChild(textBg,text)
+    app.stage.addChild(container)
+
+    return container
+}
+
+const updateHoverText = (text, posX, posY) => {                  
+    hoverContainer.children[1].text = text
+    hoverContainer.children[0].width = hoverContainer.children[1].width + 10
+    hoverContainer.children[0].height = hoverContainer.children[1].height + 10
+    hoverContainer.x = posX
+    hoverContainer.y = posY
+    hoverContainer.alpha = 1
+}
 
 const createEnvironment = () => {
 
     document.querySelector('canvas').style.background = "linear-gradient(179.38deg, #AFC6EC 4.01%, #FFEEE8 40.15%, #F9D7C0 62.04%, #FF919B 81.49%, #4665BE 134.64%)";
-
 
     for (let i = 0; i < CONTRAINTES.length; i++) {
 
