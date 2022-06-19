@@ -46,5 +46,5 @@ export const createNotification = (partnerName, type) => {
 export const closeHashtag = () => {
     notifications.classList.add('hidden')
     clearInterval(publishHashtag)
-    document.getElementById("testDiv").style.display = 'none'
+    document.getElementById("sunNav").style.display = 'none'
 }

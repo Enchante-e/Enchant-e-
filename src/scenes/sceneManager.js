@@ -1,9 +1,9 @@
 import {Loader} from 'pixi.js';
+import objectsData from "../data/objects.json"
 import * as aube from "./aube"
 import * as jour from "./jour"
 import * as aurore from "./aurore"
 import * as crépuscule from "./crépuscule"
-import objectsData from "../data/objects.json"
 import { getInventoryObjects } from '../js/background';
 
 let currentScene = 'aube'
@@ -23,8 +23,8 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
     const loader = new Loader()
     loader.baseUrl = "img"
     loader.onComplete.add(() => {
-        document.getElementById('testDiv').style.display = "block"
-        // firstLoadSmooth(globalApp, globalContainer, globalInventory)
+        document.getElementById('sunNav').style.display = "block"
+        firstLoadSmooth(globalApp, globalContainer, globalInventory)
     })
 
     loader.onError.add((e) => {
@@ -34,8 +34,6 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
     for (let i = 0; i < OBJECTS.length; i++) {
         loader.load(OBJECTS[i].src)
     }
-
-    aube.initScene(globalApp, globalContainer, globalInventory)
 
     sceneOneBttn.addEventListener("click", () => {
         switchScene("Aube", globalApp, globalContainer, globalInventory)
@@ -83,19 +81,20 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
 }
 
 const firstLoadSmooth = (globalApp, globalContainer, globalInventory) => {
-    // aube.initScene(globalApp, globalContainer, globalInventory)
-    // aurore.initScene(globalApp, globalContainer, globalInventory)
-    // jour.initScene(globalApp, globalContainer, globalInventory)
-    // crépuscule.initScene(globalApp, globalContainer, globalInventory)
+    aube.initScene(globalApp, globalContainer, globalInventory)
+    aurore.initScene(globalApp, globalContainer, globalInventory)
+    jour.initScene(globalApp, globalContainer, globalInventory)
+    crépuscule.initScene(globalApp, globalContainer, globalInventory)
 
-    // while (globalContainer.children[0]) {
-    //     globalContainer.removeChild(globalContainer.children[0])
-    // }
+    clearScene(globalContainer)
 
     aube.initScene(globalApp, globalContainer, globalInventory)
 }
 
 const clearScene = (globalContainer) => {
+
+    let coffre = globalContainer.getChildByName("Coffre-Bttn")
+    let coffreBg = globalContainer.getChildByName("Coffre-Bg")
 
     while (globalContainer.children[0]) {
         globalContainer.removeChild(globalContainer.children[0])
@@ -110,6 +109,8 @@ const clearScene = (globalContainer) => {
             }
         }
     })
+
+    globalContainer.addChild(coffreBg, coffre)
 }
 
 const playMusic = (url) => {

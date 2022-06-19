@@ -1,11 +1,6 @@
 import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
-import * as aube from "../scenes/aube"
-import * as jour from "../scenes/jour"
-import * as aurore from "../scenes/aurore"
-import * as crépuscule from "../scenes/crépuscule"
-
 import * as sceneManager from "../scenes/sceneManager"
 
 let cameraVector = {
@@ -27,7 +22,6 @@ play = false,
 container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-const SCENES = [aube, aurore, jour, crépuscule]
 const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
 let inventoryOpen = false
 
@@ -162,7 +156,7 @@ const createInventory = () => {
             initAnecdotes(slot)
         })
 
-        container.addChild(anecdoteBttn);
+        app.stage.addChild(anecdoteBttn);
     })
     
     container.addChild(coffreBg,coffre)
