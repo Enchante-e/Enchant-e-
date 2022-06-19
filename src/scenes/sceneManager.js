@@ -24,7 +24,7 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
     loader.baseUrl = "img"
     loader.onComplete.add(() => {
         document.getElementById('testDiv').style.display = "block"
-        firstLoadSmooth(globalApp, globalContainer, globalInventory)
+        // firstLoadSmooth(globalApp, globalContainer, globalInventory)
     })
 
     loader.onError.add((e) => {
@@ -35,7 +35,7 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
         loader.load(OBJECTS[i].src)
     }
 
-    playMusic("sound/Aube.wav")
+    aube.initScene(globalApp, globalContainer, globalInventory)
 
     sceneOneBttn.addEventListener("click", () => {
         switchScene("Aube", globalApp, globalContainer, globalInventory)
@@ -83,14 +83,14 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
 }
 
 const firstLoadSmooth = (globalApp, globalContainer, globalInventory) => {
-    aube.initScene(globalApp, globalContainer, globalInventory)
-    aurore.initScene(globalApp, globalContainer, globalInventory)
-    jour.initScene(globalApp, globalContainer, globalInventory)
-    crépuscule.initScene(globalApp, globalContainer, globalInventory)
+    // aube.initScene(globalApp, globalContainer, globalInventory)
+    // aurore.initScene(globalApp, globalContainer, globalInventory)
+    // jour.initScene(globalApp, globalContainer, globalInventory)
+    // crépuscule.initScene(globalApp, globalContainer, globalInventory)
 
-    while (globalContainer.children[0]) {
-        globalContainer.removeChild(globalContainer.children[0])
-    }
+    // while (globalContainer.children[0]) {
+    //     globalContainer.removeChild(globalContainer.children[0])
+    // }
 
     aube.initScene(globalApp, globalContainer, globalInventory)
 }
@@ -100,7 +100,6 @@ const clearScene = (globalContainer) => {
     while (globalContainer.children[0]) {
         globalContainer.removeChild(globalContainer.children[0])
     }
-
 
     const INVENTORY_SLOTS = getInventoryObjects()
 

@@ -1,11 +1,28 @@
+import { gsap } from "gsap";
 
 let homepage = [...document.getElementsByClassName("homepage")]
+let endingPage = [...document.getElementsByClassName("endingPage")]
 let returnHomeBttn = document.getElementById("returnHome")
 
 returnHomeBttn.addEventListener("click", () => {
-    window.location.reload()
-    // closeExperience()
-    // startExperience()
+    endingPage.map((e) => {
+        gsap.to(e, {
+            alpha: 0,
+            duration: 1,
+        })
+    })
+    gsap.to(".logo", {
+        alpha: 0,
+        duration: 1,
+    })
+    gsap.to(".musicBttn", {
+        alpha: 0,
+        duration: 1,
+    })
+
+    setTimeout(() => { 
+        window.location.reload()
+    }, 1500);
 })
 
 export const startExperience = () => {

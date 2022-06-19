@@ -4,7 +4,7 @@ import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as jour from "./scenes/jour"
+import * as aube from "./scenes/aube"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
@@ -56,7 +56,7 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
-    // document.getElementById("ambientPlayer").play()
+    document.getElementById("ambientPlayer").play()
 })
 
 // [EMIT] Join room with code
@@ -113,6 +113,7 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
+    aube.playMusic()
 });
 
 // [RECEIVED] Waiting for partner
