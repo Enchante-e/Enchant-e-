@@ -32,7 +32,78 @@ export const init = (homepage, roomCode) => {
 
 const assignNotes = () => {
     for(let i = 0; i < code.length; i++) {
-        noteLabels[i].innerHTML = code[i]
+
+        switch(code[i]) {
+          case "A":
+            noteLabels[i].previousElementSibling.style.marginBottom = "0"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "S":
+            noteLabels[i].previousElementSibling.style.marginBottom = "25px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "D":
+            noteLabels[i].previousElementSibling.style.marginBottom = "50px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "F":
+            noteLabels[i].previousElementSibling.style.marginBottom = "75px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "G":
+            noteLabels[i].previousElementSibling.style.marginBottom = "100px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "H":
+            noteLabels[i].previousElementSibling.style.marginBottom = "125px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "J":
+            noteLabels[i].previousElementSibling.style.marginBottom = "150px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "K":
+            noteLabels[i].previousElementSibling.style.marginBottom = "175px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "L":
+            noteLabels[i].previousElementSibling.style.marginBottom = "200px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "M":
+            noteLabels[i].previousElementSibling.style.marginBottom = "225px"
+            noteLabels[i].innerHTML = code[i]
+            break;
+          case "W":
+            noteLabels[i].previousElementSibling.style.marginBottom = "0"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+            case "E":
+            noteLabels[i].previousElementSibling.style.marginBottom = "25px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+          case "T":
+            noteLabels[i].previousElementSibling.style.marginBottom = "75px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+          case "Y":
+            noteLabels[i].previousElementSibling.style.marginBottom = "100px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+          case "U":
+            noteLabels[i].previousElementSibling.style.marginBottom = "125px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+          case "O":
+            noteLabels[i].previousElementSibling.style.marginBottom = "175px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+          case "P":
+            noteLabels[i].previousElementSibling.style.marginBottom = "200px"
+            noteLabels[i].innerHTML = "#"+code[i]
+            break;
+        }
+
         notes[i].addEventListener("mouseover", hoverNotes)
     }
 }

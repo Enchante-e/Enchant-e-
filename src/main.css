@@ -254,6 +254,12 @@ button {
     justify-content: center;
     align-items: center;
     margin: 2.5rem auto;
+    background: url("../static/img/Partition.svg");
+    background-repeat: no-repeat;
+    width: 400px;
+    background-size: contain;
+    height: 125px;
+    padding-top: 65px;
 }
 
 .notes .note {
