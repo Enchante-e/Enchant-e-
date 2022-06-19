@@ -1,4 +1,5 @@
 import {PolySynth, Chorus} from 'tone'
+import { gsap } from "gsap";
 import * as nameForm from "../name/name"
 import * as loading from "../loading/loading"
 
@@ -22,12 +23,14 @@ export const init = (homepage, roomCode) => {
 
     code = roomCode
     assignNotes()
+
     document.addEventListener("keydown", keyDown)
     document.addEventListener("keyup", keyUp)
     checkBttn.addEventListener("click", checkCode)
     pianoKey.map((key) => {
       key.addEventListener("click", keyDownClick)
     })
+    
 }
 
 const assignNotes = () => {
@@ -35,71 +38,156 @@ const assignNotes = () => {
 
         switch(code[i]) {
           case "A":
-            noteLabels[i].previousElementSibling.style.marginBottom = "0"
+             gsap.fromTo(notes[i], {marginBottom: "0px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "0",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "S":
-            noteLabels[i].previousElementSibling.style.marginBottom = "25px"
+             gsap.fromTo(notes[i], {marginBottom: "75px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "25px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "D":
-            noteLabels[i].previousElementSibling.style.marginBottom = "50px"
+             gsap.fromTo(notes[i], {marginBottom: "100px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "50px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "F":
-            noteLabels[i].previousElementSibling.style.marginBottom = "75px"
+             gsap.fromTo(notes[i], {marginBottom: "125px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "75px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "G":
-            noteLabels[i].previousElementSibling.style.marginBottom = "100px"
+             gsap.fromTo(notes[i], {marginBottom: "150px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "100px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "H":
-            noteLabels[i].previousElementSibling.style.marginBottom = "125px"
+             gsap.fromTo(notes[i], {marginBottom: "175px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "125px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "J":
-            noteLabels[i].previousElementSibling.style.marginBottom = "150px"
+             gsap.fromTo(notes[i], {marginBottom: "200px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "150px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "K":
-            noteLabels[i].previousElementSibling.style.marginBottom = "175px"
+             gsap.fromTo(notes[i], {marginBottom: "225px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "175px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "L":
-            noteLabels[i].previousElementSibling.style.marginBottom = "200px"
+             gsap.fromTo(notes[i], {marginBottom: "250px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "200px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "M":
-            noteLabels[i].previousElementSibling.style.marginBottom = "225px"
+             gsap.fromTo(notes[i], {marginBottom: "275px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "225px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = code[i]
             break;
           case "W":
-            noteLabels[i].previousElementSibling.style.marginBottom = "0"
+            gsap.fromTo(notes[i], {marginBottom: "50px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "0",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
             case "E":
-            noteLabels[i].previousElementSibling.style.marginBottom = "25px"
+            gsap.fromTo(notes[i], {marginBottom: "75px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "25px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
           case "T":
-            noteLabels[i].previousElementSibling.style.marginBottom = "75px"
+            gsap.fromTo(notes[i], {marginBottom: "125px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "75px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
           case "Y":
-            noteLabels[i].previousElementSibling.style.marginBottom = "100px"
+            gsap.fromTo(notes[i], {marginBottom: "150px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "100px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
           case "U":
-            noteLabels[i].previousElementSibling.style.marginBottom = "125px"
+            gsap.fromTo(notes[i], {marginBottom: "175px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "125px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
           case "O":
-            noteLabels[i].previousElementSibling.style.marginBottom = "175px"
+            gsap.fromTo(notes[i], {marginBottom: "225px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "175px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
           case "P":
-            noteLabels[i].previousElementSibling.style.marginBottom = "200px"
+            gsap.fromTo(notes[i], {marginBottom: "250px", alpha: 0}, {
+              alpha: 1,
+              marginBottom: "200px",
+              duration: 0.75,
+              delay: i * 0.5
+            });
             noteLabels[i].innerHTML = "#"+code[i]
             break;
         }
