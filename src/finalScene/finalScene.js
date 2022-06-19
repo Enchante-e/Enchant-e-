@@ -24,7 +24,6 @@ let interfaceFinalScene = [...document.getElementsByClassName("finalScene")]
 
 export const setStage = (globalApp) => {
     app = globalApp 
-    validateBttn.classList.remove("hidden")
 }
 
 export const createCursor = () => {
@@ -32,6 +31,7 @@ export const createCursor = () => {
     cursor.lineStyle(3, 0x1A1D5C);
     cursor.drawCircle(app.view.width / 2, app.view.height / 2, 15);
     cursor.zIndex = 5
+    cursor.alpha = 0
     
     app.stage.addChild(cursor);
     return cursor;
@@ -90,6 +90,8 @@ validateBttn.addEventListener("click", () => {
 
 finalSceneBttn.addEventListener("click", () => {
     finalSceneInit()
+    document.getElementById('tag').style.display = "flex"
+    cursor.alpha = 1
     concept.closePhoneConcept()
 })
 

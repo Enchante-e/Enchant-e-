@@ -97,7 +97,7 @@ input{
     z-index: 3;
     font-size: 1.2em;
     color: #0a0d42;
-    display: flex;
+    display: none;
     text-align: center;
     flex-direction: column-reverse;
 }

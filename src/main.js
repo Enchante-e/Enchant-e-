@@ -72,6 +72,7 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
+    document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
     
     if (userStatus == "creator") {
         pianoDiv[0].classList.remove("hidden")
@@ -113,7 +114,9 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
+    
     aube.playMusic()
+    document.getElementById("finishObjectsChoice").classList.remove("hidden")
 });
 
 // [RECEIVED] Waiting for partner

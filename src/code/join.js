@@ -5,6 +5,7 @@ let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
    initJoin()
+   document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
    document.getElementById("ambientPlayer").play()
    homepage.closeHome()
 })
