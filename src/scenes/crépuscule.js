@@ -70,6 +70,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
         if (OBJECTS[i].timeOfDay == "Crépuscule" && !globalContainer.getChildByName(OBJECTS[i].name)) {
 
+
             const img = Texture.from("img/" + OBJECTS[i].src);
             const object = new Sprite(img);
             object.id = OBJECTS[i].id;
