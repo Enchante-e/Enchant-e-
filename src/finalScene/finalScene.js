@@ -221,13 +221,13 @@ const createHoverText = () => {
     container.alpha = 0
     container.zIndex = 5
     
-    const text = new Text("Trésor choisi par vous",{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
+    const text = new Text("Trésor choisi par vous",{fontFamily : 'futura-pt, Helvetica, Arial', fontSize: 16, fill : 0x0a0d42, align : 'center'});
     text.x = 5
     text.y = 5
 
     const textBg = Sprite.from(Texture.WHITE);
-    textBg.width = text.width + 10;
-    textBg.height = text.height + 10;
+    textBg.width = text.width + 30;
+    textBg.height = text.height + 30;
     textBg.x = 0
     textBg.y = 0
 
