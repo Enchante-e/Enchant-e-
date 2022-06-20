@@ -104,6 +104,12 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+                this.alpha = 0.6;
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
 
                 gsap.to(object.scale, {
                     x: object.scale.x * 0.7,
@@ -129,7 +135,8 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
-                gsap.to(object.scale, {
+
+              gsap.to(object.scale, {
                     x: object.scale.x,
                     y: object.scale.y
                 });
@@ -157,33 +164,8 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
             }
 
-            // BLUR FILTER
-
-            // const blurFilter1 = new PIXI.filters.BlurFilter();
-            // blurFilter1.blur = 0.0;
-            // object.filters = [blurFilter1];
-
-            // const time = 2.0;
-            // TweenMax.to(blurFilter1, time, {
-            //     blur: 5.0,
-            //     repeat: -1
-            // });
-
-            // OBJECTS FOLLOW MOUSE
-
-            // app.stage.interactive = true;
-
-            // app.stage.hitArea = app.renderer.screen;
-
-            // app.stage.addEventListener('pointermove', (e) => {
-            //     object.position.copyFrom(e.global);
-            // });
-
-            // PARALLAX 
-
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
-                    console.log("scroll down")
                     gsap.to(object.position, {
                         x: object.x * 2,
                         y: object.y * 2,
@@ -191,7 +173,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     });
 
                 } else if (e.deltaY <= 0) {
-                    console.log("scroll up")
 
                     gsap.to(object.position, {
                         x: object.initialPos.x,
