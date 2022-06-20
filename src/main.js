@@ -4,11 +4,12 @@ import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as jour from "./scenes/jour"
+import * as aube from "./scenes/aube"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
+import * as manageExperience from "./manageExperience/manageExperience"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -38,7 +39,7 @@ let nameInput = document.getElementById("nameInput")
 let partnerDiv = document.getElementById("bulleAmi")
 let partnerSymbol = document.getElementById("bulleSymbol")
 let partnerNameHTML = [...document.getElementsByClassName("partnerName")]
-let userNameHTML = document.getElementById("userName")
+let userNameHTML = [...document.getElementsByClassName("userName")]
 
 let logo = [...document.getElementsByClassName('logo')]
 
@@ -55,7 +56,7 @@ socket.on('init', function(user) {
 // [EMIT] Create room & generate code
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
-    // document.getElementById("ambientPlayer").play()
+    document.getElementById("ambientPlayer").play()
 })
 
 // [EMIT] Join room with code
@@ -71,7 +72,7 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
-    roomBttn.classList.add("hidden")
+    document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
     
     if (userStatus == "creator") {
         pianoDiv[0].classList.remove("hidden")
@@ -95,7 +96,9 @@ startExperience.addEventListener('click', (e) => {
 
     if (myName !== "") {
         const name = myName
-        userNameHTML.innerHTML = myName
+        userNameHTML.map((item) => {
+            item.innerHTML = myName
+        })
         socket.emit('change-name', name, myId)
         nameForm.closeName()
     } else {
@@ -111,6 +114,9 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
+    
+    aube.playMusic()
+    document.getElementById("finishObjectsChoice").classList.remove("hidden")
 });
 
 // [RECEIVED] Waiting for partner
@@ -132,7 +138,7 @@ socket.on('name-notification', (name, id) => {
             item.innerHTML = partnerName
         })
         
-        partnerSymbol.innerHTML = partnerName.charAt(0)
+        partnerSymbol.innerHTML = partnerName.charAt(0).toUpperCase()
         partnerDiv.classList.remove("hidden")
         
         loading.closeLoad()
@@ -154,8 +160,10 @@ socket.on('cursor-create', () => {
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
-    nameTag.style.top =  coordY + "px";
-    nameTag.style.left =  coordX + "px";
+    if (nameTag) {
+        nameTag.style.top =  coordY + 10 + "px";
+        nameTag.style.left =  coordX - 15 + "px";
+    }
 });
 
 socket.on('partner-notification', function(type) {
@@ -192,8 +200,8 @@ const generateCursor = () => {
 
     nameTag = document.createElement('p')
     nameTag.innerHTML = partnerName
-    nameTag.id = partnerId
-    nameTag.classList.add("tag")
+    nameTag.id = "tag"
+    // nameTag.classList.add("tag")
     document.body.appendChild(nameTag)
 }
 
@@ -212,7 +220,5 @@ document.addEventListener('mousemove', function(e) {
 export const getSocket = () => {
     return socket
 }
-
-// ------------------------------------------------------------------------------------------
 
 

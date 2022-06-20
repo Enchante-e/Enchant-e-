@@ -1,34 +1,19 @@
-import contraintesData from "../data/contraintes.json"
-
-
-
-const CONTRAINTES = contraintesData.contraintes
-
-
-
-import {
-    Texture,
-    Sprite,
-    Graphics
-} from 'pixi.js';
-import {
-    Player
-} from 'tone'
-import * as PIXI from 'pixi.js'
-import {
-    gsap
-} from "gsap";
+import {Texture, Sprite, Graphics} from 'pixi.js';
+import {Player} from 'tone'
+import {gsap} from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
-import * as sceneManager from "./sceneManager"
+import contraintesData from "../data/contraintes.json"
 
 let cameraVector = {
     a: 0,
     l: 0
 };
+
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 

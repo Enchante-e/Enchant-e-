@@ -1,64 +1,17 @@
-import contraintesData from "../data/contraintes.json"
-
-
-
-const CONTRAINTES = contraintesData.contraintes
-
-
-
-import {
-    Texture,
-    Sprite,
-    Graphics
-} from 'pixi.js';
-import {
-    Player
-} from 'tone'
-import * as PIXI from 'pixi.js'
-import {
-    gsap
-} from "gsap";
+import {Texture, Sprite} from 'pixi.js';
+import {Player} from 'tone'
+import {gsap} from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 
-let cameraVector = {
-    a: 0,
-    l: 0
-};
 const OBJECTS = objectsData.objects
-const INVENTORY_SLOTS = [{
-    'object': null,
-    x: -100,
-    y: 0
-}, {
-    'object': null,
-    x: 100,
-    y: 150
-}, {
-    'object': null,
-    x: -100,
-    y: 300
-}, {
-    'object': null,
-    x: 100,
-    y: 450
-}, {
-    'object': null,
-    x: -100,
-    y: 600
-}, {
-    'object': null,
-    x: 100,
-    y: 750
-}]
-let inventoryOpen = false
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
-
 export const initScene = (globalApp, globalContainer, globalInventory) => {
-
 
     app = globalApp
     container = globalContainer
@@ -67,25 +20,21 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-
-        if (OBJECTS[i].timeOfDay == "Aube" && !globalContainer.getChildByName(OBJECTS[i].name)) {
-
+        if(OBJECTS[i].timeOfDay == "Aube" && !globalContainer.getChildByName(OBJECTS[i].name)) {
 
             const img = Texture.from("img/" + OBJECTS[i].src);
-            const object = new Sprite(img);
+            const object = new Sprite(img) ;
             object.id = OBJECTS[i].id;
-
             object.name = OBJECTS[i].name
-
+    
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
             object.scale.set(SCALE);
-            object.targetScale = SCALE;
             object.anchor.set(0.5)
             object.interactive = true;
             object.buttonMode = LUCK;
-
-            object.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
+    
+            object.x =OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
             object.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
             object.initialPos = {
                 x: object.x,
@@ -96,12 +45,12 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             object.zIndex = OBJECTS[i].index;
 
             object
-                .on('pointerdown', onDragStart)
-                .on('pointerup', onDragEnd)
-                .on('pointerupoutside', onDragEnd)
-                .on('pointermove', onDragMove);
+            .on('pointerdown', onDragStart)
+            .on('pointerup', onDragEnd)
+            .on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
 
-            function onDragStart(event) {
+             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
                 this.alpha = 0.6;
@@ -183,7 +132,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
             container.addChild(object);
         }
-
     }
 
 }
@@ -271,13 +219,11 @@ const createEnvironment = (globalContainer) => {
     }
 }
 
-
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
-
-
+    
     return objectBox.x + objectBox.width > inventoryBox.x &&
-        objectBox.x < inventoryBox.x + inventoryBox.width &&
-        objectBox.y + objectBox.height > inventoryBox.y &&
-        objectBox.y < inventoryBox.y + inventoryBox.height;
+           objectBox.x < inventoryBox.x + inventoryBox.width &&
+           objectBox.y + objectBox.height > inventoryBox.y &&
+           objectBox.y < inventoryBox.y + inventoryBox.height;
 }

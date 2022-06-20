@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Enchanté(e)</title>
+    <title>Enchanté(e) - Rencontrez vous autrement</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="icon" type="image/png" href="../static/img/favicon.png" />
     <link rel="stylesheet" href="https://use.typekit.net/vzb7pjf.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
@@ -20,8 +21,22 @@
 
         <div class="musicBttn whiteTint">
             <img src="../static/img/musicBttn.svg" />
-            <audio id="ambientPlayer" src="../static/sound/background.mp3" loop="loop"></audio>
+            <audio id="ambientPlayer" src="../static/sound/background.wav" loop="loop"></audio>
         </div>
+
+        <div id="sunNav">
+            <svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.15 73.79" >
+                <defs><style>.cls-1{fill:#fff;}.cls-2{fill:rgba(255, 255, 255, 0.25);stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}.cls-3{fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}</style></defs>
+                <line class="cls-2" x1="1" y1="72.79" x2="174.15" y2="72.79"/>
+                <rect class="cls-1" x="86.56" y="39.13" width="2.02" height="33.66"/>
+                <circle class="cls-2" id="sceneThree" cx="133.53" cy="36.51" r="14.74" onclick="sceneThree.style.fill='#fff'; sceneTwo.style.fill = sceneFour.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = 'rgba(255, 255, 255, 0.25)';"/>
+                <circle class="cls-2" id="sceneTwo" cx="87.57" cy="15.74" r="14.74" onclick="sceneTwo.style.fill='#fff'; sceneThree.style.fill = sceneFour.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = 'rgba(255, 255, 255, 0.25)';"/>
+                <path class="cls-2" id="sceneFour"  d="M159.41,58.04c8.14,0,14.74,6.6,14.74,14.74h-29.48c0-8.14,6.6-14.74,14.74-14.74h0Z" onclick="sceneFour.style.fill='#fff'; sceneThree.style.fill = sceneTwo.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = 'rgba(255, 255, 255, 0.25)';"/>
+                <circle class="cls-3" id="sceneOne"  cx="41.62" cy="36.51" r="14.74" onclick="sceneOne.style.fill = tutorialBttn.style.fill = '#fff'; sceneThree.style.fill = sceneFour.style.fill = sceneTwo.style.fill = 'rgba(255, 255, 255, 0.25)';" />
+                <path class="cls-3" id="tutorialBttn" d="M15.74,58.04c-8.14,0-14.74,6.6-14.74,14.74H30.48c0-8.14-6.6-14.74-14.74-14.74Z"/>
+            </svg>
+        </div>
+
 
         <div id="bulleAmi" class="hidden">
             <div id="bulleBg">
@@ -31,8 +46,10 @@
         </div>
 
         <div id="notifications" class="hidden"></div>
-
-        <button class="hidden" id="finishObjectsChoice">Valider</button>
+        <div class="moods hidden">
+            <p>Un souvenir...</p>
+            <div id="moodsList"></div>
+        </div>
 
         <div id="anecdotes">
             <label for="anecdoteInput">Quelle anecdote veux tu associer à ce trésor ?</label>
@@ -44,22 +61,9 @@
             </div>
         </div>
 
+        <button class="hidden" id="finishObjectsChoice">Valider</button>
+        
         <div class="finalScene hidden">
-            <div class="colorLegend">
-                <div class="legendItem">
-                    <div class="legendColor" style="background-color: #9B7593;"></div>
-                    <p>Objets choisis par <span class="partnerName"></span></p>
-                </div>
-                <div class="legendItem">
-                    <div class="legendColor" style="background-color: #EE7E3C;"></div>
-                    <p>Objets que j'ai choisi</p>
-                </div>
-                <div class="legendItem">
-                    <div class="legendColor" style="background-color: #C57A68;"></div>
-                    <p>Objets choisis par nous deux</p>
-                </div>
-            </div>
-
             <div class="finalMenu">
                 <button id="finishExperienceBttn">Terminer</button>
             </div>
@@ -78,6 +82,11 @@
     </div>
 
     <div class="fullpage homepage">
+        <div>
+            <img src="../static/img/Contraintes/Home-Contrainte-L.svg" class="LeftContrainte"/>
+            <img src="../static/img/Contraintes/Home-Contrainte-R.svg" class="RightContrainte"/>
+        </div>
+
         <div class="homeTitle">
             <img src="../static/img/logoBaseline.svg" />
         </div>
@@ -179,10 +188,8 @@
     </div>
 
     <div class="fullpage conceptPage conceptPageOne hidden">
-        <p>Enchanté(e) <span id="userName"></span>. <br> Vous partez en voyage pour une chasse<br> aux trésors un peu
-            particulière.</p>
-        <p>Chaque relation est unique. <br>Elle est le résultat de deux individus<br> complexes et de trésors communs.
-        </p>
+            <p>Enchanté(e) <span class="userName"></span>. <br> Vous partez en voyage pour une chasse<br> aux trésors un peu particulière.</p>
+            <p>Chaque relation est unique. <br>Elle est le résultat de deux individus<br> complexes et de trésors communs.</p>
     </div>
 
     <div class="fullpage conceptPage conceptPageTwo hidden">
@@ -199,25 +206,17 @@
             <button id="startFinalScene">Entrer</button>
     </div>
 
-    <div class="fullpage conceptPage conceptPageThree hidden">
-        <p><span class="partnerName"></span> et vous avez rempli vos coffres aux trésors.<br>
-        Vous serez redirigés dans quelques instants vers votre univers commun.</p>
-        <p>Et si vous vous appeliez pour en discuter ?</p>
-        <button id="startFinalScene">Entrer</button>
-    </div>
+    <div class="fullpage conceptPage endingPage hidden">
+        <div>
+            <img src="../static/img/Contraintes/Home-Contrainte-L.svg" class="LeftContrainte"/>
+            <img src="../static/img/Contraintes/Home-Contrainte-R.svg" class="RightContrainte"/>
+        </div>
 
-    <div id="testDiv">
-
-        <svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.15 73.79" >
-            <defs><style>.cls-1{fill:#fff;}.cls-2{fill:#0a0d42;stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}.cls-3{fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}</style></defs>
-            <line class="cls-2" x1="1" y1="72.79" x2="174.15" y2="72.79"/>
-            <rect class="cls-1" x="86.56" y="39.13" width="2.02" height="33.66"/>
-            <circle class="cls-2" id="sceneThree" cx="133.53" cy="36.51" r="14.74" onclick="sceneThree.style.fill='#fff'; sceneTwo.style.fill = sceneFour.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = '#0a0d42';"/>
-            <circle class="cls-2" id="sceneTwo" cx="87.57" cy="15.74" r="14.74" onclick="sceneTwo.style.fill='#fff'; sceneThree.style.fill = sceneFour.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = '#0a0d42';"/>
-            <path class="cls-2" id="sceneFour"  d="M159.41,58.04c8.14,0,14.74,6.6,14.74,14.74h-29.48c0-8.14,6.6-14.74,14.74-14.74h0Z" onclick="sceneFour.style.fill='#fff'; sceneThree.style.fill = sceneTwo.style.fill = sceneOne.style.fill = tutorialBttn.style.fill = '#0a0d42';"/>
-            <circle class="cls-3" id="sceneOne"  cx="41.62" cy="36.51" r="14.74" onclick="sceneOne.style.fill = tutorialBttn.style.fill = '#fff'; sceneThree.style.fill = sceneFour.style.fill = sceneTwo.style.fill = '#0a0d42';" />
-            <path class="cls-3" id="tutorialBttn" d="M15.74,58.04c-8.14,0-14.74,6.6-14.74,14.74H30.48c0-8.14-6.6-14.74-14.74-14.74Z"/>
-        </svg>
+        <p>Merci de votre passage sur Enchanté(e) <span class="userName"></span></p>
+        <p>N’oubliez pas, chaque relation est unique.<br>Vous pouvez recommencer l’expérience autant de fois <br>que vous le souhaitez, avec la personne de votre choix.</p>
+        <button id="returnHome" style="margin-bottom: 60px;">Tenter l’expérience à nouveau</button>
+        <img src="../static/img/Logo_Gobelins.png" style="width: 150px;position: absolute;bottom: 35px;"/>
+        <button id="closeEndPage">X</button>
     </div>
 
     <script src="main.js"></script>

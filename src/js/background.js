@@ -1,11 +1,6 @@
 import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
-import * as aube from "../scenes/aube"
-import * as jour from "../scenes/jour"
-import * as aurore from "../scenes/aurore"
-import * as crépuscule from "../scenes/crépuscule"
-
 import * as sceneManager from "../scenes/sceneManager"
 
 let cameraVector = {
@@ -27,7 +22,6 @@ play = false,
 container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-const SCENES = [aube, aurore, jour, crépuscule]
 const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
 let inventoryOpen = false
 
@@ -60,8 +54,10 @@ const createInventory = () => {
     const imgCoffre = Texture.from("img/Coffre.svg")
     const coffre = new Sprite(imgCoffre)
 
-    coffre.x = 80;
-    coffre.y =  app.view.height - 110;
+    coffre.x = - 130;
+    coffre.y =  app.view.height - 220;
+    // coffre.x = - 80;
+    // coffre.y =  1000;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
     coffre.zIndex = 2;
@@ -71,9 +67,9 @@ const createInventory = () => {
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
 
-    coffreBg.x = 0;
-    coffreBg.y = 125;
-    coffreBg.scale.set(0.15);
+    coffreBg.x = -280;
+    coffreBg.y = 30;
+    coffreBg.scale.set(0.18);
     coffreBg.alpha = 0;
     coffreBg.zIndex = 2;
     coffreBg.name = "Coffre-Bg"
@@ -86,7 +82,7 @@ const createInventory = () => {
 
             gsap.to(coffreBg, {
                 alpha: 1,
-                x: 0,
+                x: -310,
                 duration: 1
             });
 
@@ -124,7 +120,7 @@ const createInventory = () => {
             
             gsap.to(coffreBg, {
                 alpha: 0,
-                x: -10,
+                x: -320,
                 duration: 1
             });
 
@@ -151,7 +147,7 @@ const createInventory = () => {
         anecdoteBttn.beginFill(0xFFFFFF);
         anecdoteBttn.drawCircle(slot.x + 150, slot.y + 150, 12);
         anecdoteBttn.endFill();
-        anecdoteBttn.zIndex = 16
+        anecdoteBttn.zIndex = 3
         anecdoteBttn.scale.set(0)
         anecdoteBttn.alpha = 0
         anecdoteBttn.interactive = true
@@ -165,7 +161,7 @@ const createInventory = () => {
         app.stage.addChild(anecdoteBttn);
     })
     
-    app.stage.addChild(coffreBg,coffre)
+    container.addChild(coffreBg,coffre)
     return coffre
 }
 
