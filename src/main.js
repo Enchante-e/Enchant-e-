@@ -138,7 +138,7 @@ socket.on('name-notification', (name, id) => {
             item.innerHTML = partnerName
         })
         
-        partnerSymbol.innerHTML = partnerName.charAt(0)
+        partnerSymbol.innerHTML = partnerName.charAt(0).toUpperCase()
         partnerDiv.classList.remove("hidden")
         
         loading.closeLoad()

@@ -113,6 +113,8 @@ const clearScene = (globalContainer) => {
     globalContainer.addChild(coffreBg, coffre)
 }
 
+// MUSIQUE SE JOUE EN MEME TEMPS A TRAVAILLER
+
 const playMusic = (url) => {
 
     console.log(AUDIO_POEME.paused, AUDIO_POEME.currentTime)
