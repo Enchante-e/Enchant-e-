@@ -88,12 +88,7 @@ const createInventory = () => {
 
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
-                    gsap.to(slot.object, {
-                        alpha: 1,
-                        x: 0,
-                        duration: 3
-                    });
-                    gsap.to(slot.bttn, {
+                    gsap.to([slot.bttn, slot.object], {
                         alpha: 1,
                         x: 0,
                         duration: 3

@@ -13,12 +13,7 @@ returnHomeBttn.addEventListener("click", () => {
         })
     }
 
-    gsap.to(".logo", {
-        alpha: 0,
-        duration: 1,
-    })
-
-    gsap.to(".musicBttn", {
+    gsap.to([".logo", ".musicBttn"], {
         alpha: 0,
         duration: 1,
     })
