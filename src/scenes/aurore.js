@@ -1,22 +1,64 @@
-import {Texture, Sprite, Graphics} from 'pixi.js';
-import {Player} from 'tone'
-import objectsData from "../data/objects.json"
-import * as finalScene from "../finalScene/finalScene"
-import * as background from "../js/background"
 import contraintesData from "../data/contraintes.json"
 
 
 
 const CONTRAINTES = contraintesData.contraintes
 
+
+
+import {
+    Texture,
+    Sprite,
+    Graphics
+} from 'pixi.js';
+import {
+    Player
+} from 'tone'
+import * as PIXI from 'pixi.js'
+import {
+    gsap
+} from "gsap";
+gsap.registerPlugin(ScrollTrigger);
+import objectsData from "../data/objects.json"
+import * as finalScene from "../finalScene/finalScene"
+import * as background from "../js/background"
+
 let cameraVector = {
     a: 0,
     l: 0
 };
 const OBJECTS = objectsData.objects
+const INVENTORY_SLOTS = [{
+    'object': null,
+    x: -100,
+    y: 0
+}, {
+    'object': null,
+    x: 100,
+    y: 150
+}, {
+    'object': null,
+    x: -100,
+    y: 300
+}, {
+    'object': null,
+    x: 100,
+    y: 450
+}, {
+    'object': null,
+    x: -100,
+    y: 600
+}, {
+    'object': null,
+    x: 100,
+    y: 750
+}]
+let inventoryOpen = false
 let app, container, inventoryBox
 
+
 export const initScene = (globalApp, globalContainer, globalInventory) => {
+
 
     app = globalApp
     container = globalContainer
@@ -25,21 +67,25 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
-        if(OBJECTS[i].timeOfDay == "Aurore" && !globalContainer.getChildByName(OBJECTS[i].name)) {
+
+        if (OBJECTS[i].timeOfDay == "Aurore" && !globalContainer.getChildByName(OBJECTS[i].name)) {
+
 
             const img = Texture.from("img/" + OBJECTS[i].src);
-            const object = new Sprite(img) ;
+            const object = new Sprite(img);
             object.id = OBJECTS[i].id;
+
             object.name = OBJECTS[i].name
-    
+
             const LUCK = (Math.random() * 10) == 5;
             const SCALE = OBJECTS[i].scale
             object.scale.set(SCALE);
-            object.anchor.set(0.5);
+            object.targetScale = SCALE;
+            object.anchor.set(0.5)
             object.interactive = true;
             object.buttonMode = LUCK;
-    
-            object.x =OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
+
+            object.x = OBJECTS[i].posX * window.innerWidth - (window.innerWidth / 6);
             object.y = OBJECTS[i].posY * window.innerHeight - (window.innerHeight / 6);
             object.initialPos = {
                 x: object.x,
@@ -50,16 +96,20 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             object.zIndex = OBJECTS[i].index;
 
             object
-            .on('pointerdown', onDragStart)
-            .on('pointerup', onDragEnd)
-            .on('pointerupoutside', onDragEnd)
-            .on('pointermove', onDragMove);
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
 
             function onDragStart(event) {
-                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
                 this.alpha = 0.6;
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
 
                 gsap.to(object.scale, {
                     x: object.scale.x * 0.7,
@@ -76,18 +126,19 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 this.dragging = false;
                 this.data = null;
 
-                if(checkCollision(this)) {
-                    background.addToSlot(this)                    
+                if (checkCollision(this)) {
+                    background.addToSlot(this, OBJECTS[i].name)
+
                 } else {
-                    finalScene.deleteObject(object.id)
+                    finalScene.deleteObject(object.id, OBJECTS[i].name)
                     background.clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
 
-                gsap.to(object.scale, {
-                    x: object.scale.x * 0.7,
-                    y: object.scale.y * 0.7
+              gsap.to(object.scale, {
+                    x: object.scale.x,
+                    y: object.scale.y
                 });
             }
 
@@ -96,31 +147,34 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+
                     if(checkCollision(this)) {
-                        gsap.to(object, {
-                            rotation: 0.8,
-                            transformOrigin: "right 10%"
+                        gsap.to(object, { 
+                            rotation: Math.random(),
+                            transformOrigin: "right 10%",
+                            opacity : 0.4
                         });                 
                     } else {
                         gsap.to(object, {
-                            rotation: -0.4,
+                            rotation: Math.random(),
                             transformOrigin: "left 10%"
                         }); 
                     }
                 }
-            }
 
+            }
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
--                    gsap.to(object.position, {
+                    gsap.to(object.position, {
                         x: object.x * 2,
                         y: object.y * 2,
                         duration: 10
                     });
 
                 } else if (e.deltaY <= 0) {
--                    gsap.to(object.position, {
+
+                    gsap.to(object.position, {
                         x: object.initialPos.x,
                         y: object.initialPos.y,
                         duration: 2
@@ -128,19 +182,19 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 }
             });
 
-            
             container.addChild(object);
         }
+
     }
 
 }
-
 
 export const playMusic = () => {
     const url = "sound/Aurore.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
 }
+
 
 const createEnvironment = (globalContainer) => {
 
@@ -173,6 +227,7 @@ const createEnvironment = (globalContainer) => {
 
 
             function onDragStart(event) {
+                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
 
@@ -182,6 +237,7 @@ const createEnvironment = (globalContainer) => {
                 this.alpha = 1;
                 this.dragging = false;
                 this.data = null;
+
             }
 
             function onDragMove() {
@@ -192,20 +248,37 @@ const createEnvironment = (globalContainer) => {
                 }
             }
 
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    console.log("scroll down")
+                    gsap.to(contrainte.position, {
+                        x: contrainte.x * 2,
+                        y: contrainte.y * 2,
+                        duration: 10
+                    });
 
+                } else if (e.deltaY <= 0) {
+                    console.log("scroll up")
+
+                    gsap.to(contrainte.position, {
+                        x: contrainte.initialPos.x,
+                        y: contrainte.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
             globalContainer.addChild(contrainte)
-
         }
     }
-
-
 }
+
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
-    
+
+
     return objectBox.x + objectBox.width > inventoryBox.x &&
-           objectBox.x < inventoryBox.x + inventoryBox.width &&
-           objectBox.y + objectBox.height > inventoryBox.y &&
-           objectBox.y < inventoryBox.y + inventoryBox.height;
+        objectBox.x < inventoryBox.x + inventoryBox.width &&
+        objectBox.y + objectBox.height > inventoryBox.y &&
+        objectBox.y < inventoryBox.y + inventoryBox.height;
 }
