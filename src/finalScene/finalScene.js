@@ -1,5 +1,6 @@
 import {Texture, Sprite, Graphics, Container, Text} from 'pixi.js'
 import {Player} from 'tone'
+import { gsap } from "gsap";
 import objectsData from "../data/objects.json"
 import contraintesData from "../data/contraintes.json"
 import * as socket from "../main"
@@ -39,8 +40,12 @@ export const createCursor = () => {
 
 export const updateCursor = (cursor, coordX, coordY) => {
     if(cursor) {
-        cursor.transform.position.x = coordX - window.innerWidth / 2;
-        cursor.transform.position.y = coordY - window.innerHeight / 2;
+        gsap.to(cursor.transform.position, {
+            x: coordX - window.innerWidth / 2,
+            y: coordY - window.innerHeight / 2,
+            duration: 0.15,
+            delay: 0.15
+        });
     }
 }
 

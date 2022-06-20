@@ -75,6 +75,7 @@ io.on('connection', socket => {
                     foundCodeMatch = true
                 } else {
                     socket.join(code)
+                    socket.emit('room-notification', code, "invited")
                     let membersId = [id]
                     roomMembers[i].map((member)=> {
                         membersId.push(member)
@@ -87,7 +88,6 @@ io.on('connection', socket => {
                             }
                         })
                     })
-                    socket.emit('room-notification', code, "invited")
                     foundCodeMatch = true
                 }
             }

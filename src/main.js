@@ -1,4 +1,5 @@
 import {io} from "socket.io-client";
+import { gsap } from "gsap";
 import * as homepage from "./homepage/home"
 import * as background from "./js/background"
 import * as musicCode from "./code/code"
@@ -56,6 +57,7 @@ socket.on('init', function(user) {
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
     document.getElementById("ambientPlayer").play()
+    document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
 })
 
 // [EMIT] Join room with code
@@ -99,7 +101,6 @@ startExperience.addEventListener('click', (e) => {
             item.innerHTML = myName
         })
         socket.emit('change-name', name, myId)
-        nameForm.closeName()
     } else {
         alert("Veuillez choisir un nom")
     }
@@ -125,8 +126,8 @@ socket.on('waiting-for-partner', () => {
 
 // [RECEIVED] Waiting for partner
 socket.on('close-loading', () => {
-    loading.closeLoad()
     concept.initPhoneConcept()
+    loading.closeLoad()
 });
 
 // [RECEIVED] Name changed notification
@@ -142,6 +143,7 @@ socket.on('name-notification', (name, id) => {
         partnerDiv.classList.remove("hidden")
         
         loading.closeLoad()
+        nameForm.closeName()
 });
 
 // [RECEIVED] Generate Canvas
@@ -161,8 +163,12 @@ socket.on('cursor-create', () => {
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
     if (nameTag) {
-        nameTag.style.top =  coordY + 10 + "px";
-        nameTag.style.left =  coordX - 15 + "px";
+        gsap.to(nameTag, {
+            top: coordY + 10 + "px",
+            left: coordX - 15 + "px",
+            duration: 0.15,
+            delay: 0.15
+        });
     }
 });
 

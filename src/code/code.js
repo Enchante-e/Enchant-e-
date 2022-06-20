@@ -1,7 +1,6 @@
 import {PolySynth, Chorus} from 'tone'
 import { gsap } from "gsap";
 import * as nameForm from "../name/name"
-import * as loading from "../loading/loading"
 
 let code = []
 let keysPressed = []
