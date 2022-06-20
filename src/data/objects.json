@@ -72,9 +72,9 @@
           "src": "Arbre.png",
           "sound": "",
           "timeOfDay": "Aurore",
-          "posX": 0,
-          "posY": 0,
-          "scale": 0.25,
+          "posX": 0.8,
+          "posY": 0.95,
+          "scale": 0.4,
           "index": 1
         },
         {
@@ -105,9 +105,9 @@
           "src": "Masque.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.8,
-          "posY": 0.05,
-          "scale": 0.25,
+          "posX": 0.9,
+          "posY": 0.1,
+          "scale": 0.2,
           "index": 0
         },
         {
@@ -127,9 +127,9 @@
           "src": "Barque.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0,
+          "posX": 0.2,
           "posY": 0.85,
-          "scale": 0.35,
+          "scale": 0.5,
           "index": 1
         },
         {
@@ -402,9 +402,9 @@
           "src": "Surf.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.15,
-          "scale": 0.5,
+          "posX": 0.9,
+          "posY": 0.5,
+          "scale": 1,
           "index": -3
         },
         {
@@ -490,9 +490,9 @@
           "src": "Train.png",
           "sound": "Train.mp3",
           "timeOfDay": "Aurore",
-          "posX": 0.85,
-          "posY": 0.08,
-          "scale": 0.25,
+          "posX": 0.9,
+          "posY": 0.25,
+          "scale": 0.4,
           "index": -2
         },
         {
@@ -633,9 +633,9 @@
           "src": "Balancoire.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.8,
+          "posY": 0.15,
+          "scale": 0.4,
           "index": 0
         },
         {
@@ -644,10 +644,10 @@
           "src": "Ballon.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.8,
+          "posY": 0.9,
           "scale": 0.2,
-          "index": 1
+          "index": -3
         },
         {
           "id": 59,
@@ -655,10 +655,10 @@
           "src": "Bubble-the.png",
           "sound": "Boisson.wav",
           "timeOfDay": "Aurore",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.8,
+          "posY": 0.2,
           "scale": 0.2,
-          "index": 1
+          "index": 0
         },
         {
           "id": 60,
@@ -699,9 +699,9 @@
           "src": "Coussins.png",
           "sound": "",
           "timeOfDay": "Aurore",
-          "posX": 0.65,
-          "posY": 0.7,
-          "scale": 0.2,
+          "posX": 0.9,
+          "posY": 0.8,
+          "scale": 0.3,
           "index": 1
         },
         {
@@ -710,10 +710,10 @@
           "src": "Disque.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.7,
+          "posY": 0.5,
           "scale": 0.2,
-          "index": 1
+          "index": 0
         },
         {
           "id": 65,
@@ -721,10 +721,10 @@
           "src": "Etoile.png",
           "sound": "",
           "timeOfDay": "Aurore",
-          "posX": 0.65,
+          "posX": 0.3,
           "posY": 0.7,
           "scale": 0.2,
-          "index": 1
+          "index": -1
         },
         {
           "id": 66,
@@ -743,10 +743,10 @@
           "src": "Jouets.png",
           "sound": "",
           "timeOfDay": "Aurore",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.4,
+          "posY": 0.9,
           "scale": 0.2,
-          "index": 1
+          "index": 0
         },
         {
           "id": 68,
@@ -754,10 +754,10 @@
           "src": "Livre.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.35,
+          "posY": 0.4,
           "scale": 0.2,
-          "index": 1
+          "index": -3
         },
         {
           "id": 69,
@@ -798,10 +798,10 @@
           "src": "Nuage.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.4,
+          "posY": 0.05,
           "scale": 0.2,
-          "index": 1
+          "index": 2
         },
         {
           "id": 73,
@@ -864,10 +864,10 @@
           "src": "Poupées.png",
           "sound": "",
           "timeOfDay": "Jour",
-          "posX": 0.65,
-          "posY": 0.7,
+          "posX": 0.6,
+          "posY": 0.34,
           "scale": 0.2,
-          "index": 1
+          "index": -3
         },
         {
           "id": 79,
@@ -876,7 +876,7 @@
           "sound": "",
           "timeOfDay": "Jour",
           "posX": 0.65,
-          "posY": 0.7,
+          "posY": 0.9,
           "scale": 0.2,
           "index": 1
         },

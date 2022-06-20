@@ -376,7 +376,7 @@
             "timeOfDay": "Jour",
             "posX": 0.83,
             "posY": 0.7,
-            "scale": 0.5,
+            "scale": 0.8,
             "index": -7
         },
         {
@@ -385,7 +385,7 @@
             "timeOfDay": "Jour",
             "posX": 0.3,
             "posY": 0.5,
-            "scale": 0.5,
+            "scale": 0.8,
             "index": -8
         },
         {
