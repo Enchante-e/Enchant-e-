@@ -341,7 +341,7 @@ const playNote = (note) => {
       envelope: {
         attack: 0.25
     } });
-    synth.volume.value = -15
+    synth.volume.value = -12
     synth.triggerAttackRelease(note,"8n");
     document.getElementById(note)?.classList.add("activeKey")
     setTimeout(() => { 

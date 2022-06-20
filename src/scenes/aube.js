@@ -65,9 +65,11 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     y: object.scale.y * 0.7
                 });
 
-                const url = "sound/" + OBJECTS[i].sound
-                const player = new Player(url).toDestination();
-                player.autostart = true;
+                if(OBJECTS[i].sound !== "") {
+                    const url = "sound/" + OBJECTS[i].sound
+                    const player = new Player(url).toDestination();
+                    player.autostart = true;
+                }
             }
 
             function onDragEnd() {
