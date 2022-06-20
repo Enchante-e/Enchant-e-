@@ -1,19 +1,19 @@
 import {Texture, Sprite, Graphics} from 'pixi.js';
 import {Player} from 'tone'
+import {gsap} from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 import contraintesData from "../data/contraintes.json"
 
 
-
-const CONTRAINTES = contraintesData.contraintes
-
 let cameraVector = {
     a: 0,
     l: 0
 };
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 export const initScene = (globalApp, globalContainer, globalInventory) => {
@@ -56,10 +56,14 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             .on('pointermove', onDragMove);
 
             function onDragStart(event) {
-                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
                 this.alpha = 0.6;
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
 
                 gsap.to(object.scale, {
                     x: object.scale.x * 0.7,
@@ -76,18 +80,19 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 this.dragging = false;
                 this.data = null;
 
-                if(checkCollision(this)) {
-                    background.addToSlot(this)                    
+                if (checkCollision(this)) {
+                    background.addToSlot(this, OBJECTS[i].name)
+
                 } else {
-                    finalScene.deleteObject(object.id)
+                    finalScene.deleteObject(object.id, OBJECTS[i].name)
                     background.clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
 
-                gsap.to(object.scale, {
-                    x: object.scale.x * 0.7,
-                    y: object.scale.y * 0.7
+              gsap.to(object.scale, {
+                    x: object.scale.x,
+                    y: object.scale.y
                 });
             }
 
@@ -96,31 +101,34 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+
                     if(checkCollision(this)) {
-                        gsap.to(object, {
-                            rotation: 0.8,
-                            transformOrigin: "right 10%"
+                        gsap.to(object, { 
+                            rotation: Math.random(),
+                            transformOrigin: "right 10%",
+                            opacity : 0.4
                         });                 
                     } else {
                         gsap.to(object, {
-                            rotation: -0.4,
+                            rotation: Math.random(),
                             transformOrigin: "left 10%"
                         }); 
                     }
                 }
-            }
 
+            }
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
--                    gsap.to(object.position, {
+                    gsap.to(object.position, {
                         x: object.x * 2,
                         y: object.y * 2,
                         duration: 10
                     });
 
                 } else if (e.deltaY <= 0) {
--                    gsap.to(object.position, {
+
+                    gsap.to(object.position, {
                         x: object.initialPos.x,
                         y: object.initialPos.y,
                         duration: 2
@@ -128,7 +136,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 }
             });
 
-            
             container.addChild(object);
         }
     }
@@ -172,6 +179,7 @@ const createEnvironment = (globalContainer) => {
 
 
             function onDragStart(event) {
+                this.alpha = 0.6;
                 this.data = event.data;
                 this.dragging = true;
 
@@ -181,6 +189,7 @@ const createEnvironment = (globalContainer) => {
                 this.alpha = 1;
                 this.dragging = false;
                 this.data = null;
+
             }
 
             function onDragMove() {
@@ -191,14 +200,30 @@ const createEnvironment = (globalContainer) => {
                 }
             }
 
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    console.log("scroll down")
+                    gsap.to(contrainte.position, {
+                        x: contrainte.x * 2,
+                        y: contrainte.y * 2,
+                        duration: 10
+                    });
 
+                } else if (e.deltaY <= 0) {
+                    console.log("scroll up")
+
+                    gsap.to(contrainte.position, {
+                        x: contrainte.initialPos.x,
+                        y: contrainte.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
             globalContainer.addChild(contrainte)
-
         }
     }
-
-
 }
+
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
