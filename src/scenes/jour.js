@@ -231,7 +231,6 @@ const createEnvironment = (globalContainer) => {
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
-                    console.log("scroll down")
                     gsap.to(contrainte.position, {
                         x: contrainte.x * 2,
                         y: contrainte.y * 2,
@@ -239,8 +238,6 @@ const createEnvironment = (globalContainer) => {
                     });
 
                 } else if (e.deltaY <= 0) {
-                    console.log("scroll up")
-
                     gsap.to(contrainte.position, {
                         x: contrainte.initialPos.x,
                         y: contrainte.initialPos.y,
