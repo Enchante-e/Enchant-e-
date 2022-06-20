@@ -104,7 +104,7 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
                     sceneTwoBttn.style.fill='#fff'; 
                     sceneThreeBttn.style.fill = sceneFourBttn.style.fill = sceneOneBttn.style.fill = tutorialBttn.style.fill = 'rgba(255, 255, 255, 0.25)';
                 break;
-                case "Crépsucule":
+                case "Crépuscule":
                     switchScene("Jour", globalApp, globalContainer, globalInventory)
                     sceneThreeBttn.style.fill='#fff'; 
                     sceneTwoBttn.style.fill = sceneFourBttn.style.fill = sceneOneBttn.style.fill = tutorialBttn.style.fill = 'rgba(255, 255, 255, 0.25)';
@@ -120,6 +120,8 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
                     sceneThreeBttn.style.fill = sceneFourBttn.style.fill = sceneTwoBttn.style.fill = 'rgba(255, 255, 255, 0.25)';
                 break;
             }
+
+            scrollRatio = 0
         }
     });
 }
