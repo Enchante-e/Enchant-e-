@@ -105,9 +105,9 @@ io.on('connection', socket => {
     socket.on('set-objects', (objects) => {
         user.hasFinished = true
         io.sockets.to(user.partnerId).emit('partner-objects',objects);
-        io.sockets.to(user.partnerId).emit('cursor-create');
+        socket.emit('cursor-create');
         
-        if(user.hasFinished && user.partnerId !== "") {
+        if(user.hasFinished == true) {
             users.map((u) => {
                 if (u.id == user.partnerId ) {
                     if (u.hasFinished == true) {
@@ -118,6 +118,8 @@ io.on('connection', socket => {
                     }
                 }
             })
+        } else {
+            socket.emit('waiting-for-partner')
         }
     })
 

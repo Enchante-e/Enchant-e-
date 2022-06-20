@@ -49,7 +49,6 @@ let logo = [...document.getElementsByClassName('logo')]
 // [RECEIVED] Set your local ID and write it 
 socket.on('init', function(user) {
     myId = user.id;
-    console.log("Vous êtes " + myId + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY)
 });
 
 
@@ -127,6 +126,7 @@ socket.on('waiting-for-partner', () => {
 // [RECEIVED] Waiting for partner
 socket.on('close-loading', () => {
     loading.closeLoad()
+    concept.initPhoneConcept()
 });
 
 // [RECEIVED] Name changed notification

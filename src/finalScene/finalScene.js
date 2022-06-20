@@ -96,8 +96,6 @@ finalSceneBttn.addEventListener("click", () => {
 })
 
 const finishedChoices = () => {
-    concept.initPhoneConcept()
-
     while(app.stage.children[0]) { app.stage.removeChild(app.stage.children[0]); }
 
     validateBttn.classList.add("hidden")
