@@ -77,67 +77,15 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
             switch(currentScene) {
                 case "Aube":
                     switchScene("Aurore", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneTwoBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
                 case "Aurore":
                     switchScene("Jour", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneThreeBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneTwoBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
                 case "Jour":
                     switchScene("Crépuscule", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneFourBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneTwoBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-   
                 break;
                 case "Crépuscule":
                     switchScene("Aube", globalApp, globalContainer, globalInventory)
-
-                    gsap.to([sceneOneBttn, tutorialBttn], {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneFourBttn,sceneTwoBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
             }
 
@@ -146,67 +94,15 @@ export const initManager = (globalApp, globalContainer, globalInventory) => {
             switch(currentScene) {
                 case "Jour":
                     switchScene("Aurore", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneTwoBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
                 case "Crépuscule":
                     switchScene("Jour", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneThreeBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneTwoBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
                 case "Aube":
                     switchScene("Crépuscule", globalApp, globalContainer, globalInventory)
-
-                    gsap.to(sceneFourBttn, {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneTwoBttn,sceneOneBttn,tutorialBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
                 case "Aurore":
                     switchScene("Aube", globalApp, globalContainer, globalInventory)
-               
-                    gsap.to([sceneOneBttn, tutorialBttn], {
-                        fill: '#fff',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
-                    gsap.to([sceneThreeBttn,sceneFourBttn,sceneTwoBttn], {
-                        fill: 'rgba(255, 255, 255, 0.25)',
-                        duration: 1,
-                        delay: 0.15
-                    });
-
                 break;
             }
 
@@ -220,21 +116,69 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
 
     switch(name) {
         case "Aube":
+            gsap.to([sceneOneBttn, tutorialBttn], {
+                fill: '#fff',
+                duration: 1,
+                delay: 0.15
+            });
+
+            gsap.to([sceneThreeBttn,sceneFourBttn,sceneTwoBttn], {
+                fill: 'rgba(255, 255, 255, 0.25)',
+                duration: 1,
+                delay: 0.15
+            });
+            
             clearScene(globalContainer)
             aube.playMusic()
             aube.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Aurore":
+            gsap.to(sceneTwoBttn, {
+                fill: '#fff',
+                duration: 1,
+                delay: 0.15
+            });
+
+            gsap.to([sceneThreeBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
+                fill: 'rgba(255, 255, 255, 0.25)',
+                duration: 1,
+                delay: 0.15
+            });
+
             clearScene(globalContainer)
             aurore.playMusic()
             aurore.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Jour":
+            gsap.to(sceneThreeBttn, {
+                fill: '#fff',
+                duration: 1,
+                delay: 0.15
+            });
+
+            gsap.to([sceneTwoBttn,sceneFourBttn,sceneOneBttn,tutorialBttn], {
+                fill: 'rgba(255, 255, 255, 0.25)',
+                duration: 1,
+                delay: 0.15
+            });
+
             clearScene(globalContainer)
             jour.playMusic()
             jour.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Crépuscule":
+            gsap.to(sceneFourBttn, {
+                fill: '#fff',
+                duration: 1,
+                delay: 0.15
+            });
+
+            gsap.to([sceneThreeBttn,sceneTwoBttn,sceneOneBttn,tutorialBttn], {
+                fill: 'rgba(255, 255, 255, 0.25)',
+                duration: 1,
+                delay: 0.15
+            });
+
             clearScene(globalContainer)
             crépuscule.playMusic()
             crépuscule.initScene(globalApp, globalContainer, globalInventory)
