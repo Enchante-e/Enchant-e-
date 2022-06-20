@@ -104,6 +104,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+
                 gsap.to(object.scale, {
                     x: object.scale.x * 0.7,
                     y: object.scale.y * 0.7
@@ -139,6 +140,19 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const newPosition = this.data.getLocalPosition(this.parent);
                     this.x = newPosition.x;
                     this.y = newPosition.y;
+
+                    if(checkCollision(this)) {
+                        gsap.to(object, { 
+                            rotation: Math.random(),
+                            transformOrigin: "right 10%",
+                            opacity : 0.4
+                        });                 
+                    } else {
+                        gsap.to(object, {
+                            rotation: Math.random(),
+                            transformOrigin: "left 10%"
+                        }); 
+                    }
                 }
 
             }
@@ -178,17 +192,6 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 
                 } else if (e.deltaY <= 0) {
                     console.log("scroll up")
-
-                    // gsap.to(object.scale, {
-                    //     // onUpdate: () => {
-                    //     //     object.scale.set(object.targetScale)
-                    //     //     console.log(targetScale)
-                    //     // },
-                    //     x: object.scale.x / 4,
-                    //     y: object.scale.y / 4,
-                    //     duration: 10
-                    // });
-
 
                     gsap.to(object.position, {
                         x: object.initialPos.x,
@@ -253,6 +256,7 @@ const createEnvironment = (globalContainer) => {
                 this.alpha = 1;
                 this.dragging = false;
                 this.data = null;
+
             }
 
             function onDragMove() {
@@ -263,13 +267,28 @@ const createEnvironment = (globalContainer) => {
                 }
             }
 
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    console.log("scroll down")
+                    gsap.to(contrainte.position, {
+                        x: contrainte.x * 2,
+                        y: contrainte.y * 2,
+                        duration: 10
+                    });
 
+                } else if (e.deltaY <= 0) {
+                    console.log("scroll up")
+
+                    gsap.to(contrainte.position, {
+                        x: contrainte.initialPos.x,
+                        y: contrainte.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
             globalContainer.addChild(contrainte)
-
         }
     }
-
-
 }
 
 
