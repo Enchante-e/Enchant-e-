@@ -5,16 +5,19 @@ let endingPage = [...document.getElementsByClassName("endingPage")]
 let returnHomeBttn = document.getElementById("returnHome")
 
 returnHomeBttn.addEventListener("click", () => {
-    endingPage.map((e) => {
-        gsap.to(e, {
+
+    for(let i = 1; i < endingPage[0].children.length; i++) {
+        gsap.to(endingPage[0].children[i], {
             alpha: 0,
             duration: 1,
         })
-    })
+    }
+
     gsap.to(".logo", {
         alpha: 0,
         duration: 1,
     })
+
     gsap.to(".musicBttn", {
         alpha: 0,
         duration: 1,

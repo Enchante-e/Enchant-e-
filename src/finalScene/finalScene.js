@@ -147,8 +147,8 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
             objectImg.anchor.set(0.5)
             objectImg.interactive = true;
 
-            objectImg.x = OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
-            objectImg.y = OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
+            objectImg.x = 250 + OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
+            objectImg.y = 100 + OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
             objectImg.zIndex = OBJECTS[object].index;
 
             objectImg
@@ -210,8 +210,6 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
             }
 
             app.stage.addChild(objectImg) 
-        } else {
-            console.log('L objet nexiste po')
         }
     })
 }
