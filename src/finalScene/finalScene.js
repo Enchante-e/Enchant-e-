@@ -114,7 +114,11 @@ export const finalSceneInit = () => {
     createObjectsSprites(commonObjectsId, "Ours")
     createEnvironment()
     hoverContainer = createHoverText()
+    document.getElementById("sunNav").style.display = 'none'
     interfaceFinalScene[0].classList.remove("hidden")
+    
+    document.getElementById("ambientPlayer").pause()
+
     const url = "sound/Paysage_partage.mp3"
     const player = new Player(url).toDestination();
     player.autostart = true;
