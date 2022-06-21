@@ -89,7 +89,7 @@ validateBttn.addEventListener("click", () => {
     if (chosenObjectsId.length == 6) {
         finishedChoices() 
     } else {
-        alert("You didn't chose enough objects")   
+        alert("Vous n'avez pas choisi assez d'objets.")   
     }
 })
 

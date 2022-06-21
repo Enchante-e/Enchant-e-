@@ -5,10 +5,12 @@ let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
   homepage.homeAnimation.play()
-  gsap.to([...document.getElementsByClassName("homeNav")][0], {
-    opacity: 0,
-    duration: 1.5
+
+  gsap.to([[...document.getElementsByClassName("homeNav")][0], document.getElementById("homeContraintes")], {
+      opacity: 0,
+      duration: 1.5
   });
+
   document.getElementById("ambientPlayer").play()
 
   gsap.to(document.body, {
@@ -20,11 +22,10 @@ roomConnect.addEventListener('click', () => {
   setTimeout(() => { 
     initJoin()
     homepage.closeHome()
+
+    document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
   }, 5500);
 
-   initJoin()
-   document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
-   document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
 })
 
 export const initJoin = () => {

@@ -61,7 +61,7 @@ roomBttn.addEventListener('click', () => {
     
     homeAnimation.play()
 
-    gsap.to([...document.getElementsByClassName("homeNav")][0], {
+    gsap.to([[...document.getElementsByClassName("homeNav")][0], document.getElementById("homeContraintes")], {
         opacity: 0,
         duration: 1.5
       });
@@ -104,7 +104,7 @@ socket.on('room-notification', (code, userStatus) => {
 
 // [RECEIVED] Room full or issue with room
 socket.on('room-fail', (code) => {
-    alert("Couldn't join " + code + ". The room is already full or doesn't exist, please retry or change code.") 
+    alert("Vous ne pouvez pas rejoindre ce code ami " + code + ". Ce code n'existe pas ou votre proche est peut-être déjà avec quelqu'un d'autre. Veuillez réessayer, vérifier l'orthographe ou changer de code.") 
 })
 
 // [EMIT] Change Name Input And emit

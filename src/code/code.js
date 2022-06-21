@@ -356,7 +356,7 @@ const checkCode = () => {
         document.removeEventListener("keyup", keyUp)
         pianoDiv[0].classList.add("hidden")
     } else {
-        alert("C'est non")
+        alert("Ce n'est pas votre bon code, veuillez réessayer.")
     }
 }
 
