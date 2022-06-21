@@ -16,7 +16,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const socket = io(process.env.IO_URL)
-homepage.initHome()
+let homeAnimation = homepage.initHome()
+
 
 // CONST ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +58,14 @@ socket.on('init', function(user) {
 roomBttn.addEventListener('click', () => {
     socket.emit('generate-room')
     document.getElementById("ambientPlayer").play()
+    
+    homeAnimation.play()
+
+    gsap.to([...document.getElementsByClassName("homeNav")][0], {
+        opacity: 0,
+        duration: 1.5
+      });
+
     document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
 })
 
@@ -74,10 +83,18 @@ joinBttn.addEventListener('click', () => {
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
     document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
-    
-    if (userStatus == "creator") {
-        pianoDiv[0].classList.remove("hidden")
-        musicCode.init(homepage, code)
+    if (userStatus == "creator") {      
+        gsap.to(document.body, {
+          backgroundColor: "#FFFFFF",
+          delay: 4,
+          duration: 1
+        });
+      
+        setTimeout(() => { 
+          pianoDiv[0].classList.remove("hidden")
+          musicCode.init(homepage, code)
+        }, 5500);
+      
     } else if(userStatus == "invited") {
         join.closeJoin()
         nameForm.initName() 

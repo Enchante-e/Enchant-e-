@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://use.typekit.net/vzb7pjf.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body>
@@ -72,7 +74,7 @@
 
     <div class="fullpage loadingPage hidden">
         <div>
-            <img src="../static/img/hourglassLoad.svg" width="53px" width="95px" />
+            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_kjd5mrur.json" background="transparent"  speed="1" loop autoplay style="height: 100px;width: 100px;margin:0 auto;"></lottie-player>
             <p>En attente de ton proche,<br>merci de patienter.</p>
         </div>
         <div class="codeMemo">
@@ -82,15 +84,14 @@
     </div>
 
     <div class="fullpage homepage">
+
         <div>
             <img src="../static/img/Contraintes/Home-Contrainte-L.svg" class="LeftContrainte"/>
             <img src="../static/img/Contraintes/Home-Contrainte-R.svg" class="RightContrainte"/>
         </div>
-
-        <div class="homeTitle">
-            <img src="../static/img/logoBaseline.svg" />
-        </div>
-
+  
+        <div id="lottie"  style="width: 115vw; height: 115vh; position: absolute; z-index: -1;" ></div>
+  
         <div class="homeNav">
             <button class="homeBttn" id="roomGenerate">J'invite</button>
             <button class="homeBttn" id="roomConnect">Je suis invité(e)</button>
@@ -200,6 +201,7 @@
     </div>
 
     <div class="fullpage conceptPage conceptPageThree hidden">
+            <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_cb5yblsm.json" background="transparent"  speed="1" loop autoplay  style="height: 100px;width: 100px;margin:0 auto;"></lottie-player>
             <p><span class="partnerName"></span> et vous avez rempli vos coffres aux trésors.<br>
             Vous serez redirigés dans quelques instants vers votre univers commun.</p>
             <p>Et si vous vous appeliez pour en discuter ?</p>
