@@ -115,6 +115,9 @@ export const finalSceneInit = () => {
     createEnvironment()
     hoverContainer = createHoverText()
     interfaceFinalScene[0].classList.remove("hidden")
+    const url = "sound/Paysage_partage.mp3"
+    const player = new Player(url).toDestination();
+    player.autostart = true;
 }
 
 const checkCommonObjects = () => {
