@@ -184,8 +184,8 @@
             "id": 21,
             "src": "Aurore-Blue-Front-Left-Arc.svg",
             "timeOfDay": "Aurore",
-            "posX": 0.35,
-            "posY": 0.85,
+            "posX": 0.2,
+            "posY": 0.8,
             "scale": 0.4,
             "index": -3
         },
@@ -204,7 +204,7 @@
             "timeOfDay": "Aurore",
             "posX": 0.8,
             "posY": 0.55,
-            "scale": 0.45,
+            "scale": 0.6,
             "index": 1
         },
         {
@@ -267,8 +267,8 @@
             "src": "Aurore-Purple-Middle-Front.svg",
             "timeOfDay": "Aurore",
             "posX": 0.4,
-            "posY": 0.5,
-            "scale": 0.45,
+            "posY": 0.53,
+            "scale": 0.6,
             "index": 1
         },
         {
@@ -277,7 +277,7 @@
             "timeOfDay": "Aurore",
             "posX": 1,
             "posY": 0.55,
-            "scale": 0.45,
+            "scale": 0.6,
             "index": -4
         },
         {
@@ -412,7 +412,7 @@
             "timeOfDay": "Jour",
             "posX": 0.2,
             "posY": 0.55,
-            "scale": 0.45,
+            "scale": 0.55,
             "index": 0
         },
         {
@@ -420,8 +420,8 @@
             "src": "Jour-Yellow-Front-Line-Middle.svg",
             "timeOfDay": "Jour",
             "posX": 0.8,
-            "posY": 0.63,
-            "scale": 0.5,
+            "posY": 0.5,
+            "scale": 0.6,
             "index": -2
         },
         {
