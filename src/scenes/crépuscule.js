@@ -1,11 +1,3 @@
-import contraintesData from "../data/contraintes.json"
-
-
-
-const CONTRAINTES = contraintesData.contraintes
-
-
-
 import {
     Texture,
     Sprite,
@@ -20,6 +12,7 @@ import {
 } from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
+import contraintesData from "../data/contraintes.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
 
@@ -28,32 +21,7 @@ let cameraVector = {
     l: 0
 };
 const OBJECTS = objectsData.objects
-const INVENTORY_SLOTS = [{
-    'object': null,
-    x: -100,
-    y: 0
-}, {
-    'object': null,
-    x: 100,
-    y: 150
-}, {
-    'object': null,
-    x: -100,
-    y: 300
-}, {
-    'object': null,
-    x: 100,
-    y: 450
-}, {
-    'object': null,
-    x: -100,
-    y: 600
-}, {
-    'object': null,
-    x: 100,
-    y: 750
-}]
-let inventoryOpen = false
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 
@@ -256,7 +224,6 @@ const createEnvironment = (globalContainer) => {
 
             document.addEventListener('wheel', (e) => {
                 if (e.deltaY >= 0) {
-                    console.log("scroll down")
                     gsap.to(contrainte.position, {
                         x: contrainte.x * 2,
                         y: contrainte.y * 2,
@@ -264,8 +231,6 @@ const createEnvironment = (globalContainer) => {
                     });
 
                 } else if (e.deltaY <= 0) {
-                    console.log("scroll up")
-
                     gsap.to(contrainte.position, {
                         x: contrainte.initialPos.x,
                         y: contrainte.initialPos.y,
