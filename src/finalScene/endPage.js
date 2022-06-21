@@ -15,6 +15,7 @@ export const initEndPage = () => {
     document.body.classList.add("homeStyle")
     
     document.getElementById('tag').classList.add('hidden')
+    document.getElementById('cursor').classList.add('hidden')
     document.getElementById('bulleAmi').classList.add('hidden')
     finalSceneInterface[0].classList.add('hidden')
 }
@@ -22,6 +23,7 @@ export const initEndPage = () => {
 export const closeEndPage = () => {
     logo[0].classList.remove('end')
     document.getElementById('tag').classList.remove('hidden')
+    document.getElementById('cursor').classList.remove('hidden')
     document.getElementById('bulleAmi').classList.remove('hidden')
     finalSceneInterface[0].classList.remove('hidden')
     

@@ -1,16 +1,15 @@
 import {io} from "socket.io-client";
 import { gsap } from "gsap";
+import {Player} from 'tone'
 import * as homepage from "./homepage/home"
 import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
-import * as aube from "./scenes/aube"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
-import * as manageExperience from "./manageExperience/manageExperience"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -60,6 +59,10 @@ roomBttn.addEventListener('click', () => {
     document.getElementById("ambientPlayer").play()
     
     homeAnimation.play()
+    const url = "sound/Serrure.mp3"
+    const player = new Player(url).toDestination()
+    player.autostart = true;
+    player.volume.value= -5
 
     gsap.to([[...document.getElementsByClassName("homeNav")][0], document.getElementById("homeContraintes")], {
         opacity: 0,
@@ -181,8 +184,8 @@ socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
     if (nameTag) {
         gsap.to(nameTag, {
-            top: coordY + 10 + "px",
-            left: coordX - 15 + "px",
+            top: coordY + 15 + "px",
+            left: coordX - 5 + "px",
             duration: 0.15,
             delay: 0.15
         });
@@ -199,7 +202,7 @@ socket.on('partner-objects', function(partnerObjects, hasFinished) {
 
 // [RECEIVED] Disconnect notification
 socket.on('disconnect-notification', function(id, name) {
-   alert(id + " " + name + " a été déconnecté ")
+//    alert(id + " " + name + " a été déconnecté ")
 
     let userName = document.getElementById(id + "name")
     userName ? userName.remove() : null

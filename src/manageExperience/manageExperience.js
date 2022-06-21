@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
-
 let homepage = [...document.getElementsByClassName("homepage")]
 let endingPage = [...document.getElementsByClassName("endingPage")]
 let returnHomeBttn = document.getElementById("returnHome")
 
 returnHomeBttn.addEventListener("click", () => {
+    alert("hello")
 
     for(let i = 1; i < endingPage[0].children.length; i++) {
         gsap.to(endingPage[0].children[i], {

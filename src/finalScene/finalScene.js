@@ -28,21 +28,43 @@ export const setStage = (globalApp) => {
 }
 
 export const createCursor = () => {
-    cursor  = new Graphics();
-    cursor.lineStyle(3, 0x1A1D5C);
-    cursor.drawCircle(app.view.width / 2, app.view.height / 2, 15);
-    cursor.zIndex = 5
-    cursor.alpha = 0
+
+    cursor = document.createElement('div')
+    cursor.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+    border: 4px solid rgb(26, 29, 92);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    `;
+    cursor.id = "cursor"
+    document.body.appendChild(cursor)
+
+    // cursor  = new Graphics();
+    // cursor.lineStyle(3, 0x1A1D5C);
+    // cursor.drawCircle(window.innerWidth  / 2, window.innerHeight / 2, 15);
+    // cursor.zIndex = 5
+    // cursor.alpha = 0
     
-    app.stage.addChild(cursor);
+    // app.stage.addChild(cursor);
     return cursor;
 }
 
 export const updateCursor = (cursor, coordX, coordY) => {
     if(cursor) {
-        gsap.to(cursor.transform.position, {
-            x: coordX - window.innerWidth / 2,
-            y: coordY - window.innerHeight / 2,
+        // gsap.to(cursor.transform.position, {
+        //     x: coordX - window.innerWidth / 2,
+        //     y: coordY - window.innerHeight / 2,
+        //     duration: 0.15,
+        //     delay: 0.15
+        // });
+        gsap.to(cursor, {
+            top: coordY + "px",
+            left: coordX + "px",
             duration: 0.15,
             delay: 0.15
         });
@@ -50,7 +72,8 @@ export const updateCursor = (cursor, coordX, coordY) => {
 }
 
 export const deleteCursor = (cursor) => {
-    app.stage.removeChild(cursor)
+    // app.stage.removeChild(cursor)
+    document.getElementById("cursor").remove()
     document.getElementById("tag").remove()
 }
 
@@ -96,7 +119,8 @@ validateBttn.addEventListener("click", () => {
 finalSceneBttn.addEventListener("click", () => {
     finalSceneInit()
     document.getElementById('tag').style.display = "flex"
-    cursor.alpha = 1
+    cursor.style.display = "block"
+    // cursor.alpha = 1
     concept.closePhoneConcept()
 })
 

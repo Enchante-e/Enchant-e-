@@ -1,10 +1,14 @@
 import * as homepage from "../homepage/home"
-
+import {Player} from 'tone'
 let joinDiv = [...document.getElementsByClassName("codeForm")]
 let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
   homepage.homeAnimation.play()
+  const url = "sound/Serrure.mp3"
+  const player = new Player(url).toDestination()
+  player.autostart = true;
+  player.volume.value= -5
 
   gsap.to([[...document.getElementsByClassName("homeNav")][0], document.getElementById("homeContraintes")], {
       opacity: 0,

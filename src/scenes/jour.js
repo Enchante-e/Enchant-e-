@@ -74,7 +74,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const url = "sound/" + OBJECTS[i].sound
                     const player = new Player(url).toDestination();
                     player.autostart = true;
-                    player.volume.value = 10
+                    player.volume.value = 2
                 }
             }
 
