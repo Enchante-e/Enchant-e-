@@ -27,7 +27,7 @@ const INVENTORY_SLOTS = [
     {'object': null,x:500,y:750,'bttn': null, 'anecdote':null},
     {'object': null,x:100,y:400,'bttn': null, 'anecdote':null},
     {'object': null,x:400,y:500,'bttn': null, 'anecdote':null},
-    {'object': null,x:200,y:400,'bttn': null, 'anecdote':null},
+    {'object': null,x:200,y:550,'bttn': null, 'anecdote':null},
     {'object': null,x:200,y:800,'bttn': null, 'anecdote':null},
     {'object': null,x:700,y:850,'bttn': null, 'anecdote':null}
 ]
