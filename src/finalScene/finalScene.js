@@ -252,7 +252,8 @@ const updateHoverText = (text, posX, posY) => {
 
 const createEnvironment = () => {
 
-    document.querySelector('canvas').style.background = "linear-gradient(179.38deg, #AFC6EC 4.01%, #FFEEE8 40.15%, #F9D7C0 62.04%, #FF919B 81.49%, #4665BE 134.64%)";
+    document.querySelector('canvas').style.background = "transparent"
+    document.body.setAttribute("style", "background: linear-gradient(179.38deg, #AFC6EC 4.01%, #FFEEE8 40.15%, #F9D7C0 62.04%, #FF919B 81.49%, #4665BE 134.64%);")
 
     for (let i = 0; i < CONTRAINTES.length; i++) {
 

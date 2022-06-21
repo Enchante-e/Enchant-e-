@@ -52,6 +52,10 @@ input{
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(104deg) brightness(102%) contrast(101%);;
 }
 
+.endingPage {
+    background: #0a0d42;
+}
+
 .interface .logo{
     position: absolute;
     top: 50px;
