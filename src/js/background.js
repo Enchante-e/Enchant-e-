@@ -88,12 +88,7 @@ const createInventory = () => {
 
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
-                    gsap.to(slot.object, {
-                        alpha: 1,
-                        x: 0,
-                        duration: 3
-                    });
-                    gsap.to(slot.bttn, {
+                    gsap.to([slot.bttn, slot.object], {
                         alpha: 1,
                         x: 0,
                         duration: 3
@@ -236,15 +231,15 @@ annecdoteAdd.addEventListener("click", () => {
                 if(slot.anecdote == null) {
                     const textContainer = new Container();
                     
-                    const text = new Text(anecdoteTxt,{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
+                    const text = new Text(anecdoteTxt,{fontFamily : 'futura-pt, Helvetica, Arial', fontSize: 18, wordWrap: true, wordWrapWidth: 150,  fill : 0x0a0d42, align : 'left'});
                     text.x = slot.x + 200
                     text.y = slot.y + 100
 
                     const textBg = Sprite.from(Texture.WHITE);
-                    textBg.width = text.width + 10;
-                    textBg.height = text.height + 10;
-                    textBg.x = slot.x + 195
-                    textBg.y = slot.y + 95
+                    textBg.width = text.width + 30;
+                    textBg.height = text.height + 30;
+                    textBg.x = slot.x + 185
+                    textBg.y = slot.y + 85
                     
                     textContainer.addChild(textBg, text)
                     app.stage.addChild(textContainer)

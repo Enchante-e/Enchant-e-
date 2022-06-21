@@ -1,5 +1,6 @@
 import {Texture, Sprite, Graphics, Container, Text} from 'pixi.js'
 import {Player} from 'tone'
+import { gsap } from "gsap";
 import objectsData from "../data/objects.json"
 import contraintesData from "../data/contraintes.json"
 import * as socket from "../main"
@@ -39,8 +40,12 @@ export const createCursor = () => {
 
 export const updateCursor = (cursor, coordX, coordY) => {
     if(cursor) {
-        cursor.transform.position.x = coordX - window.innerWidth / 2;
-        cursor.transform.position.y = coordY - window.innerHeight / 2;
+        gsap.to(cursor.transform.position, {
+            x: coordX - window.innerWidth / 2,
+            y: coordY - window.innerHeight / 2,
+            duration: 0.15,
+            delay: 0.15
+        });
     }
 }
 
@@ -96,8 +101,6 @@ finalSceneBttn.addEventListener("click", () => {
 })
 
 const finishedChoices = () => {
-    concept.initPhoneConcept()
-
     while(app.stage.children[0]) { app.stage.removeChild(app.stage.children[0]); }
 
     validateBttn.classList.add("hidden")
@@ -147,8 +150,8 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
             objectImg.anchor.set(0.5)
             objectImg.interactive = true;
 
-            objectImg.x = OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
-            objectImg.y = OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
+            objectImg.x = 250 + OBJECTS[object].posX * window.innerWidth - (window.innerWidth / 6);
+            objectImg.y = 100 + OBJECTS[object].posY * window.innerHeight - (window.innerHeight / 6);
             objectImg.zIndex = OBJECTS[object].index;
 
             objectImg
@@ -210,8 +213,6 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
             }
 
             app.stage.addChild(objectImg) 
-        } else {
-            console.log('L objet nexiste po')
         }
     })
 }
@@ -221,13 +222,13 @@ const createHoverText = () => {
     container.alpha = 0
     container.zIndex = 5
     
-    const text = new Text("Trésor choisi par vous",{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
+    const text = new Text("Trésor choisi par vous",{fontFamily : 'futura-pt, Helvetica, Arial', fontSize: 16, fill : 0x0a0d42, align : 'center'});
     text.x = 5
     text.y = 5
 
     const textBg = Sprite.from(Texture.WHITE);
-    textBg.width = text.width + 10;
-    textBg.height = text.height + 10;
+    textBg.width = text.width + 30;
+    textBg.height = text.height + 30;
     textBg.x = 0
     textBg.y = 0
 
