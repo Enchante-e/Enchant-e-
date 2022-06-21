@@ -89,7 +89,7 @@ validateBttn.addEventListener("click", () => {
     if (chosenObjectsId.length == 6) {
         finishedChoices() 
     } else {
-        alert("You didn't chose enough objects")   
+        alert("Vous n'avez pas choisi assez d'objets.")   
     }
 })
 
@@ -173,9 +173,9 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
                     y: objectImg.scale.y * 0.7
                 });
 
-                const url = "sound/" + OBJECTS[object].sound
-                const player = new Player(url).toDestination();
-                player.autostart = true;
+                // const url = "sound/" + OBJECTS[object].sound
+                // const player = new Player(url).toDestination();
+                // player.autostart = true;
             }
 
             function onDragEnd() {
@@ -308,8 +308,6 @@ const createEnvironment = () => {
 
         }
     }
-
-
 }
 
 

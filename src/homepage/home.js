@@ -1,3 +1,6 @@
+import animLogo from "../data/animLogo.json"
+
+let homeAnimation = null
 let logo = [...document.getElementsByClassName("logo")]
 let homeDiv = [...document.getElementsByClassName("homepage")]
 let musicBttn = [...document.getElementsByClassName("musicBttn")]
@@ -14,6 +17,16 @@ musicBttn[0].addEventListener("click", () => {
 
 export const initHome = () => {
     document.body.classList.add("homeStyle")
+
+    homeAnimation = lottie.loadAnimation({
+        container: document.getElementById('lottie'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        animationData: animLogo
+    });
+
+    return homeAnimation
 }
 
 export const closeHome = () => {
@@ -22,5 +35,8 @@ export const closeHome = () => {
     // musicBttn[0].classList.remove("whiteTint")
 }
 
+export {
+    homeAnimation
+}
 
 

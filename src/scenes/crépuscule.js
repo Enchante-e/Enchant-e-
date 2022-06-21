@@ -92,6 +92,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                     const url = "sound/" + OBJECTS[i].sound
                     const player = new Player(url).toDestination();
                     player.autostart = true;
+                    player.volume.value = 10
                 }
             }
 
@@ -164,7 +165,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
 }
 
 export const playMusic = () => {
-    const url = "sound/Aurore.wav"
+    const url = "sound/Crépuscule.wav"
     const player = new Player(url).toDestination();
     player.autostart = true;
 }

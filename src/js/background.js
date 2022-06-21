@@ -201,7 +201,7 @@ export const addToSlot = (object) => {
     })
 
     if (slotFound === false) {
-        alert("coffre full")
+        alert("Votre coffre a déjà 6 objets au maximum.")
         object.x = app.view.width / 2;
         object.y = app.view.height / 2;
     }

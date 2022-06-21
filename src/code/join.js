@@ -4,11 +4,28 @@ let joinDiv = [...document.getElementsByClassName("codeForm")]
 let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
-   initJoin()
-   document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
-   document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
-   document.getElementById("ambientPlayer").play()
-   homepage.closeHome()
+  homepage.homeAnimation.play()
+
+  gsap.to([[...document.getElementsByClassName("homeNav")][0], document.getElementById("homeContraintes")], {
+      opacity: 0,
+      duration: 1.5
+  });
+
+  document.getElementById("ambientPlayer").play()
+
+  gsap.to(document.body, {
+    backgroundColor: "#FFFFFF",
+    delay: 4,
+    duration: 1
+  });
+
+  setTimeout(() => { 
+    initJoin()
+    homepage.closeHome()
+
+    document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
+  }, 5500);
+
 })
 
 export const initJoin = () => {
