@@ -172,15 +172,6 @@
             "index": -8
         },
         {
-            "id": 20,
-            "src": "Aurore-Blue-Front-Left.svg",
-            "timeOfDay": "Aurore",
-            "posX": 0.2,
-            "posY": 0.85,
-            "scale": 0.4,
-            "index": 1
-        },
-        {
             "id": 21,
             "src": "Aurore-Blue-Front-Left-Arc.svg",
             "timeOfDay": "Aurore",
