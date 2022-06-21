@@ -22,7 +22,16 @@ play = false,
 container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
+const INVENTORY_SLOTS = [
+
+    {'object': null,x:500,y:750,'bttn': null, 'anecdote':null},
+    {'object': null,x:100,y:400,'bttn': null, 'anecdote':null},
+    {'object': null,x:400,y:500,'bttn': null, 'anecdote':null},
+    {'object': null,x:200,y:400,'bttn': null, 'anecdote':null},
+    {'object': null,x:200,y:800,'bttn': null, 'anecdote':null},
+    {'object': null,x:700,y:850,'bttn': null, 'anecdote':null}
+]
+
 let inventoryOpen = false
 
 let anecdotesDiv = document.getElementById('anecdotes')
@@ -90,7 +99,6 @@ const createInventory = () => {
                 if (slot.object !== null) {
                     gsap.to([slot.bttn, slot.object], {
                         alpha: 1,
-                        x: 0,
                         duration: 3
                     });
 
