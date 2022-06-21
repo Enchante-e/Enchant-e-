@@ -129,7 +129,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
             
             clearScene(globalContainer)
-            aube.playMusic()
+            // aube.playMusic()
             aube.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Aurore":
@@ -146,7 +146,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
 
             clearScene(globalContainer)
-            aurore.playMusic()
+            // aurore.playMusic()
             aurore.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Jour":
@@ -163,7 +163,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
 
             clearScene(globalContainer)
-            jour.playMusic()
+            // jour.playMusic()
             jour.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Crépuscule":
@@ -218,26 +218,4 @@ const clearScene = (globalContainer) => {
     })
 
     globalContainer.addChild(coffreBg, coffre)
-}
-
-// MUSIQUE SE JOUE EN MEME TEMPS A TRAVAILLER
-
-const playMusic = (url) => {
-
-    console.log(AUDIO_POEME.paused, AUDIO_POEME.currentTime)
-    
-    if (AUDIO_POEME.paused && AUDIO_POEME.currentTime > 0) {
-        AUDIO_POEME.src = url
-        AUDIO_POEME.play()
-    } else if (AUDIO_POEME.paused && AUDIO_POEME.currentTime == 0) {
-        AUDIO_POEME.src = url
-        AUDIO_POEME.play()
-    } else {
-        const delay = (25 - AUDIO_POEME.currentTime) * 1000
-        setTimeout(() => { 
-            AUDIO_POEME.src = url
-            AUDIO_POEME.play()
-        }, delay);
-    }
-
 }

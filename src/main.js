@@ -115,7 +115,7 @@ startTutorial.addEventListener('click', (e) => {
     background.activeMovement()
     logo[0].classList.add("whiteTint")
     
-    aube.playMusic()
+    // aube.playMusic()
     document.getElementById("finishObjectsChoice").classList.remove("hidden")
 });
 
