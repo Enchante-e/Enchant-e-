@@ -4,7 +4,6 @@ let joinDiv = [...document.getElementsByClassName("codeForm")]
 let roomConnect = document.getElementById("roomConnect")
 
 roomConnect.addEventListener('click', () => {
-
   homepage.homeAnimation.play()
   gsap.to([...document.getElementsByClassName("homeNav")][0], {
     opacity: 0,
@@ -23,6 +22,9 @@ roomConnect.addEventListener('click', () => {
     homepage.closeHome()
   }, 5500);
 
+   initJoin()
+   document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
+   document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
 })
 
 export const initJoin = () => {

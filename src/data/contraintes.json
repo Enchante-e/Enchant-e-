@@ -1,0 +1,635 @@
+{
+    "contraintes": [
+        {
+            "id": 0,
+            "src": "Aube-Fond-Droite.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.9,
+            "posY": 0.65,
+            "scale": 0.8,
+            "index": -7
+        },
+        {
+            "id": 1,
+            "src": "Aube-Fond-Gauche.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.2,
+            "posY": 0.65,
+            "scale": 0.8,
+            "index": -8
+        },
+        {
+            "id": 2,
+            "src": "Aube-algue-middle.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.45,
+            "posY": 0.5,
+            "scale": 0.7,
+            "index": 1
+        },
+        {
+            "id": 3,
+            "src": "Aube-Arabesque-Ronde.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.95,
+            "posY": 0.95,
+            "scale": 0.55,
+            "index": 1
+        },
+        {
+            "id": 4,
+            "src": "Aube-Arabesque.svg",
+            "timeOfDay": "Aube",
+            "posX": 1.05,
+            "posY": 0.35,
+            "scale": 0.5,
+            "index": -1
+        },
+        {
+            "id": 5,
+            "src": "Aube-Bottom-Middle.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.58,
+            "posY": 0.95,
+            "scale": 0.5,
+            "index": 1
+        },
+        {
+            "id": 6,
+            "src": "Aube-Bottom-Purple.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.90,
+            "posY": 1,
+            "scale": 0.6,
+            "index": -6
+        },
+        {
+            "id": 7,
+            "src": "Aube-Purple-Behind-Background.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.85,
+            "posY": 0.52,
+            "scale": 0.55,
+            "index": -6
+        },
+        {
+            "id": 8,
+            "src": "Aube-Purple-Front.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.58,
+            "posY": 1.05,
+            "scale": 0.6,
+            "index": 0
+        },
+        {
+            "id": 9,
+            "src": "Aube-Mauve-Front.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.17,
+            "posY": 1.05,
+            "scale": 0.6,
+            "index": 0
+        },
+        {
+            "id": 10,
+            "src": "Aube-Ronds.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.35,
+            "posY": 0.55,
+            "scale": 0.6,
+            "index": -2
+        },
+        {
+            "id": 11,
+            "src": "Aube-Top-Left-Behind-Purple.svg",
+            "timeOfDay": "Aube",
+            "posX": 0,
+            "posY": 0.12,
+            "scale": 0.5,
+            "index": -4
+        },
+        {
+            "id": 12,
+            "src": "Aube-Top-Left-Rose.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.03,
+            "posY": 0.26,
+            "scale": 0.5,
+            "index": -3
+        },
+        {
+            "id": 13,
+            "src": "Aube-Top-Rose.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.35,
+            "posY": 0.11,
+            "scale": 0.5,
+            "index": -5
+        },
+        {
+            "id": 14,
+            "src": "Aube-ZigZag-Purple-Front-Left.svg",
+            "timeOfDay": "Aube",
+            "posX": 0.08,
+            "posY": 0.85,
+            "scale": 0.5,
+            "index": -3
+        },
+        {
+            "id": 15,
+            "src": "Aurore-Algues-Orange-Right.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.8,
+            "posY": 0.9,
+            "scale": 0.4,
+            "index": 0
+        },
+        {
+            "id": 17,
+            "src": "Aurore-Arabesque-Orange-Middle-Back.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.6,
+            "posY": 0.5,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 18,
+            "src": "Aurore-Arabesques-Middle-Right-Pink-Back.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.9,
+            "posY": 0.1,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 19,
+            "src": "Aurore-Blue-Caillou-Back.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.3,
+            "posY": 0.5,
+            "scale": 0.4,
+            "index": -8
+        },
+        {
+            "id": 20,
+            "src": "Aurore-Blue-Front-Left.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.2,
+            "posY": 0.85,
+            "scale": 0.4,
+            "index": 1
+        },
+        {
+            "id": 21,
+            "src": "Aurore-Blue-Front-Left-Arc.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.2,
+            "posY": 0.8,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 22,
+            "src": "Aurore-Blue-Left-Line-Back.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.22,
+            "posY": 0.3,
+            "scale": 0.4,
+            "index": -6
+        },
+        {
+            "id": 23,
+            "src": "Aurore-Blue-Right-Front.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.8,
+            "posY": 0.55,
+            "scale": 0.6,
+            "index": 1
+        },
+        {
+            "id": 24,
+            "src": "Aurore-Fond-Droite.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.8,
+            "posY": 0.7,
+            "scale": 0.5,
+            "index": -9
+        },
+        {
+            "id": 25,
+            "src": "Aurore-Fond-Gauche.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.2,
+            "posY": 0.7,
+            "scale": 0.5,
+            "index": -10
+        },
+        {
+            "id": 26,
+            "src": "Aurore-Orange-Back-Top.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.3,
+            "posY": 0,
+            "scale": 0.4,
+            "index": -8
+        },
+            
+        {
+            "id": 27,
+            "src": "Aurore-Orange-Left-Front.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.2,
+            "posY": 0.3,
+            "scale": 0.4,
+            "index": 0
+        },
+        {
+            "id": 28,
+            "src": "Aurore-Orange-Middle-Bottom-Caillou.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.6,
+            "posY": 0.97,
+            "scale": 0.4,
+            "index": -6
+        },
+        {
+            "id": 29,
+            "src": "Aurore-Orange-Top.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.5,
+            "posY": 0.15,
+            "scale": 0.4,
+            "index": -2
+        },
+        {
+            "id": 30,
+            "src": "Aurore-Purple-Middle-Front.svg",
+            "timeOfDay": "Aurore",
+            "posX": 0.4,
+            "posY": 0.53,
+            "scale": 0.6,
+            "index": 1
+        },
+        {
+            "id": 31,
+            "src": "Aurore-Right-Tiges-Orange-Back.svg",
+            "timeOfDay": "Aurore",
+            "posX": 1,
+            "posY": 0.55,
+            "scale": 0.6,
+            "index": -4
+        },
+        {
+            "id": 32,
+            "src": "Jour-Arabesque-Yellow-Pink-Two-Left.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.3,
+            "posY": 0.35,
+            "scale": 0.4,
+            "index": -4
+        },
+        {
+            "id": 33,
+            "src": "Jour-Arabesque-Yellow-Purple-Left.svg",
+            "timeOfDay": "Jour",
+            "posX": -0.03,
+            "posY": 0.7,
+            "scale": 0.4,
+            "index": -2
+        },
+        {
+            "id": 34,
+            "src": "Jour-Arabesque-Yellow-Purple-Middle.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.5,
+            "posY": 0.45,
+            "scale": 0.4,
+            "index": -2
+        },
+        {
+            "id": 35,
+            "src": "Jour-Blue-Bottom-Caillou-Algues.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.55,
+            "posY": 1,
+            "scale": 0.4,
+            "index": -1
+        },
+        {
+            "id": 36,
+            "src": "Jour-Blue-Branche-Left.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.1,
+            "posY": 0.35,
+            "scale": 0.4,
+            "index": -2
+        },
+        {
+            "id": 37,
+            "src": "Jour-Blue-Caillou-Front.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.6,
+            "posY": 1,
+            "scale": 0.4,
+            "index": 1
+        },
+        {
+            "id": 38,
+            "src": "Jour-Blue-Feuillages-Front.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.85,
+            "posY": 0.78,
+            "scale": 0.4,
+            "index": 0
+        },
+        {
+            "id": 40,
+            "src": "Jour-Blue-Ronds-Right-Bottom.svg",
+            "timeOfDay": "Jour",
+            "posX": 1,
+            "posY": 0.9,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 41,
+            "src": "Jour-Blue-Top-Front.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.4,
+            "posY": 0.2,
+            "scale": 0.4,
+            "index": 1
+        },
+        {
+            "id": 42,
+            "src": "Jour-Branche-Right-Middle-Blue.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.95,
+            "posY": 0.5,
+            "scale": 0.4,
+            "index": -1
+        },
+        {
+            "id": 43,
+            "src": "Jour-Fond-Droite.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.83,
+            "posY": 0.7,
+            "scale": 0.8,
+            "index": -7
+        },
+        {
+            "id": 44,
+            "src": "Jour-Fond-Gauche.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.3,
+            "posY": 0.5,
+            "scale": 0.8,
+            "index": -8
+        },
+        {
+            "id": 45,
+            "src": "Jour-Front-Top-Algues-Pink-Blue.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.85,
+            "posY": 0.2,
+            "scale": 0.4,
+            "index": -1
+        },
+        {
+            "id": 46,
+            "src": "Jour-Multi-Right-Triangle.svg",
+            "timeOfDay": "Jour",
+            "posX": 1.1,
+            "posY": 0.43,
+            "scale": 0.5,
+            "index": 1
+        },
+        {
+            "id": 47,
+            "src": "Jour-Purple-Blue-Left-Front-Lines.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.2,
+            "posY": 0.55,
+            "scale": 0.55,
+            "index": 0
+        },
+        {
+            "id": 48,
+            "src": "Jour-Yellow-Front-Line-Middle.svg",
+            "timeOfDay": "Jour",
+            "posX": 0.8,
+            "posY": 0.5,
+            "scale": 0.6,
+            "index": -2
+        },
+        {
+            "id": 0,
+            "src": "Crépuscule-Arabesque-Rond-Bottom.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.3,
+            "posY": 1,
+            "scale": 0.4,
+            "index": 1
+        },
+        {
+            "id": 1,
+            "src": "Crépuscule-Arabesque-Top-Middle.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.8,
+            "posY": 0.08,
+            "scale": 0.5,
+            "index": 1
+        },
+        {
+            "id": 2,
+            "src": "Crépuscule-Arabesque-wave-bottom-Right.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.8,
+            "posY": 1.2,
+            "scale": 0.45,
+            "index": 1
+        },
+        {
+            "id": 4,
+            "src": "Crépuscule-Blue-Ocarina-Bottom-Middle.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.5,
+            "posY": 0.95,
+            "scale": 0.38,
+            "index": -4
+        },
+        {
+            "id": 5,
+            "src": "Crépuscule-Bottom-Middle-Tentacule-Blue.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.62,
+            "posY": 0.95,
+            "scale": 0.5,
+            "index": -3
+        },
+        {
+            "id": 7,
+            "src": "Crépuscule-Caillou-Right-Bottom-Brown.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.99,
+            "posY": 0.85,
+            "scale": 0.45,
+            "index": -2
+        },
+        {
+            "id": 8,
+            "src": "Crépuscule-Caillou-Top-Blue.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.3,
+            "posY": 0.08,
+            "scale": 0.3,
+            "index": -2
+        },
+        {
+            "id": 9,
+            "src": "Crépuscule-Fond-Droite.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 1,
+            "posY": 0.65,
+            "scale": 0.8,
+            "index": -8
+        },
+        {
+            "id": 10,
+            "src": "Crépuscule-Fond-Gauche.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.2,
+            "posY": 0.65,
+            "scale": 0.8,
+            "index": -9
+        },
+        {
+            "id": 11,
+            "src": "Crépuscule-Full-Back-Blue.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.15,
+            "posY": 0.55,
+            "scale": 0.35,
+            "index": -7
+        },
+        {
+            "id": 12,
+            "src": "Crépuscule-Full-Back-Tribal.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 1,
+            "posY": 0.3,
+            "scale": 0.45,
+            "index": -4
+        },
+        {
+            "id": 13,
+            "src": "Crépuscule-Line-two-Middle.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.65,
+            "posY": 0.6,
+            "scale": 0.45,
+            "index": 0
+        },
+        {
+            "id": 14,
+            "src": "Crépuscule-Mante-Blue-Bottom-Back.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.80,
+            "posY": 0.9,
+            "scale": 0.25,
+            "index": -3
+        },
+        {
+            "id": 15,
+            "src": "Crépuscule-Middle-Right-Wave-Small-Purple.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.95,
+            "posY": 0.05,
+            "scale": 0.35,
+            "index": 0
+        },      
+        {
+            "id": 13,
+            "src": "Crépuscule-Purple-Front-Left.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.08,
+            "posY": 0.1,
+            "scale": 0.42,
+            "index": 1
+        },
+        {
+            "id": 14,
+            "src": "Crépuscule-Purple-Pink-L-Left.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0,
+            "posY": 0.4,
+            "scale": 0.32,
+            "index": -3
+        },
+        {
+            "id": 15,
+            "src": "Crépusucle-Brown-Back-Purple-Orang-Bottom.svg",
+            "timeOfDay": "Crépuscule",
+            "posX": 0.35,
+            "posY": 0.92,
+            "scale": 0.4,
+            "index": -5
+        },      
+        {
+            "id": 14,
+            "src": "Final-Arabesque-Blue-Top-Left.svg",
+            "timeOfDay": "Final",
+            "posX": 0.12,
+            "posY": 0.55,
+            "scale": 0.4,
+            "index": -3
+        },
+        {
+            "id": 15,
+            "src": "Final-Arabesque-Pink-Top-Right.svg",
+            "timeOfDay": "Final",
+            "posX": 1.05,
+            "posY": 0.18,
+            "scale": 0.35,
+            "index": 0
+        },      
+        {
+            "id": 13,
+            "src": "Final-Arabesque-Right-Bottom-Pink.svg",
+            "timeOfDay": "Final",
+            "posX": 1.15,
+            "posY": 0.98,
+            "scale": 0.42,
+            "index": 1
+        },
+        {
+            "id": 14,
+            "src": "Final-Arabesque-Yellow-Middle.svg",
+            "timeOfDay": "Final",
+            "posX": 0.75,
+            "posY": 0.5,
+            "scale": 0.32,
+            "index": -1
+        },
+        {
+            "id": 15,
+            "src": "Final-Left-Pink-Ronds.svg",
+            "timeOfDay": "Final",
+            "posX": 0.25,
+            "posY": 0.7,
+            "scale": 0.4,
+            "index": -5
+        },      
+        {
+            "id": 15,
+            "src": "Final-Arabesque-Pink-Yellow-Top-Right.svg",
+            "timeOfDay": "Final",
+            "posX": 1.15,
+            "posY": 0.25,
+            "scale": 0.45,
+            "index": -5
+        }      
+    ]
+}

@@ -1,13 +1,16 @@
 import {io} from "socket.io-client";
+import { gsap } from "gsap";
 import * as homepage from "./homepage/home"
 import * as background from "./js/background"
 import * as musicCode from "./code/code"
 import * as nameForm from "./name/name"
 import * as join from "./code/join"
+import * as aube from "./scenes/aube"
 import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
+import * as manageExperience from "./manageExperience/manageExperience"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -38,7 +41,7 @@ let nameInput = document.getElementById("nameInput")
 let partnerDiv = document.getElementById("bulleAmi")
 let partnerSymbol = document.getElementById("bulleSymbol")
 let partnerNameHTML = [...document.getElementsByClassName("partnerName")]
-let userNameHTML = document.getElementById("userName")
+let userNameHTML = [...document.getElementsByClassName("userName")]
 
 let logo = [...document.getElementsByClassName('logo')]
 
@@ -48,7 +51,6 @@ let logo = [...document.getElementsByClassName('logo')]
 // [RECEIVED] Set your local ID and write it 
 socket.on('init', function(user) {
     myId = user.id;
-    console.log("Vous êtes " + myId + " Name : " + user.name + " coordX :  " + user.coordX + " coordY : " + user.coordY)
 });
 
 
@@ -64,6 +66,7 @@ roomBttn.addEventListener('click', () => {
         duration: 1.5
       });
 
+    document.getElementsByClassName('musicBttn')[0].classList.remove("hidden")
 })
 
 // [EMIT] Join room with code
@@ -79,7 +82,7 @@ joinBttn.addEventListener('click', () => {
 // [RECEIVED] Generated Code / Joined the room, Hiding forms & showing form name
 socket.on('room-notification', (code, userStatus) => {
     myRoom = code
-
+    document.getElementsByClassName('musicBttn')[0].classList.remove("whiteTint")
     if (userStatus == "creator") {      
         gsap.to(document.body, {
           backgroundColor: "#FFFFFF",
@@ -91,7 +94,7 @@ socket.on('room-notification', (code, userStatus) => {
           pianoDiv[0].classList.remove("hidden")
           musicCode.init(homepage, code)
         }, 5500);
-
+      
     } else if(userStatus == "invited") {
         join.closeJoin()
         nameForm.initName() 
@@ -111,9 +114,10 @@ startExperience.addEventListener('click', (e) => {
 
     if (myName !== "") {
         const name = myName
-        userNameHTML.innerHTML = myName
+        userNameHTML.map((item) => {
+            item.innerHTML = myName
+        })
         socket.emit('change-name', name, myId)
-        nameForm.closeName()
     } else {
         alert("Veuillez choisir un nom")
     }
@@ -127,6 +131,9 @@ startTutorial.addEventListener('click', (e) => {
     hashtags.initHashtag()
     background.activeMovement()
     logo[0].classList.add("whiteTint")
+    
+    // aube.playMusic()
+    document.getElementById("finishObjectsChoice").classList.remove("hidden")
 });
 
 // [RECEIVED] Waiting for partner
@@ -136,6 +143,7 @@ socket.on('waiting-for-partner', () => {
 
 // [RECEIVED] Waiting for partner
 socket.on('close-loading', () => {
+    concept.initPhoneConcept()
     loading.closeLoad()
 });
 
@@ -148,10 +156,11 @@ socket.on('name-notification', (name, id) => {
             item.innerHTML = partnerName
         })
         
-        partnerSymbol.innerHTML = partnerName.charAt(0)
+        partnerSymbol.innerHTML = partnerName.charAt(0).toUpperCase()
         partnerDiv.classList.remove("hidden")
         
         loading.closeLoad()
+        nameForm.closeName()
 });
 
 // [RECEIVED] Generate Canvas
@@ -170,8 +179,14 @@ socket.on('cursor-create', () => {
 // [RECEIVED] Cursor update position
 socket.on('cursor-update', (partnerId, coordX, coordY) => {
     finalScene.updateCursor(partnerCursor[0], coordX, coordY)
-    nameTag.style.top =  coordY + "px";
-    nameTag.style.left =  coordX + "px";
+    if (nameTag) {
+        gsap.to(nameTag, {
+            top: coordY + 10 + "px",
+            left: coordX - 15 + "px",
+            duration: 0.15,
+            delay: 0.15
+        });
+    }
 });
 
 socket.on('partner-notification', function(type) {
@@ -208,8 +223,8 @@ const generateCursor = () => {
 
     nameTag = document.createElement('p')
     nameTag.innerHTML = partnerName
-    nameTag.id = partnerId
-    nameTag.classList.add("tag")
+    nameTag.id = "tag"
+    // nameTag.classList.add("tag")
     document.body.appendChild(nameTag)
 }
 
@@ -228,7 +243,5 @@ document.addEventListener('mousemove', function(e) {
 export const getSocket = () => {
     return socket
 }
-
-// ------------------------------------------------------------------------------------------
 
 

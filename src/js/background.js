@@ -1,12 +1,6 @@
 import {Application,Container, Texture, Sprite, Graphics, Text } from 'pixi.js';
-import objectsData from "../data/objects.json"
 import {Player} from 'tone'
 import * as finalScene from "../finalScene/finalScene"
-import * as aube from "../scenes/aube"
-import * as jour from "../scenes/jour"
-import * as aurore from "../scenes/aurore"
-import * as crépuscule from "../scenes/crépuscule"
-
 import * as sceneManager from "../scenes/sceneManager"
 
 let cameraVector = {
@@ -28,7 +22,6 @@ play = false,
 container = new Container(1080),
 rnd = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-const SCENES = [aube, aurore, jour, crépuscule]
 const INVENTORY_SLOTS = [{'object': null,x:-100,y:0,'bttn': null, 'anecdote':null},{'object': null,x:100,y:150,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:300,'bttn': null, 'anecdote':null},{'object': null,x:100,y:450,'bttn': null, 'anecdote':null},{'object': null,x:-100,y:600,'bttn': null, 'anecdote':null},{'object': null,x:100,y:750,'bttn': null, 'anecdote':null}]
 let inventoryOpen = false
 
@@ -41,17 +34,6 @@ export const initCanvas = () => {
 
     document.body.appendChild(app.view);
 
-    document.addEventListener("mousemove", function (e) {
-        center.x = app.screen.width / 2;
-        center.y = app.screen.height / 2;
-        if(move == true) {
-            cameraVector.a = center.x - e.x;
-            cameraVector.l = center.y - e.y;
-            cameraVector.a = Math.atan2(center.y - e.y, center.x - e.x);
-            cameraVector.l = Math.sqrt(a * a + b * b);
-        }
-    })
-
     container.x = app.screen.width / 8;
     container.y = app.screen.height / 8;
     container.pivot.x = container.width / 8;
@@ -59,21 +41,12 @@ export const initCanvas = () => {
     container.sortableChildren = true
     app.stage.sortableChildren = true
     
-    const inventory = createInventory()
     app.stage.addChild(container);
     
-    // SCENES.map((scene) => {
-    //     scene.initScene(app, container, inventory)
-    // })
-    // SCENES[0].playMusic()
+    const inventory = createInventory()
     sceneManager.initManager(app, container, inventory)
     
     finalScene.setStage(app)
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        } 
-    });
 
 }
 
@@ -81,33 +54,47 @@ const createInventory = () => {
     const imgCoffre = Texture.from("img/Coffre.svg")
     const coffre = new Sprite(imgCoffre)
 
-    coffre.x = 80;
-    coffre.y =  app.view.height - 110;
+    // coffre.x = - 130;
+    // coffre.y =  app.view.height - 220;
+    coffre.x = - 80;
+    coffre.y =  1000;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
-    coffre.zIndex = 11;
+    coffre.zIndex = 2;
     coffre.interactive = true;
+    coffre.name = "Coffre-Bttn"
 
     const imgCoffreBg = Texture.from("img/CoffreBg.svg")
     const coffreBg = new Sprite(imgCoffreBg)
 
-    coffreBg.x = 0;
-    coffreBg.y = 125;
-    coffreBg.scale.set(0.15);
+    coffreBg.x = -280;
+    coffreBg.y = 30;
+    coffreBg.scale.set(0.18);
     coffreBg.alpha = 0;
-    coffreBg.zIndex = 10;
+    coffreBg.zIndex = 2;
+    coffreBg.name = "Coffre-Bg"
     
     coffre.on("click", function (e) {
         this.interactive = true;
         inventoryOpen = !inventoryOpen
 
         if(inventoryOpen) {
-            coffreBg.alpha = 1;
+
+            gsap.to(coffreBg, {
+                alpha: 1,
+                x: -310,
+                duration: 1
+            });
+
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
-                    slot.object.alpha = 1
+                    gsap.to([slot.bttn, slot.object], {
+                        alpha: 1,
+                        x: 0,
+                        duration: 3
+                    });
+
                     slot.object.scale.set(0.13)
-                    slot.bttn.alpha = 1
                     slot.bttn.scale.set(1)
 
                     if (slot.anecdote !== null) {
@@ -125,7 +112,13 @@ const createInventory = () => {
                 }
             })
         } else {
-            coffreBg.alpha = 0;
+            
+            gsap.to(coffreBg, {
+                alpha: 0,
+                x: -320,
+                duration: 1
+            });
+
             INVENTORY_SLOTS.map((slot) => {
                 if (slot.object !== null) {
                     slot.object.alpha = 0
@@ -149,7 +142,7 @@ const createInventory = () => {
         anecdoteBttn.beginFill(0xFFFFFF);
         anecdoteBttn.drawCircle(slot.x + 150, slot.y + 150, 12);
         anecdoteBttn.endFill();
-        anecdoteBttn.zIndex = 16
+        anecdoteBttn.zIndex = 3
         anecdoteBttn.scale.set(0)
         anecdoteBttn.alpha = 0
         anecdoteBttn.interactive = true
@@ -163,8 +156,7 @@ const createInventory = () => {
         app.stage.addChild(anecdoteBttn);
     })
     
-    
-    app.stage.addChild(coffre, coffreBg)
+    container.addChild(coffreBg,coffre)
     return coffre
 }
 
@@ -239,15 +231,15 @@ annecdoteAdd.addEventListener("click", () => {
                 if(slot.anecdote == null) {
                     const textContainer = new Container();
                     
-                    const text = new Text(anecdoteTxt,{fontFamily : 'Helvetica, Arial', fontSize: 15, fill : 0x0a0d42, align : 'center'});
+                    const text = new Text(anecdoteTxt,{fontFamily : 'futura-pt, Helvetica, Arial', fontSize: 18, wordWrap: true, wordWrapWidth: 150,  fill : 0x0a0d42, align : 'left'});
                     text.x = slot.x + 200
                     text.y = slot.y + 100
 
                     const textBg = Sprite.from(Texture.WHITE);
-                    textBg.width = text.width + 10;
-                    textBg.height = text.height + 10;
-                    textBg.x = slot.x + 195
-                    textBg.y = slot.y + 95
+                    textBg.width = text.width + 30;
+                    textBg.height = text.height + 30;
+                    textBg.x = slot.x + 185
+                    textBg.y = slot.y + 85
                     
                     textContainer.addChild(textBg, text)
                     app.stage.addChild(textContainer)

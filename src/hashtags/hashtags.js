@@ -1,8 +1,11 @@
 import hashtagsData from '../data/hashtags.json'
+import { gsap } from "gsap";
 
 let publishHashtag
 let hashtags = hashtagsData.hashtags
-let notifications = document.getElementById("notifications")
+const notifications = document.getElementById("notifications")
+
+notifications.alpha = 0
 
 export const initHashtag = () => {
     notifications.classList.remove('hidden')
@@ -13,8 +16,16 @@ export const initHashtag = () => {
         var p = document.createElement('p')
         p.innerHTML = hashtags[randomHashtagId].title
         notifications.appendChild(p);
-    }, 20000)
-    
+        gsap.to(p, {
+            x: -30,
+            duration: 3
+        });
+        gsap.to(p, {
+            alpha: 1,
+            y: -10,
+            duration: 6
+        });
+    }, 20000)    
 }
 
 export const createNotification = (partnerName, type) => {
@@ -29,17 +40,11 @@ export const createNotification = (partnerName, type) => {
             p.innerHTML = partnerName + " vient d'enlever un trésor"
             notifications.appendChild(p);
             break;
-        case "treasureTagged":
-            alert(partnerName + " vient de tagger un trésor de [rayonannt]")
-            break;
     }
 }
 
 export const closeHashtag = () => {
     notifications.classList.add('hidden')
     clearInterval(publishHashtag)
+    document.getElementById("sunNav").style.display = 'none'
 }
-
-
-
-

@@ -2,8 +2,12 @@ let loadingPage = [...document.getElementsByClassName("loadingPage")]
 let codeMemo = document.getElementById("codeMemoValue")
 
 export const initLoad = (code) => {
-    const codeFormat = code
-    codeMemo.innerHTML = codeFormat
+    if(Array.isArray(code)) {
+        codeMemo.innerHTML = code.join('')
+    } else {
+        codeMemo.innerHTML = code
+    }
+
     loadingPage[0].classList.remove("hidden")
 }
 

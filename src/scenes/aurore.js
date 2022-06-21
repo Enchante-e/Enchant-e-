@@ -1,14 +1,19 @@
 import {Texture, Sprite, Graphics} from 'pixi.js';
 import {Player} from 'tone'
+import {gsap} from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 import objectsData from "../data/objects.json"
 import * as finalScene from "../finalScene/finalScene"
 import * as background from "../js/background"
+import contraintesData from "../data/contraintes.json"
+
 
 let cameraVector = {
     a: 0,
     l: 0
 };
 const OBJECTS = objectsData.objects
+const CONTRAINTES = contraintesData.contraintes
 let app, container, inventoryBox
 
 export const initScene = (globalApp, globalContainer, globalInventory) => {
@@ -16,7 +21,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
     app = globalApp
     container = globalContainer
     inventoryBox = globalInventory.getBounds()
-    // createEnvironment()
+    createEnvironment(globalContainer)
 
     for (let i = 0; i < OBJECTS.length; i++) {
 
@@ -42,8 +47,7 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             }
 
             object.goBack = false;
-            object.l = Math.random() * 4;
-            object.zIndex = 5;
+            object.zIndex = OBJECTS[i].index;
 
             object
             .on('pointerdown', onDragStart)
@@ -54,10 +58,24 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
             function onDragStart(event) {
                 this.data = event.data;
                 this.dragging = true;
+                this.alpha = 0.6;
 
-                const url = "sound/" + OBJECTS[i].sound
-                const player = new Player(url).toDestination();
-                player.autostart = true;
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
+
+                gsap.to(object.scale, {
+                    x: object.scale.x * 0.7,
+                    y: object.scale.y * 0.7
+                });
+
+                if(OBJECTS[i].sound !== "") {
+                    const url = "sound/" + OBJECTS[i].sound
+                    const player = new Player(url).toDestination();
+                    player.autostart = true;
+                    player.volume.value = 10
+                }
             }
 
             function onDragEnd() {
@@ -65,14 +83,116 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 this.dragging = false;
                 this.data = null;
 
-                if(checkCollision(this)) {
-                    background.addToSlot(this)                    
+                if (checkCollision(this)) {
+                    background.addToSlot(this, OBJECTS[i].name)
+
                 } else {
-                    finalScene.deleteObject(object.id)
+                    finalScene.deleteObject(object.id, OBJECTS[i].name)
                     background.clearSlot(this)
                     this.tint = 0xffffff;
                     this.scale.set(OBJECTS[i].scale)
                 }
+
+              gsap.to(object.scale, {
+                    x: object.scale.x,
+                    y: object.scale.y
+                });
+            }
+
+            function onDragMove() {
+                if (this.dragging) {
+                    const newPosition = this.data.getLocalPosition(this.parent);
+                    this.x = newPosition.x;
+                    this.y = newPosition.y;
+
+                    if(checkCollision(this)) {
+                        gsap.to(object, { 
+                            rotation: Math.random(),
+                            transformOrigin: "right 10%",
+                            opacity : 0.4
+                        });                 
+                    } else {
+                        gsap.to(object, {
+                            rotation: Math.random(),
+                            transformOrigin: "left 10%"
+                        }); 
+                    }
+                }
+
+            }
+
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    gsap.to(object.position, {
+                        x: object.x * 2,
+                        y: object.y * 2,
+                        duration: 10
+                    });
+
+                } else if (e.deltaY <= 0) {
+
+                    gsap.to(object.position, {
+                        x: object.initialPos.x,
+                        y: object.initialPos.y,
+                        duration: 2
+                    });
+                }
+            });
+
+            container.addChild(object);
+        }
+    }
+
+}
+
+export const playMusic = () => {
+    const url = "sound/Aurore.wav"
+    const player = new Player(url).toDestination();
+    player.autostart = true;
+}
+
+const createEnvironment = (globalContainer) => {
+
+
+    for (let i = 0; i < CONTRAINTES.length; i++) {
+
+        if (CONTRAINTES[i].timeOfDay == "Aurore") {
+
+            const contrainteImg = Texture.from("img/Contraintes/" + CONTRAINTES[i].src)
+            const contrainte = new Sprite(contrainteImg)
+            contrainte.zIndex = CONTRAINTES[i].index
+            contrainte.scale.set(CONTRAINTES[i].scale)
+            contrainte.x = CONTRAINTES[i].posX;
+            contrainte.y = CONTRAINTES[i].posY;
+            contrainte.anchor.set(0.5)
+            contrainte.interactive = true;
+
+            contrainte.x = CONTRAINTES[i].posX * window.innerWidth - (window.innerWidth / 6);
+            contrainte.y = CONTRAINTES[i].posY * window.innerHeight - (window.innerHeight / 6);
+            contrainte.initialPos = {
+                x: contrainte.x,
+                y: contrainte.y
+            }
+
+            contrainte
+                .on('pointerdown', onDragStart)
+                .on('pointerup', onDragEnd)
+                .on('pointerupoutside', onDragEnd)
+                .on('pointermove', onDragMove);
+
+
+            function onDragStart(event) {
+                this.alpha = 0.6;
+                this.data = event.data;
+                this.dragging = true;
+
+            }
+
+            function onDragEnd() {
+                this.alpha = 1;
+                this.dragging = false;
+                this.data = null;
+
             }
 
             function onDragMove() {
@@ -83,38 +203,27 @@ export const initScene = (globalApp, globalContainer, globalInventory) => {
                 }
             }
 
-            object.update = function () {
-                if (this.goBack) {
-                    this.x = lerp(this.x, this.initialPos.x, 0.5);
-                    this.y = lerp(this.y, this.initialPos.y, 0.5);
-                    this.goBack = (this.x == this.initialPos.x) ? false : true;
-                } else {
-                    this.x += Math.cos(cameraVector.a) * cameraVector.l * (SCALE / 10);
-                    this.y += Math.sin(cameraVector.a) * cameraVector.l * (SCALE / 10);
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY >= 0) {
+                    gsap.to(contrainte.position, {
+                        x: contrainte.x * 2,
+                        y: contrainte.y * 2,
+                        duration: 10
+                    });
+
+                } else if (e.deltaY <= 0) {
+                    gsap.to(contrainte.position, {
+                        x: contrainte.initialPos.x,
+                        y: contrainte.initialPos.y,
+                        duration: 2
+                    });
                 }
-            }
-            
-            container.addChild(object);
+            });
+            globalContainer.addChild(contrainte)
         }
     }
-
-    app.ticker.add((delta) => {
-        for (const object of container.children) {
-            object.update();
-        }
-    });    
-
 }
 
-
-export const playMusic = () => {
-    const url = "sound/Aurore.wav"
-    const player = new Player(url).toDestination();
-    player.autostart = true;
-}
-
-const createEnvironment = () => {
-}
 
 const checkCollision = (object) => {
     let objectBox = object.getBounds()
