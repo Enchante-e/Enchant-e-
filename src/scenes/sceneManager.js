@@ -129,7 +129,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
             
             clearScene(globalContainer)
-            // aube.playMusic()
+            aube.playMusic()
             aube.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Aurore":
@@ -146,7 +146,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
 
             clearScene(globalContainer)
-            // aurore.playMusic()
+            aurore.playMusic()
             aurore.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Jour":
@@ -163,7 +163,7 @@ export const switchScene = (name, globalApp, globalContainer, globalInventory) =
             });
 
             clearScene(globalContainer)
-            // jour.playMusic()
+            jour.playMusic()
             jour.initScene(globalApp, globalContainer, globalInventory)
             break;
         case "Crépuscule":

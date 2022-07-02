@@ -44,24 +44,11 @@ export const createCursor = () => {
     cursor.id = "cursor"
     document.body.appendChild(cursor)
 
-    // cursor  = new Graphics();
-    // cursor.lineStyle(3, 0x1A1D5C);
-    // cursor.drawCircle(window.innerWidth  / 2, window.innerHeight / 2, 15);
-    // cursor.zIndex = 5
-    // cursor.alpha = 0
-    
-    // app.stage.addChild(cursor);
     return cursor;
 }
 
 export const updateCursor = (cursor, coordX, coordY) => {
     if(cursor) {
-        // gsap.to(cursor.transform.position, {
-        //     x: coordX - window.innerWidth / 2,
-        //     y: coordY - window.innerHeight / 2,
-        //     duration: 0.15,
-        //     delay: 0.15
-        // });
         gsap.to(cursor, {
             top: coordY + "px",
             left: coordX + "px",
@@ -72,7 +59,6 @@ export const updateCursor = (cursor, coordX, coordY) => {
 }
 
 export const deleteCursor = (cursor) => {
-    // app.stage.removeChild(cursor)
     document.getElementById("cursor").remove()
     document.getElementById("tag").remove()
 }
@@ -120,7 +106,6 @@ finalSceneBttn.addEventListener("click", () => {
     finalSceneInit()
     document.getElementById('tag').style.display = "flex"
     cursor.style.display = "block"
-    // cursor.alpha = 1
     concept.closePhoneConcept()
 })
 
@@ -141,11 +126,11 @@ export const finalSceneInit = () => {
     document.getElementById("sunNav").style.display = 'none'
     interfaceFinalScene[0].classList.remove("hidden")
     
-    document.getElementById("ambientPlayer").pause()
-
-    const url = "sound/Paysage_partage.mp3"
-    const player = new Player(url).toDestination();
-    player.autostart = true;
+    // PRESENTATION
+    // document.getElementById("ambientPlayer").pause()
+    // const url = "sound/Paysage_partage.mp3"
+    // const player = new Player(url).toDestination();
+    // player.autostart = true;
 }
 
 const checkCommonObjects = () => {
@@ -201,9 +186,9 @@ const createObjectsSprites = (objectsArray, whichObjects) => {
                     y: objectImg.scale.y * 0.7
                 });
 
-                // const url = "sound/" + OBJECTS[object].sound
-                // const player = new Player(url).toDestination();
-                // player.autostart = true;
+                const url = "sound/" + OBJECTS[object].sound
+                const player = new Player(url).toDestination();
+                player.autostart = true;
             }
 
             function onDragEnd() {

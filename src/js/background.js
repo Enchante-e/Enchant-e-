@@ -63,10 +63,10 @@ const createInventory = () => {
     const imgCoffre = Texture.from("img/Coffre.svg")
     const coffre = new Sprite(imgCoffre)
 
-    // coffre.x = - 130;
-    // coffre.y =  app.view.height - 220;
-    coffre.x = - 80;
-    coffre.y =  1000;
+    coffre.x = - 130;
+    coffre.y =  app.view.height - 220;
+    // coffre.x = - 80;
+    // coffre.y =  1000;
     coffre.scale.set(0.4);
     coffre.anchor.set(0.5)
     coffre.zIndex = 2;

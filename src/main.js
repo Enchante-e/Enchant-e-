@@ -10,6 +10,7 @@ import * as finalScene from "./finalScene/finalScene"
 import * as loading from "./loading/loading"
 import * as hashtags from "./hashtags/hashtags"
 import * as concept from "./conceptPages/concept"
+import * as aube from "./scenes/aube"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -135,7 +136,7 @@ startTutorial.addEventListener('click', (e) => {
     background.activeMovement()
     logo[0].classList.add("whiteTint")
     
-    // aube.playMusic()
+    aube.playMusic()
     document.getElementById("finishObjectsChoice").classList.remove("hidden")
 });
 
